@@ -9,10 +9,17 @@ import com.fima.cardsui.views.CardUI;
 
 public class MainActivity extends Activity {
 
+    private CardUI cardsView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cardsView = (CardUI) findViewById(R.id.main_cards_view);
+        cardsView.setSwipeable(true);
+
+        addSampleCards();
     }
 
 
@@ -39,6 +46,22 @@ public class MainActivity extends Activity {
     private void showSettingsActivity() {
         Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
         startActivity(intent);
+    }
+
+    private void addSampleCards() {
+        cardsView.addCard(new CountdownCard("#ff4444", "Study Permit Expiry", "Dec 30, 2013",
+                "Remember to apply for renewal 90 days before the expiry. Consult advisors at SFU International if necessary.",
+                true, false));
+
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.addCard(new CountdownCard("#33b5e5", "Google I/O 2013", "May 15, 2013", "", true, false));
+        cardsView.refresh();
     }
     
 }

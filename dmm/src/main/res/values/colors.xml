@@ -1,0 +1,7 @@
+<resources>
+    <color name="ics_red">#ff4444</color>
+    <color name="ics_blue">#33b5e5</color>
+    <color name="ics_yellow">#ffbb33</color>
+    <color name="ics_green">#99cc00</color>
+    <color name="ics_purple">#aa66cc</color>
+</resources>
