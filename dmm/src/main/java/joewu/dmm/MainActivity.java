@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.fima.cardsui.views.CardUI;
 
 public class MainActivity extends Activity {
 
