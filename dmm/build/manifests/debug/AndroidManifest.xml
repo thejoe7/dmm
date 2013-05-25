@@ -10,6 +10,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:label="@string/action_settings" android:name="joewu.dmm.SettingsActivity">
+        </activity>
     </application>
 
 </manifest>
