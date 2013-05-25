@@ -17,28 +17,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0557db69-3c51-40c5-b53e-80299b65b91b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CardsUILib/CardsUILib.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_02.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dmm-dmm.iml" afterPath="$PROJECT_DIR$/Days--.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm.iml" afterPath="$PROJECT_DIR$/dmm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
     </list>
     <ignored path="dmm.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369505031150" ignored="false" />
+    <file path="/Dummy.txt" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369463615122" ignored="false" />
     <file path="/a.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462259791" ignored="false" />
     <file path="/strings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462328123" ignored="false" />
     <file path="/menu_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462555516" ignored="false" />
     <file path="/MainActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369463172202" ignored="false" />
-    <file path="/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369505220469" ignored="false" />
+    <file path="/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462653822" ignored="false" />
     <file path="/activity_settings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462832886" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462929121" ignored="false" />
     <file path="/SettingsActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369465002547" ignored="false" />
-    <file path="/fragment.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369505751203" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="20" selection-end="565" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.7352941">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,18 +103,6 @@
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="25" column="25" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="16" selection-start="497" selection-end="497" vertical-scroll-proportion="0.3267974">
               <folding />
             </state>
           </provider>
@@ -151,12 +128,12 @@
       <list>
         <option value="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/menu/menu_main.xml" />
+        <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" />
       </list>
     </option>
   </component>
@@ -397,26 +374,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.sourceCode.XML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CardsUILib" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="01876bd05fcc29eb" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="BX903G83Z0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="VirtualNexus4" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="Android Application.Days--">
+  <component name="RunManager" selected="Android Application.dmm-dmm">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -506,8 +479,8 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Days--" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="Days--" />
+    <configuration default="false" name="dmm-dmm" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="dmm-dmm" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
@@ -525,7 +498,7 @@
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.Days--" />
+      <item index="0" class="java.lang.String" itemvalue="Android Application.dmm-dmm" />
     </list>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -568,12 +541,11 @@
       <workItem from="1369461710769" duration="339000" />
       <workItem from="1369462064066" duration="1414000" />
       <workItem from="1369463605476" duration="1560000" />
-      <workItem from="1369505030151" duration="784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4545000" />
+    <option name="totallyTimeSpent" value="3761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -593,10 +565,10 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23563218" sideWeight="0.67206985" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32793018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23529412" sideWeight="0.6708229" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32917705" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -669,25 +641,7 @@
     <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="25" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -737,12 +691,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="44" selection-start="624" selection-end="624" vertical-scroll-proportion="0.35363457" />
+        <state line="12" column="44" selection-start="624" selection-end="624" vertical-scroll-proportion="0.35363457">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/res/menu/menu_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="50" selection-start="511" selection-end="511" vertical-scroll-proportion="0.3409091">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="40" selection-start="206" selection-end="206" vertical-scroll-proportion="0.062154695">
           <folding />
         </state>
       </provider>
@@ -756,110 +722,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="20" selection-end="565" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="497" selection-end="497" vertical-scroll-proportion="0.3267974">
+        <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.7352941">
           <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Android</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.6</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>dmm</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.6</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>android-support-v4</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
 
