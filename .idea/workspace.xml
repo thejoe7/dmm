@@ -12,26 +12,12 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="go ho" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0557db69-3c51-40c5-b53e-80299b65b91b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm-dmm.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/menu/main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm/src/main/res/drawable-hdpi/ic_action_new.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm/src/main/res/drawable-mdpi/ic_action_new.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm/src/main/res/drawable-xhdpi/ic_action_new.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dmm/src/main/res/menu/main.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/dmm/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
     </list>
     <ignored path="dmm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +29,7 @@
     <file path="/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462653822" ignored="false" />
     <file path="/activity_settings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462832886" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462929121" ignored="false" />
-    <file path="/SettingsActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369463260290" ignored="false" />
+    <file path="/SettingsActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369465002547" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,19 +90,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
+            <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.7352941">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.44117647">
+            <state line="25" column="25" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,9 +131,9 @@
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java" />
-        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" />
+        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
       </list>
     </option>
   </component>
@@ -554,12 +540,12 @@
       <workItem from="1369460798762" duration="448000" />
       <workItem from="1369461710769" duration="339000" />
       <workItem from="1369462064066" duration="1414000" />
-      <workItem from="1369463605476" duration="71000" />
+      <workItem from="1369463605476" duration="1560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2272000" />
+    <option name="totallyTimeSpent" value="3761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -568,7 +554,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3990025" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -693,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -736,7 +715,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.44117647">
+        <state line="25" column="25" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="5" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.7352941">
           <folding />
         </state>
       </provider>
