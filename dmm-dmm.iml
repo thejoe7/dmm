@@ -68,8 +68,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.2.2" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
-    <orderEntry type="module" module-name="CardsUILib" exported="" />
+    <orderEntry type="library" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="CardsUILib.aar" level="project" />
+    <orderEntry type="library" name="nineoldandroids-2.4.0" level="project" />
   </component>
 </module>
 

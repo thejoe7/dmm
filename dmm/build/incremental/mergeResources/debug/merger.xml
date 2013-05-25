@@ -742,8 +742,6 @@ sans-serif
                 </string>
                 <string name="card_title" >Card Title
                 </string>
-                <string name="card_days_until" >until Jan 1, 2014
-                </string>
                 <string name="app_name" >Days--
                 </string>
                 <string name="card_description" >Description
@@ -753,6 +751,8 @@ sans-serif
                 <string name="card_stripe" >Color Stripe
                 </string>
                 <string name="action_create" >Create
+                </string>
+                <string name="card_date" >until Jan 1, 2014
                 </string>
             </file>
             <file

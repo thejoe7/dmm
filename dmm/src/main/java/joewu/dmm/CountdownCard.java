@@ -13,6 +13,7 @@ import com.fima.cardsui.objects.Card;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -42,6 +43,18 @@ public class CountdownCard extends Card {
 
         ((TextView) v.findViewById(R.id.card_title)).setText(titlePlay);
         ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(titleColor));
+
+        Calendar c = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("MMM dd, yyyy");
+        try {
+            Date today = df.parse(df.format(c.getTime()));
+//            ((TextView) v.findViewById(R.id.card_countdown)).setText(today.compareTo(countdownDate));
+        } catch (ParseException pe) {
+            Log.e("Card", "Failed to parse today's date string.");
+        }
+
+        ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
+        ((TextView) v.findViewById(R.id.card_date)).setText("until UNKNOWN");
 
         ((TextView) v.findViewById(R.id.card_description)).setText(description);
 
