@@ -23,10 +23,10 @@ local.properties
 proguard/
 
 # Intellij project files
-*.iml
-*.ipr
-*.iws
-.idea/
+# *.iml
+# *.ipr
+# *.iws
+# .idea/
 
 # Mac
 .DS_Store
