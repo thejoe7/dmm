@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CardsUILib/CardsUILib.iml" filepath="$PROJECT_DIR$/CardsUILib/CardsUILib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Days--.iml" filepath="$PROJECT_DIR$/Days--.iml" />
       <module fileurl="file://$PROJECT_DIR$/dmm.iml" filepath="$PROJECT_DIR$/dmm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dmm-dmm.iml" filepath="$PROJECT_DIR$/dmm-dmm.iml" />
     </modules>
   </component>
 </project>
