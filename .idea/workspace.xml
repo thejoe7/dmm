@@ -17,20 +17,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0557db69-3c51-40c5-b53e-80299b65b91b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/CardsUILib_aar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dmm-dmm.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Days--.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/CardsUILib/CardsUILib.iml" afterPath="$PROJECT_DIR$/libraries/CardsUILib/CardsUILib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm.iml" afterPath="$PROJECT_DIR$/dmm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dmm.iws" />
@@ -47,8 +36,9 @@
     <file path="/fragment.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369525239685" ignored="false" />
     <file path="/build.gradle" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369508710463" ignored="false" />
     <file path="/CountdownCard.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369524873546" ignored="false" />
-    <file path="/card_countdown.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369525505360" ignored="false" />
+    <file path="/card_countdown.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369527528476" ignored="false" />
     <file path="/colors.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369518859435" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369527599174" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +111,10 @@
       <file leaf-file-name="card_countdown.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="40" selection-start="865" selection-end="865" vertical-scroll-proportion="0.6862745">
-              <folding />
+            <state line="89" column="35" selection-start="3682" selection-end="3682" vertical-scroll-proportion="0.07024793">
+              <folding>
+                <element signature="e#2218#2242#0" expanded="true" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -271,62 +263,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dmm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -334,7 +270,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -518,12 +454,12 @@
       <workItem from="1369463605476" duration="1560000" />
       <workItem from="1369508056506" duration="233000" />
       <workItem from="1369524921721" duration="170000" />
-      <workItem from="1369525147817" duration="808000" />
+      <workItem from="1369525147817" duration="2601000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18553000" />
+    <option name="totallyTimeSpent" value="20346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -616,11 +552,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libraries/CardsUILib/CardsUILib.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="30" selection-start="9" selection-end="30" vertical-scroll-proportion="0.0" />
@@ -711,13 +642,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="40" selection-start="865" selection-end="865" vertical-scroll-proportion="0.6862745">
-          <folding />
+        <state line="89" column="35" selection-start="3682" selection-end="3682" vertical-scroll-proportion="0.07024793">
+          <folding>
+            <element signature="e#2218#2242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
