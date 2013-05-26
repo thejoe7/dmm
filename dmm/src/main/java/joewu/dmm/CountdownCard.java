@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.fima.cardsui.objects.Card;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,13 +24,14 @@ import java.util.Date;
 public class CountdownCard extends Card {
 
     private Date countdownDate;
+    private DateFormat df;
 
     public CountdownCard(String color, String title, String date,
         String description, Boolean hasOverflow, Boolean isClickable) {
         super(title, description, color, color, hasOverflow, isClickable);
         try {
 //            countdownDate = DateFormat.getDateInstance().parse(date);
-            DateFormat df = new SimpleDateFormat("MMM dd, yyyy");
+            df = new SimpleDateFormat("MMM dd, yyyy");
             countdownDate = df.parse(date);
         } catch (ParseException pe) {
             Log.e("Card", "Failed to parse date string.");
@@ -45,16 +48,21 @@ public class CountdownCard extends Card {
         ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(titleColor));
 
         Calendar c = Calendar.getInstance();
-        DateFormat df = new SimpleDateFormat("MMM dd, yyyy");
         try {
             Date today = df.parse(df.format(c.getTime()));
-//            ((TextView) v.findViewById(R.id.card_countdown)).setText(today.compareTo(countdownDate));
+            int days = Days.daysBetween(new DateTime(today), new DateTime(countdownDate)).getDays();
+            if (days >= 0) {
+                ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(days));
+                ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
+                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + df.format(countdownDate));
+            } else {
+                ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-days));
+                ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
+                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + df.format(countdownDate));
+            }
         } catch (ParseException pe) {
             Log.e("Card", "Failed to parse today's date string.");
         }
-
-        ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
-        ((TextView) v.findViewById(R.id.card_date)).setText("until UNKNOWN");
 
         ((TextView) v.findViewById(R.id.card_description)).setText(description);
 

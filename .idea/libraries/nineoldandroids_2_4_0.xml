@@ -2,7 +2,6 @@
   <library name="nineoldandroids-2.4.0">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libraries/CardsUILib/libs/nineoldandroids-2.4.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dmm/build/exploded-bundles/CardsUILib.aar/libs/nineoldandroids-2.4.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

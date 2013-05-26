@@ -259,12 +259,14 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060002;
         public static final int card_countdown=0x7f060003;
-        public static final int card_date=0x7f060004;
-        public static final int card_days_left=0x7f060005;
-        public static final int card_description=0x7f060006;
-        public static final int card_overflow=0x7f060007;
-        public static final int card_stripe=0x7f060008;
-        public static final int card_title=0x7f060009;
+        public static final int card_date_since=0x7f060004;
+        public static final int card_date_until=0x7f060005;
+        public static final int card_days_left=0x7f060006;
+        public static final int card_days_past=0x7f060007;
+        public static final int card_description=0x7f060008;
+        public static final int card_overflow=0x7f060009;
+        public static final int card_stripe=0x7f06000a;
+        public static final int card_title=0x7f06000b;
     }
     public static final class style {
         /** 
