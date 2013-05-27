@@ -17,13 +17,14 @@ public final class R {
         public static final int card_separator=0x7f040003;
         public static final int card_text=0x7f040004;
         public static final int card_title_text=0x7f040005;
-        public static final int ics_blue=0x7f040006;
-        public static final int ics_green=0x7f040007;
-        public static final int ics_purple=0x7f040008;
-        public static final int ics_red=0x7f040009;
-        public static final int ics_yellow=0x7f04000a;
-        public static final int stroke=0x7f04000b;
-        public static final int text_light=0x7f04000c;
+        public static final int grey=0x7f040006;
+        public static final int ics_blue=0x7f040007;
+        public static final int ics_green=0x7f040008;
+        public static final int ics_purple=0x7f040009;
+        public static final int ics_red=0x7f04000a;
+        public static final int ics_yellow=0x7f04000b;
+        public static final int stroke=0x7f04000c;
+        public static final int text_light=0x7f04000d;
     }
     public static final class dimen {
         public static final int action_bar_switch_padding=0x7f050000;
@@ -212,9 +213,11 @@ public final class R {
         public static final int ic_action_save=0x7f020007;
         public static final int ic_action_settings=0x7f020008;
         public static final int ic_launcher=0x7f020009;
-        public static final int ic_menu_moreoverflow_normal_holo_light=0x7f02000a;
-        public static final int selectable_background_cardbank=0x7f02000b;
-        public static final int top_shadow=0x7f02000c;
+        public static final int ic_menu_moreoverflow_normal_holo_blue=0x7f02000a;
+        public static final int ic_menu_moreoverflow_normal_holo_light=0x7f02000b;
+        public static final int selectable_background_cardbank=0x7f02000c;
+        public static final int selectable_overflow_cardbank=0x7f02000d;
+        public static final int top_shadow=0x7f02000e;
     }
     public static final class id {
         public static final int ScrollView1=0x7f09000c;

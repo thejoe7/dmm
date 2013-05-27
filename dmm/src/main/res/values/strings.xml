@@ -11,9 +11,9 @@
     <string name="card_countdown">0</string>
     <string name="card_days_left">days left</string>
     <string name="card_days_past">days past</string>
-    <string name="card_date_until">until </string>
-    <string name="card_date_since">since </string>
-    <string name="card_description">Description</string>
+    <string name="card_date_until">until</string>
+    <string name="card_date_since">since</string>
+    <string name="card_description"></string>
     <string name="card_overflow">Overflow</string>
 
 </resources>

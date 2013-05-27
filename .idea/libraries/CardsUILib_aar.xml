@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CardsUILib.aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dmm/build/exploded-bundles/CardsUILib.aar/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

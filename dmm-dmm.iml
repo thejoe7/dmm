@@ -71,6 +71,7 @@
     <orderEntry type="library" name="android-support-v4" level="project" />
     <orderEntry type="library" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" name="joda-time-2.2" level="project" />
+    <orderEntry type="library" name="CardsUILib.aar" level="project" />
   </component>
 </module>
 

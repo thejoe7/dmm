@@ -4,4 +4,5 @@
     <color name="ics_yellow">#ffbb33</color>
     <color name="ics_green">#99cc00</color>
     <color name="ics_purple">#aa66cc</color>
+    <color name="grey">#c0c0c0</color>
 </resources>

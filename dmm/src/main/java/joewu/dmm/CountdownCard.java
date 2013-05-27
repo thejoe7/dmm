@@ -30,7 +30,6 @@ public class CountdownCard extends Card {
         String description, Boolean hasOverflow, Boolean isClickable) {
         super(title, description, color, color, hasOverflow, isClickable);
         try {
-//            countdownDate = DateFormat.getDateInstance().parse(date);
             df = new SimpleDateFormat("MMM dd, yyyy");
             countdownDate = df.parse(date);
         } catch (ParseException pe) {
@@ -54,17 +53,21 @@ public class CountdownCard extends Card {
             if (days >= 0) {
                 ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(days));
                 ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
-                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + df.format(countdownDate));
+                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + " " + df.format(countdownDate));
             } else {
                 ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-days));
                 ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
-                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + df.format(countdownDate));
+                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + " " + df.format(countdownDate));
             }
         } catch (ParseException pe) {
             Log.e("Card", "Failed to parse today's date string.");
         }
-
-        ((TextView) v.findViewById(R.id.card_description)).setText(description);
+        if (description != "") {
+            ((TextView) v.findViewById(R.id.card_description)).setText(description);
+        } else {
+            TextView desc = (TextView) v.findViewById(R.id.card_description);
+            desc.setVisibility(View.GONE);
+        }
 
         if (isClickable) {
             ((LinearLayout) v.findViewById(R.id.card_content_layout))

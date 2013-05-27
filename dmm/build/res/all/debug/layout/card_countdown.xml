@@ -53,6 +53,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dip"
                     android:text="@string/card_countdown"
+                    android:textStyle="bold"
                     android:textSize="40sp" />
 
                 <LinearLayout
@@ -84,12 +85,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dip"
-                android:layout_marginRight="48dip"
+                android:layout_marginRight="16dip"
                 android:ellipsize="end"
-                android:maxLines="3"
-                android:minLines="0"
                 android:text="@string/card_description"
-                android:textSize="16sp" />
+                android:textColor="@color/grey"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -102,10 +102,9 @@
             <ImageView android:id="@+id/card_overflow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selectable_background_cardbank"
                 android:contentDescription="@string/card_overflow"
                 android:padding="2dip"
-                android:src="@drawable/ic_menu_moreoverflow_normal_holo_light" />
+                android:src="@drawable/selectable_overflow_cardbank" />
 
         </LinearLayout>
 

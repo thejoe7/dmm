@@ -585,6 +585,11 @@ sans-serif
     <dataSet config="main" >
         <source path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res" >
             <file
+                name="ic_menu_moreoverflow_normal_holo_blue"
+                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_blue.png"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="ic_menu_moreoverflow_normal_holo_light"
                 path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_light.png"
                 qualifiers=""
@@ -592,6 +597,11 @@ sans-serif
             <file
                 name="selectable_background_cardbank"
                 path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/selectable_background_cardbank.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="selectable_overflow_cardbank"
+                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/selectable_overflow_cardbank.xml"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -712,6 +722,8 @@ sans-serif
             <file
                 path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values/colors.xml"
                 qualifiers="" >
+                <color name="grey" >#c0c0c0
+                </color>
                 <color name="ics_purple" >#aa66cc
                 </color>
                 <color name="ics_blue" >#33b5e5
@@ -744,13 +756,12 @@ sans-serif
                 </string>
                 <string name="app_name" >Days--
                 </string>
-                <string name="card_description" >Description
-                </string>
+                <string name="card_description" ></string>
                 <string name="card_overflow" >Overflow
                 </string>
-                <string name="card_date_since" >since 
+                <string name="card_date_since" >since
                 </string>
-                <string name="card_date_until" >until 
+                <string name="card_date_until" >until
                 </string>
                 <string name="card_days_past" >days past
                 </string>
