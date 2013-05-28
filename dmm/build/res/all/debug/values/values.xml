@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="dateFormat">
+        <item>02/25/1992</item>
+        <item>25/02/1992</item>
+        <item>1992/02/25</item>
+        <item>25 Feb 1992</item>
+        <item>Feb 25, 1992</item>
+    </string-array>
+    <string-array name="dateFormatValues">
+        <item>MMM dd, yyyy</item>
+        <item>MMM dd, yyyy</item>
+        <item>MMM dd, yyyy</item>
+        <item>MMM dd, yyyy</item>
+        <item>MMM dd, yyyy</item>
+    </string-array>
+
     <color name="card_border">#ffdedede</color>
     <color name="card_grid_text">#ff707070</color>
     <color name="card_light_text">#ffb5b5b5</color>
@@ -203,6 +218,18 @@
     <string name="card_overflow">Overflow</string>
     <string name="card_stripe">Color Stripe</string>
     <string name="card_title">Card Title</string>
+    <string name="settings_cat_about">About</string>
+    <string name="settings_cat_preference">Preference</string>
+    <string name="settings_item_date_format_summary">Choose how the date is displayed on cards</string>
+    <string name="settings_item_date_format_title">Choose date format</string>
+    <string name="settings_item_developer_summary">Joe Wu</string>
+    <string name="settings_item_developer_title">Developer</string>
+    <string name="settings_item_fold_past_events_summary">Check to collapse all past events into a card stack</string>
+    <string name="settings_item_fold_past_events_title">Fold past events</string>
+    <string name="settings_item_version_summary">1.0.0</string>
+    <string name="settings_item_version_title">Version</string>
+    <string name="settings_key_date_format">date_format</string>
+    <string name="settings_key_fold_past_events">fold_past_event</string>
 
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
