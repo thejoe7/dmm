@@ -286,7 +286,8 @@ public final class R {
         public static final int settings_item_version_summary=0x7f070014;
         public static final int settings_item_version_title=0x7f070015;
         public static final int settings_key_date_format=0x7f070016;
-        public static final int settings_key_fold_past_events=0x7f070017;
+        public static final int settings_key_developer=0x7f070017;
+        public static final int settings_key_fold_past_events=0x7f070018;
     }
     public static final class style {
         /** 

@@ -29,5 +29,6 @@
 
     <string name="settings_key_fold_past_events">fold_past_event</string>
     <string name="settings_key_date_format">date_format</string>
+    <string name="settings_key_developer">developer</string>
 
 </resources>

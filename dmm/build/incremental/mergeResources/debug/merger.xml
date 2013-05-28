@@ -812,6 +812,8 @@ MMM dd, yyyy
                 </string>
                 <string name="card_days_left" >days left
                 </string>
+                <string name="settings_key_developer" >developer
+                </string>
                 <string name="app_name" >Days--
                 </string>
                 <string name="settings_cat_preference" >Preference

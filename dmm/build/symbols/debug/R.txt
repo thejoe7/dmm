@@ -259,7 +259,8 @@ int string settings_item_fold_past_events_title 0x7f070013
 int string settings_item_version_summary 0x7f070014
 int string settings_item_version_title 0x7f070015
 int string settings_key_date_format 0x7f070016
-int string settings_key_fold_past_events 0x7f070017
+int string settings_key_developer 0x7f070017
+int string settings_key_fold_past_events 0x7f070018
 int style AppBaseTheme 0x7f080000
 int style AppTheme 0x7f080001
 int style CardLightText 0x7f080002

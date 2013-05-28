@@ -17,8 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0557db69-3c51-40c5-b53e-80299b65b91b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dmm/src/main/res/values/arrays.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" />
@@ -29,15 +27,15 @@
     </list>
     <ignored path="dmm.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369720342853" ignored="false" />
+    <file path="/Dummy.txt" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756100003" ignored="false" />
     <file path="/a.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369520892226" ignored="false" />
-    <file path="/strings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369721454448" ignored="false" />
+    <file path="/strings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756726475" ignored="false" />
     <file path="/menu_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462555516" ignored="false" />
     <file path="/MainActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369717211660" ignored="false" />
     <file path="/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369509011660" ignored="false" />
-    <file path="/activity_settings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369721734702" ignored="false" />
+    <file path="/activity_settings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756736318" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462929121" ignored="false" />
-    <file path="/SettingsActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369720870115" ignored="false" />
+    <file path="/SettingsActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756752487" ignored="false" />
     <file path="/fragment.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369525239685" ignored="false" />
     <file path="/build.gradle" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369508710463" ignored="false" />
     <file path="/CountdownCard.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369717537638" ignored="false" />
@@ -46,6 +44,14 @@
     <file path="/selectable_background_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369631551985" ignored="false" />
     <file path="/Countdown.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369717469357" ignored="false" />
     <file path="/arrays.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369720784121" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/selectable_background_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836208" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/values-sw720dp-land/values.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836208" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/selectable_overflow_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836208" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/item_card.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836208" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/cards_view_multicolumn.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836209" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836209" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/cards_view.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836209" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/card.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836209" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,29 +115,32 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="47" selection-start="1371" selection-end="1400" vertical-scroll-proportion="-8.68">
+            <state line="31" column="40" selection-start="1575" selection-end="1597" vertical-scroll-proportion="-10.56">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_settings.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="activity_settings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="49" selection-start="787" selection-end="787" vertical-scroll-proportion="0.39325842">
+            <state line="27" column="45" selection-start="1336" selection-end="1336" vertical-scroll-proportion="-4.8461537">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="-7.8">
-              <folding />
+            <state line="24" column="27" selection-start="689" selection-end="689" vertical-scroll-proportion="0.4296875">
+              <folding>
+                <element signature="e#861#1251#0" expanded="true" />
+                <element signature="e#1240#1241#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,9 +176,9 @@
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/Countdown.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/values/arrays.xml" />
-        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
+        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
       </list>
     </option>
   </component>
@@ -228,7 +237,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -402,6 +410,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -419,11 +428,11 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_Virtual" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="true" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -594,11 +603,12 @@
       <workItem from="1369632060002" duration="896000" />
       <workItem from="1369711162975" duration="8681000" />
       <workItem from="1369720342012" duration="1834000" />
+      <workItem from="1369756098991" duration="757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42876000" />
+    <option name="totallyTimeSpent" value="43633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
@@ -618,8 +628,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24810319" sideWeight="0.6507463" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34925374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24772727" sideWeight="0.6522388" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34776118" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.67206985" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.67206985" order="3" side_tool="false" content_ui="tabs" />
@@ -691,6 +701,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#861#1251#0" expanded="true" />
+            <element signature="e#1240#1241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="16" selection-start="322" selection-end="322" vertical-scroll-proportion="0.3313253" />
@@ -766,13 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="-7.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/arrays.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="34" selection-start="85" selection-end="85" vertical-scroll-proportion="0.07832898">
@@ -782,7 +795,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="47" selection-start="1371" selection-end="1400" vertical-scroll-proportion="-8.68">
+        <state line="31" column="40" selection-start="1575" selection-end="1597" vertical-scroll-proportion="-10.56">
           <folding />
         </state>
       </provider>
@@ -792,8 +805,18 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="49" selection-start="787" selection-end="787" vertical-scroll-proportion="0.39325842">
+        <state line="27" column="45" selection-start="1336" selection-end="1336" vertical-scroll-proportion="-4.8461537">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="27" selection-start="689" selection-end="689" vertical-scroll-proportion="0.4296875">
+          <folding>
+            <element signature="e#861#1251#0" expanded="true" />
+            <element signature="e#1240#1241#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

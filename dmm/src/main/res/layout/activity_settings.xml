@@ -27,7 +27,7 @@
 
     <PreferenceCategory android:title="@string/settings_cat_about">
 
-        <Preference
+        <Preference android:key="@string/settings_key_developer"
             android:title="@string/settings_item_developer_title"
             android:summary="@string/settings_item_developer_summary" />
 

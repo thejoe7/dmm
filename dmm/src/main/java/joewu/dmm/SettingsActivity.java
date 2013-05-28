@@ -1,7 +1,10 @@
 package joewu.dmm;
 
 import android.app.ActionBar;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
@@ -20,6 +23,17 @@ public class SettingsActivity extends PreferenceActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.layout.activity_settings);
+
+        Preference devPref = findPreference(getString(R.string.settings_key_developer));
+        devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://plus.google.com/109777428099332805106/about"));
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
     @Override
