@@ -2,74 +2,74 @@
 <merger>
 
     <dataSet config="CardsUILib.aar" >
-        <source path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res" >
+        <source path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res" >
             <file
                 name="card"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable/card.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable/card.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="card_background"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_background.9.png"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_background.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="card_background_shadow"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_background_shadow.9.png"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_background_shadow.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="card_shadow"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_shadow.9.png"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/card_shadow.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="top_shadow"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/top_shadow.png"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/drawable-xhdpi/top_shadow.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="cards_view"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/cards_view.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/cards_view.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="cards_view_multicolumn"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/cards_view_multicolumn.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/cards_view_multicolumn.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="header"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/header.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/header.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="item_card"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="item_card_empty_first"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card_empty_first.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card_empty_first.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="item_card_empty_last"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card_empty_last.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_card_empty_last.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="item_play_card_empty_first"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_play_card_empty_first.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_play_card_empty_first.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="item_stack"
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_stack.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/layout/item_stack.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/values/values.xml"
+                path="/Users/joew/Workspace/dmm/dmm/build/exploded-bundles/CardsUILib.aar/res/values/values.xml"
                 qualifiers="" >
                 <dimen name="card_temperature_size" >90.0dip
                 </dimen>
@@ -583,144 +583,144 @@ sans-serif
         </source>
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res" >
+        <source path="/Users/joew/Workspace/dmm/dmm/src/main/res" >
             <file
                 name="ic_menu_moreoverflow_normal_holo_blue"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_blue.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_blue.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_menu_moreoverflow_normal_holo_light"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_light.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable/ic_menu_moreoverflow_normal_holo_light.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="selectable_background_cardbank"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/selectable_background_cardbank.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable/selectable_background_cardbank.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="selectable_overflow_cardbank"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable/selectable_overflow_cardbank.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable/selectable_overflow_cardbank.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_action_create"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_create.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_create.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_action_discard"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_discard.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_discard.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_action_remove"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_remove.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_remove.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_action_save"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_save.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_save.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_action_settings"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_settings.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_action_settings.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_launcher.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_action_create"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_create.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_create.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_action_discard"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_discard.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_discard.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_action_remove"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_remove.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_remove.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_action_save"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_save.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_save.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_action_settings"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_settings.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_action_settings.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_launcher.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-mdpi/ic_launcher.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_action_create"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_create.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_create.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_action_discard"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_discard.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_discard.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_action_remove"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_remove.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_remove.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_action_save"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_save.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_save.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_action_settings"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_settings.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_action_settings.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_launcher.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/drawable-xxhdpi/ic_launcher.png"
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
                 name="activity_main"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/layout/activity_main.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/layout/activity_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_settings"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/layout/activity_settings.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/layout/activity_settings.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="card_countdown"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/layout/card_countdown.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/layout/card_countdown.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="menu_main"
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/menu/menu_main.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/menu/menu_main.xml"
                 qualifiers=""
                 type="menu" />
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values/colors.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values/colors.xml"
                 qualifiers="" >
                 <color name="grey" >#c0c0c0
                 </color>
@@ -736,7 +736,7 @@ sans-serif
                 </color>
             </file>
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values/dimens.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values/dimens.xml"
                 qualifiers="" >
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
@@ -744,7 +744,7 @@ sans-serif
                 </dimen>
             </file>
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values/strings.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="card_countdown" >0
                 </string>
@@ -771,7 +771,7 @@ sans-serif
                 </string>
             </file>
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values/styles.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values/styles.xml"
                 qualifiers="" >
 
                 <style
@@ -793,16 +793,16 @@ sans-serif
                 </style>
             </file>
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values-sw600dp/dimens.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values-sw600dp/dimens.xml"
                 qualifiers="sw600dp" />
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values-sw720dp-land/dimens.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values-sw720dp-land/dimens.xml"
                 qualifiers="sw720dp-land" >
                 <dimen name="activity_horizontal_margin" >128dp
                 </dimen>
             </file>
             <file
-                path="/Users/joe7wu/Workspace/dmm/dmm/src/main/res/values-v11/styles.xml"
+                path="/Users/joew/Workspace/dmm/dmm/src/main/res/values-v11/styles.xml"
                 qualifiers="v11" >
 
                 <style
@@ -813,10 +813,10 @@ sans-serif
                 </style>
             </file>
         </source>
-        <source path="/Users/joe7wu/Workspace/dmm/dmm/build/res/rs/debug" />
+        <source path="/Users/joew/Workspace/dmm/dmm/build/res/rs/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/joe7wu/Workspace/dmm/dmm/src/debug/res" />
+        <source path="/Users/joew/Workspace/dmm/dmm/src/debug/res" />
     </dataSet>
 
 </merger>

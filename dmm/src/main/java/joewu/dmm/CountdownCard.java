@@ -2,7 +2,6 @@ package joewu.dmm;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,62 +10,49 @@ import android.widget.TextView;
 import com.fima.cardsui.objects.Card;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.format.DateTimeFormatter;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by joe7wu on 2013-05-25.
  */
 public class CountdownCard extends Card {
 
-    private Date countdownDate;
-    private DateFormat df;
+    private DateTimeFormatter format;
+    private Countdown countdown;
 
-    public CountdownCard(String color, String title, String date,
-        String description, Boolean hasOverflow, Boolean isClickable) {
-        super(title, description, color, color, hasOverflow, isClickable);
-        try {
-            df = new SimpleDateFormat("MMM dd, yyyy");
-            countdownDate = df.parse(date);
-        } catch (ParseException pe) {
-            Log.e("Card", "Failed to parse date string.");
-        }
+    public CountdownCard(Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
+        super(countdown.title, countdown.description, countdown.color, countdown.color, hasOverflow, isClickable);
+        this.countdown = countdown;
+        this.format = format;
     }
 
     @Override
     public View getCardContent(Context context) {
         View v = LayoutInflater.from(context).inflate(R.layout.card_countdown, null);
 
-        ((ImageView) v.findViewById(R.id.card_stripe)).setBackgroundColor(Color.parseColor(titleColor));
+        ((ImageView) v.findViewById(R.id.card_stripe)).setBackgroundColor(Color.parseColor(countdown.color));
 
-        ((TextView) v.findViewById(R.id.card_title)).setText(titlePlay);
-        ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(titleColor));
+        ((TextView) v.findViewById(R.id.card_title)).setText(countdown.title);
+        ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(countdown.color));
 
-        Calendar c = Calendar.getInstance();
-        try {
-            Date today = df.parse(df.format(c.getTime()));
-            int days = Days.daysBetween(new DateTime(today), new DateTime(countdownDate)).getDays();
-            if (days >= 0) {
-                ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(days));
-                ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
-                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + " " + df.format(countdownDate));
-            } else {
-                ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-days));
-                ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
-                ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + " " + df.format(countdownDate));
-            }
-        } catch (ParseException pe) {
-            Log.e("Card", "Failed to parse today's date string.");
-        }
-        if (description != "") {
-            ((TextView) v.findViewById(R.id.card_description)).setText(description);
+        DateTime today = DateTime.now();
+        int daysDiff = countdown.getDaysDiff(today);
+        if (daysDiff >= 0) {
+            ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(daysDiff));
+            ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
+            ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + " " + format.print(countdown.date));
         } else {
-            TextView desc = (TextView) v.findViewById(R.id.card_description);
-            desc.setVisibility(View.GONE);
+            ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-daysDiff));
+            ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
+            ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + " " + format.print(countdown.date));
+        }
+
+        if (description != "") {
+            ((TextView) v.findViewById(R.id.card_description)).setText(countdown.description);
+            ((TextView) v.findViewById(R.id.card_description)).setVisibility(View.VISIBLE);
+        } else {
+            ((TextView) v.findViewById(R.id.card_description)).setVisibility(View.GONE);
         }
 
         if (isClickable) {
