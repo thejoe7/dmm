@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.path="$MODULE_DIR$/../../build.gradle" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+<module external.linked.project.path="$MODULE_DIR$/../build.gradle" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
-        <option name="ASSEMBLE_TASK_NAME" value="bundleDebug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":libraries:CardsUILib" />
-        <option name="PROJECT_ABSOLUTE_PATH" value="$MODULE_DIR$/../.." />
+        <option name="GRADLE_PROJECT_PATH" value=":dmm" />
+        <option name="PROJECT_ABSOLUTE_PATH" value="$MODULE_DIR$/.." />
         <option name="GRADLE_HOME_DIR_PATH" />
       </configuration>
     </facet>
@@ -39,10 +41,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/res" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/aidl" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/assets" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/java" isTestSource="true" />
@@ -64,6 +67,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.2.2" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="joda-time-2.2" level="project" />
+    <orderEntry type="library" name="CardsUILib.aar" level="project" />
     <orderEntry type="library" name="nineoldandroids-2.4.0" level="project" />
   </component>
 </module>

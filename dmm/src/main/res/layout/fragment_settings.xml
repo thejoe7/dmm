@@ -12,12 +12,12 @@
 
         <CheckBoxPreference android:id="@+id/settings_fold_past_events"
                             android:defaultValue="false"
-                            android:key="@string/settings_key_fold_past_events"
+                            android:key="KEY_FOLD_PAST_EVENT"
                             android:title="@string/settings_item_fold_past_events_title"
                             android:summary="@string/settings_item_fold_past_events_summary" />
 
         <ListPreference android:id="@+id/settings_date_format"
-                        android:key="@string/settings_key_date_format"
+                        android:key="KEY_DATE_FORMAT"
                         android:title="@string/settings_item_date_format_title"
                         android:summary="@string/settings_item_date_format_summary"
                         android:entries="@array/dateFormat"
@@ -27,7 +27,7 @@
 
     <PreferenceCategory android:title="@string/settings_cat_about">
 
-        <Preference android:key="@string/settings_key_developer"
+        <Preference android:key="KEY_DEVELOPER"
                     android:title="@string/settings_item_developer_title"
                     android:summary="@string/settings_item_developer_summary" />
 

@@ -25,8 +25,4 @@
     <string name="settings_item_version_title">Version</string>
     <string name="settings_item_version_summary">1.0.0</string>
 
-    <string name="settings_key_fold_past_events">fold_past_event</string>
-    <string name="settings_key_date_format">date_format</string>
-    <string name="settings_key_developer">developer</string>
-
 </resources>
