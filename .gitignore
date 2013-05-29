@@ -37,3 +37,5 @@ proguard/
 log/
 target/
 
+# Gradle
+.gradle
