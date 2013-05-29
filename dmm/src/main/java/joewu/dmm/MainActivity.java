@@ -1,8 +1,11 @@
 package joewu.dmm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.fima.cardsui.views.CardUI;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity /* implements SharedPreferences.OnSharedPreferenceChangeListener */ {
 
     private CardUI cardsView;
     private List<Countdown> countdowns;
@@ -31,12 +34,17 @@ public class MainActivity extends Activity {
         countdowns = new ArrayList<Countdown>();
         addSampleCountdowns();
 
-        // loadAppDate();
-        foldPastEvents = true;
-        format = DateTimeFormat.forPattern("MMM dd, yyyy");
-
-        loadCards();
     }
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		foldPastEvents = sharedPref.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
+		format = DateTimeFormat.forPattern(sharedPref.getString(SettingsActivity.DATE_FORMAT, SettingsActivity.DATE_FORMAT_DEFAULT));
+
+		loadCards();
+	}
 
 
     @Override
@@ -46,6 +54,7 @@ public class MainActivity extends Activity {
         return true;
     }
 
+	@Override
     public boolean onMenuItemSelected(int id, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_create:
@@ -58,6 +67,29 @@ public class MainActivity extends Activity {
                 return super.onMenuItemSelected(id, item);
         }
     }
+
+//	@Override
+//	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//		Log.d("Pref", "sharedPreferences changed: " + key);
+//		if (key.equals(SettingsActivity.FOLD_PAST_EVENTS)) {
+//			foldPastEvents = sharedPreferences.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
+//		} else if (key.equals(SettingsActivity.DATE_FORMAT)) {
+//			format = DateTimeFormat.forPattern(sharedPreferences.getString(SettingsActivity.DATE_FORMAT, SettingsActivity.DATE_FORMAT_DEFAULT));
+//		}
+//		loadCards();
+//	}
+
+//	@Override
+//	public void onStart() {
+//		super.onResume();
+//		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+//	}
+//
+//	@Override
+//	public void onStop() {
+//		super.onPause();
+//		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+//	}
 
     private void showSettingsActivity() {
         Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
@@ -75,6 +107,7 @@ public class MainActivity extends Activity {
     }
 
     private void loadCards() {
+	    cardsView.clearCards();
         Collections.sort(countdowns, new Countdown.CountdownComparator());
         for (int i = 0; i < countdowns.size(); i++) {
             CountdownCard card = new CountdownCard(countdowns.get(i), format, true, false);

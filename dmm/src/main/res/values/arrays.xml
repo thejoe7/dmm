@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="dateFormat">
-        <item>02/25/1992</item>
-        <item>25/02/1992</item>
-        <item>1992/02/25</item>
-        <item>25 Feb 1992</item>
-        <item>Feb 25, 1992</item>
+        <item>01/31/2014</item>
+        <item>31/01/2014</item>
+        <item>2014/01/31</item>
+        <item>31 Jan 2014</item>
+        <item>Jan 31, 2014</item>
+	    <item>31 January 2014</item>
+	    <item>January 31, 2014</item>
     </string-array>
     <string-array name="dateFormatValues">
-        <item>MMM dd, yyyy</item>
-        <item>MMM dd, yyyy</item>
-        <item>MMM dd, yyyy</item>
-        <item>MMM dd, yyyy</item>
-        <item>MMM dd, yyyy</item>
+        <item>MM/dd/yyyy</item>
+        <item>dd/MM/yyyy</item>
+        <item>yyyy/MM/dd</item>
+        <item>d MMM yyyy</item>
+        <item>MMM d, yyyy</item>
+	    <item>d MMMM yyyy</item>
+	    <item>MMMM d, yyyy</item>
     </string-array>
 </resources>
