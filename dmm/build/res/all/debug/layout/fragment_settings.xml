@@ -1,0 +1,40 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:paddingLeft="@dimen/activity_horizontal_margin"
+                  android:paddingRight="@dimen/activity_horizontal_margin"
+                  android:paddingTop="@dimen/activity_vertical_margin"
+                  android:paddingBottom="@dimen/activity_vertical_margin"
+                  tools:context=".SettingsActivity">
+
+    <PreferenceCategory android:title="@string/settings_cat_preference">
+
+        <CheckBoxPreference android:id="@+id/settings_fold_past_events"
+                            android:defaultValue="false"
+                            android:key="@string/settings_key_fold_past_events"
+                            android:title="@string/settings_item_fold_past_events_title"
+                            android:summary="@string/settings_item_fold_past_events_summary" />
+
+        <ListPreference android:id="@+id/settings_date_format"
+                        android:key="@string/settings_key_date_format"
+                        android:title="@string/settings_item_date_format_title"
+                        android:summary="@string/settings_item_date_format_summary"
+                        android:entries="@array/dateFormat"
+                        android:entryValues="@array/dateFormatValues" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_cat_about">
+
+        <Preference android:key="@string/settings_key_developer"
+                    android:title="@string/settings_item_developer_title"
+                    android:summary="@string/settings_item_developer_summary" />
+
+        <Preference
+                android:title="@string/settings_item_version_title"
+                android:summary="@string/settings_item_version_summary" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -6,7 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
+
+import java.util.List;
 
 /**
  * Created by joe7wu on 2013-05-24.
@@ -16,24 +20,13 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_settings);
 
         // set navigation-up using app icon
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        addPreferencesFromResource(R.layout.activity_settings);
-
-        Preference devPref = findPreference(getString(R.string.settings_key_developer));
-        devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://plus.google.com/109777428099332805106/about"));
-                startActivity(intent);
-                return true;
-            }
-        });
+        // set setting content
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
     @Override
@@ -44,6 +37,20 @@ public class SettingsActivity extends PreferenceActivity {
                 return true;
             default:
                 return false;
+        }
+    }
+
+//    @Override
+//    public void onBuildHeaders(List<Header> target) {
+//        loadHeadersFromResource(R.layout.activity_settings, target);
+//    }
+
+    public static class SettingsFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            addPreferencesFromResource(R.layout.fragment_settings);
         }
     }
 

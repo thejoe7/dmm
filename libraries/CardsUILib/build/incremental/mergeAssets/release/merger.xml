@@ -2,10 +2,10 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="/Users/joew/Workspace/dmm/libraries/CardsUILib/src/main/assets" />
+        <source path="/Users/joe7wu/Workspace/dmm/libraries/CardsUILib/src/main/assets" />
     </dataSet>
     <dataSet config="release" >
-        <source path="/Users/joew/Workspace/dmm/libraries/CardsUILib/src/release/assets" />
+        <source path="/Users/joe7wu/Workspace/dmm/libraries/CardsUILib/src/release/assets" />
     </dataSet>
 
 </merger>
