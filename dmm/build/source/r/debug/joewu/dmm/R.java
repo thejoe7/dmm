@@ -268,27 +268,25 @@ public final class R {
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070002;
         public static final int card_countdown=0x7f070003;
-        public static final int card_date_since=0x7f070004;
-        public static final int card_date_until=0x7f070005;
-        public static final int card_days_left=0x7f070006;
-        public static final int card_days_past=0x7f070007;
-        public static final int card_description=0x7f070008;
-        public static final int card_overflow=0x7f070009;
-        public static final int card_stripe=0x7f07000a;
-        public static final int card_title=0x7f07000b;
-        public static final int settings_cat_about=0x7f07000c;
-        public static final int settings_cat_preference=0x7f07000d;
-        public static final int settings_item_date_format_summary=0x7f07000e;
-        public static final int settings_item_date_format_title=0x7f07000f;
-        public static final int settings_item_developer_summary=0x7f070010;
-        public static final int settings_item_developer_title=0x7f070011;
-        public static final int settings_item_fold_past_events_summary=0x7f070012;
-        public static final int settings_item_fold_past_events_title=0x7f070013;
-        public static final int settings_item_version_summary=0x7f070014;
-        public static final int settings_item_version_title=0x7f070015;
-        public static final int settings_key_date_format=0x7f070016;
-        public static final int settings_key_developer=0x7f070017;
-        public static final int settings_key_fold_past_events=0x7f070018;
+        public static final int card_days_left=0x7f070004;
+        public static final int card_days_past=0x7f070005;
+        public static final int card_description=0x7f070006;
+        public static final int card_overflow=0x7f070007;
+        public static final int card_stripe=0x7f070008;
+        public static final int card_title=0x7f070009;
+        public static final int settings_cat_about=0x7f07000a;
+        public static final int settings_cat_preference=0x7f07000b;
+        public static final int settings_item_date_format_summary=0x7f07000c;
+        public static final int settings_item_date_format_title=0x7f07000d;
+        public static final int settings_item_developer_summary=0x7f07000e;
+        public static final int settings_item_developer_title=0x7f07000f;
+        public static final int settings_item_fold_past_events_summary=0x7f070010;
+        public static final int settings_item_fold_past_events_title=0x7f070011;
+        public static final int settings_item_version_summary=0x7f070012;
+        public static final int settings_item_version_title=0x7f070013;
+        public static final int settings_key_date_format=0x7f070014;
+        public static final int settings_key_developer=0x7f070015;
+        public static final int settings_key_fold_past_events=0x7f070016;
     }
     public static final class style {
         /** 

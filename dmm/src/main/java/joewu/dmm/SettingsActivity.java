@@ -40,11 +40,6 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-//    @Override
-//    public void onBuildHeaders(List<Header> target) {
-//        loadHeadersFromResource(R.layout.activity_settings, target);
-//    }
-
     public static class SettingsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {

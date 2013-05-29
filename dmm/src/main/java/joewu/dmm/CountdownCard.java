@@ -41,12 +41,11 @@ public class CountdownCard extends Card {
         if (daysDiff >= 0) {
             ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(daysDiff));
             ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
-            ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_until) + " " + format.print(countdown.date));
         } else {
             ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-daysDiff));
             ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
-            ((TextView) v.findViewById(R.id.card_date)).setText(context.getString(R.string.card_date_since) + " " + format.print(countdown.date));
         }
+        ((TextView) v.findViewById(R.id.card_date)).setText(format.print(countdown.date));
 
         if (description != "") {
             ((TextView) v.findViewById(R.id.card_description)).setText(countdown.description);

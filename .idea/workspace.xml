@@ -17,20 +17,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0557db69-3c51-40c5-b53e-80299b65b91b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/CardsUILib/CardsUILib.iml" afterPath="$PROJECT_DIR$/libraries/CardsUILib/CardsUILib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/com/fima/cardsui/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" afterPath="$PROJECT_DIR$/dmm/build/source/r/debug/joewu/dmm/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" afterPath="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm-dmm.iml" afterPath="$PROJECT_DIR$/dmm-dmm.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/dmm/build/res/all/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dmm.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369788916398" ignored="false" />
     <file path="/a.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369520892226" ignored="false" />
-    <file path="/strings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756726475" ignored="false" />
+    <file path="/strings.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369790119886" ignored="false" />
     <file path="/menu_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369462555516" ignored="false" />
     <file path="/MainActivity.java" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369717211660" ignored="false" />
     <file path="/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369509011660" ignored="false" />
@@ -48,11 +48,9 @@
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/item_card.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836208" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/cards_view_multicolumn.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369756836209" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789170837" ignored="false" />
-    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/selectable_background_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935975" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/card.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935975" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/item_play_card_empty_first.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935975" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/cards_view.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
-    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/card_countdown.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/header.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/layout/activity_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/values-sw720dp-land/values.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
@@ -61,6 +59,7 @@
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/values-v11/values.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/selectable_overflow_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
     <file path="$PROJECT_DIR$/dmm/build/res/all/debug/menu/menu_main.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369789935976" ignored="false" />
+    <file path="$PROJECT_DIR$/dmm/build/res/all/debug/drawable/selectable_background_cardbank.xml" changelist="0557db69-3c51-40c5-b53e-80299b65b91b" time="1369790247500" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,8 +123,20 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1632" selection-end="1632" vertical-scroll-proportion="0.0">
+            <state line="12" column="58" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CountdownCard.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="43" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.31049252">
+              <folding>
+                <element signature="e#1588#1630#0" expanded="true" />
+                <element signature="e#1818#1860#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,10 +153,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="28" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.80728054">
+            <state line="33" column="26" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -175,16 +186,16 @@
         <option value="$PROJECT_DIR$/dmm/build.gradle" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/drawable/selectable_background_cardbank.xml" />
-        <option value="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/Countdown.java" />
-        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/values/arrays.xml" />
-        <option value="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/fragment_about.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/fragment_preferences.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/res/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/dmm/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml" />
+        <option value="$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java" />
       </list>
     </option>
   </component>
@@ -611,12 +622,12 @@
       <workItem from="1369711162975" duration="8681000" />
       <workItem from="1369720342012" duration="1834000" />
       <workItem from="1369756098991" duration="757000" />
-      <workItem from="1369788393682" duration="1581000" />
+      <workItem from="1369788393682" duration="1950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45214000" />
+    <option name="totallyTimeSpent" value="45583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1372" height="878" extended-state="0" />
@@ -758,33 +769,9 @@
         <state line="38" column="11" selection-start="1651" selection-end="1651" vertical-scroll-proportion="-0.42857143" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="66" selection-start="4255" selection-end="4255" vertical-scroll-proportion="0.43396226">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="19" selection-start="39" selection-end="39" vertical-scroll-proportion="-0.5064935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="92" selection-start="2293" selection-end="2293" vertical-scroll-proportion="0.40191388">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1632" selection-end="1632" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -811,8 +798,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="28" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.80728054">
+        <state line="33" column="26" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/layout/card_countdown.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="38" selection-start="2869" selection-end="2869" vertical-scroll-proportion="0.59090906">
+          <folding>
+            <element signature="e#3139#3141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="58" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmm/src/main/java/joewu/dmm/CountdownCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="43" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.31049252">
+          <folding>
+            <element signature="e#1588#1630#0" expanded="true" />
+            <element signature="e#1818#1860#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

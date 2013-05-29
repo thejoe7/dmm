@@ -66,13 +66,13 @@
                     <TextView android:id="@+id/card_days_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_days_left"
+                        android:text=""
                         android:textSize="16sp" />
 
                     <TextView android:id="@+id/card_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_date_until"
+                        android:text=""
                         android:textSize="16sp" />
 
                 </LinearLayout>
