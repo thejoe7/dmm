@@ -6,6 +6,11 @@
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>
 
+	<string name="dialog_create">Create</string>
+	<string name="dialog_cancel">Cancel</string>
+	<string name="dialog_title">Title</string>
+	<string name="dialog_description">Description</string>
+
     <string name="card_stripe">Color Stripe</string>
     <string name="card_title">Card Title</string>
     <string name="card_countdown">0</string>

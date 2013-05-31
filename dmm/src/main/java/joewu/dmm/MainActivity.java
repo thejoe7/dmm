@@ -58,10 +58,10 @@ public class MainActivity extends Activity /* implements SharedPreferences.OnSha
     public boolean onMenuItemSelected(int id, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_create:
-                // Do something for create
+                showCreate();
                 return true;
             case R.id.action_settings:
-                showSettingsActivity();
+                showSettings();
                 return true;
             default:
                 return super.onMenuItemSelected(id, item);
@@ -91,10 +91,15 @@ public class MainActivity extends Activity /* implements SharedPreferences.OnSha
 //		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 //	}
 
-    private void showSettingsActivity() {
+    private void showSettings() {
         Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
         startActivity(intent);
     }
+
+	private void showCreate() {
+		CountdownDialog fragment = new CountdownDialog();
+		fragment.show(getFragmentManager(), "createDialog");
+	}
 
     private void addSampleCountdowns() {
         countdowns.add(new Countdown("App Release", "", "#99cc00", 2050, 8, 27));
