@@ -100,7 +100,7 @@ public class MainActivity extends Activity /* implements SharedPreferences.OnSha
 
 	private void showCreate() {
 		CountdownDialog fragment = new CountdownDialog(getBaseContext(), Color.RED, "", DateTime.now(), "", format);
-		fragment.show(getFragmentManager(), "createDialog");
+		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
     private void addSampleCountdowns() {

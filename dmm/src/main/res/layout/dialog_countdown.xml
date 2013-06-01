@@ -61,18 +61,21 @@
 	<EditText android:id="@+id/dialog_title_text"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="5dp"
 	    android:inputType="textCapWords"
 	    android:hint="@string/dialog_title" />
 
 	<EditText android:id="@+id/dialog_date_text"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="5dp"
 		android:clickable="true"
 		android:editable="false" />
 
 	<EditText android:id="@+id/dialog_description_text"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="5dp"
 	    android:inputType="textMultiLine"
 	    android:hint="@string/dialog_description" />
 

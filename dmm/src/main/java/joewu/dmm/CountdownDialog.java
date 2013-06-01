@@ -8,17 +8,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,6 +70,14 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		selectors.get(Color.PURPLE).setOnClickListener(this);
 
 		textDate.setOnClickListener(this);
+		textDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View view, boolean hasFocus) {
+				if (hasFocus) {
+					showDatePicker();
+				}
+			}
+		});
 
 		for (Color c : Color.values()) {
 			if (color == c) {
@@ -144,11 +148,16 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 				}
 				break;
 			case R.id.dialog_date_text:
-				// Launch another dialog
+				showDatePicker();
 				break;
 			default:
 				break;
 		}
+	}
+
+	private void showDatePicker() {
+		DatePickerDialog fragment = new DatePickerDialog(date);
+		fragment.show(getFragmentManager(), "datePickerDialog");
 	}
 
 	private void setColorUnchecked(Color c) {
