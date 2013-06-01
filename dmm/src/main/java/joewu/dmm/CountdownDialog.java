@@ -6,8 +6,10 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -156,7 +158,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	}
 
 	private void showDatePicker() {
-		DatePickerDialog fragment = new DatePickerDialog(date);
+		DatePickerDialog fragment = new DatePickerDialog();
 		fragment.show(getFragmentManager(), "datePickerDialog");
 	}
 
@@ -201,6 +203,38 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 				break;
 			default:
 				break;
+		}
+	}
+
+	private class DatePickerDialog extends DialogFragment {
+		private DatePicker picker;
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			LayoutInflater inflater = getActivity().getLayoutInflater();
+
+			View dialogView = inflater.inflate(R.layout.dialog_datepicker, null);
+
+			picker = (DatePicker) dialogView.findViewById(R.id.dialog_datepicker);
+			picker.updateDate(date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth());
+
+			builder.setView(dialogView)
+					.setPositiveButton(R.string.dialog_set, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i) {
+							date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
+							textDate.setText(format.print(date));
+						}
+					})
+					.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i) {
+							DatePickerDialog.this.getDialog().cancel();
+						}
+					});
+
+			return builder.create();
 		}
 	}
 }
