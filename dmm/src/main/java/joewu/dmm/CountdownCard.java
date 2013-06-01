@@ -2,6 +2,7 @@ package joewu.dmm;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,8 +39,9 @@ public class CountdownCard extends Card {
 
         ((ImageView) v.findViewById(R.id.card_stripe)).setBackgroundColor(Color.parseColor(colorToString(countdown.color)));
 
-        ((TextView) v.findViewById(R.id.card_title)).setText(countdown.title);
-        ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(colorToString(countdown.color)));
+	    TextView textTitle = (TextView) v.findViewById(R.id.card_title);
+        textTitle.setText(countdown.title);
+        textTitle.setTextColor(Color.parseColor(colorToString(countdown.color)));
 
         DateTime today = DateTime.now();
         int daysDiff = countdown.getDaysDiff(today);
@@ -52,11 +54,15 @@ public class CountdownCard extends Card {
         }
         ((TextView) v.findViewById(R.id.card_date)).setText(format.print(countdown.date));
 
-        if (description != "") {
-            ((TextView) v.findViewById(R.id.card_description)).setText(countdown.description);
-            ((TextView) v.findViewById(R.id.card_description)).setVisibility(View.VISIBLE);
+		Log.e("Desc", "card ["  + arrayIndex + "] has desc: \"" + countdown.description + "\"");
+	    TextView textDescription = (TextView) v.findViewById(R.id.card_description);
+        if (countdown.description == null || countdown.description.isEmpty()) {
+	        Log.e("Desc", "card [" + arrayIndex + "] is in.");
+	        textDescription.setText("");
+	        textDescription.setVisibility(View.GONE);
         } else {
-            ((TextView) v.findViewById(R.id.card_description)).setVisibility(View.GONE);
+	        textDescription.setText(countdown.description);
+	        textDescription.setVisibility(View.VISIBLE);
         }
 
         if (isClickable) {

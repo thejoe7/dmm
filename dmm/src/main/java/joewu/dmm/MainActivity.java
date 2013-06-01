@@ -111,13 +111,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     }
 
 	private void createCountdown() {
-		CountdownDialog fragment = new CountdownDialog(getBaseContext(), true, Color.RED, "", DateTime.now(), "", format);
+		CountdownDialog fragment = new CountdownDialog(new Countdown("", "", Color.RED, DateTime.now()), true, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	private void editCountdown(int index) {
 		Countdown countdown = countdowns.get(index);
-		CountdownDialog fragment = new CountdownDialog(getBaseContext(), false, countdown.color, countdown.title, countdown.date, countdown.description, format);
+		CountdownDialog fragment = new CountdownDialog(countdown, false, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 

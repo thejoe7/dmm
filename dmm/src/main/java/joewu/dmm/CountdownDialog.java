@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -27,10 +25,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 	private boolean isNew;
 
-	private Color color;
-	private String title;
-	private DateTime date;
-	private String description;
+	private Countdown countdown;
 	private DateTimeFormatter format;
 
 	private Map<Color, ImageView> selectors = new HashMap<Color, ImageView>();
@@ -38,22 +33,16 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private EditText textTitle;
 	private EditText textDescription;
 
-	private Context context;
-
 	public interface CountdownDialogListener {
 		public void onDialogPositiveClick(Countdown countdown, boolean isNew);
 	}
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(Context context, boolean isNew, Color color, String title, DateTime date, String description, DateTimeFormatter format) {
+	public CountdownDialog(Countdown countdown, boolean isNew, DateTimeFormatter format) {
 		super();
-		this.context = context;
 		this.isNew = isNew;
-		this.color = color;
-		this.title = title;
-		this.date = date;
-		this.description = description;
+		this.countdown = countdown;
 		this.format = format;
 	}
 
@@ -92,24 +81,24 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		});
 
 		for (Color c : Color.values()) {
-			if (color == c) {
+			if (countdown.color == c) {
 				setColorChecked(c);
 			} else {
 				setColorUnchecked(c);
 			}
 		}
 
-		textTitle.setText(title);
-		textDate.setText(format.print(date));
-		textDescription.setText(description);
+		textTitle.setText(countdown.title);
+		textDate.setText(format.print(countdown.date));
+		textDescription.setText(countdown.description);
 
 		builder.setView(dialogView)
 				.setPositiveButton(R.string.dialog_create, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
-						title = textTitle.getText().toString();
-						description = textDescription.getText().toString();
-						mListener.onDialogPositiveClick(new Countdown(title, description, color, date), isNew);
+						countdown.title = textTitle.getText().toString();
+						countdown.description = textDescription.getText().toString();
+						mListener.onDialogPositiveClick(countdown, isNew);
 					}
 				})
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -135,38 +124,38 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.dialog_selector_red:
-				if (color != Color.RED) {
-					setColorUnchecked(color);
-					color = Color.RED;
-					setColorChecked(color);
+				if (countdown.color != Color.RED) {
+					setColorUnchecked(countdown.color);
+					countdown.color = Color.RED;
+					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_yellow:
-				if (color != Color.YELLOW) {
-					setColorUnchecked(color);
-					color = Color.YELLOW;
-					setColorChecked(color);
+				if (countdown.color != Color.YELLOW) {
+					setColorUnchecked(countdown.color);
+					countdown.color = Color.YELLOW;
+					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_green:
-				if (color != Color.GREEN) {
-					setColorUnchecked(color);
-					color = Color.GREEN;
-					setColorChecked(color);
+				if (countdown.color != Color.GREEN) {
+					setColorUnchecked(countdown.color);
+					countdown.color = Color.GREEN;
+					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_blue:
-				if (color != Color.BLUE) {
-					setColorUnchecked(color);
-					color = Color.BLUE;
-					setColorChecked(color);
+				if (countdown.color != Color.BLUE) {
+					setColorUnchecked(countdown.color);
+					countdown.color = Color.BLUE;
+					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_purple:
-				if (color != Color.PURPLE) {
-					setColorUnchecked(color);
-					color = Color.PURPLE;
-					setColorChecked(color);
+				if (countdown.color != Color.PURPLE) {
+					setColorUnchecked(countdown.color);
+					countdown.color = Color.PURPLE;
+					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_date_text:
@@ -237,14 +226,14 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 			View dialogView = inflater.inflate(R.layout.dialog_datepicker, null);
 
 			picker = (DatePicker) dialogView.findViewById(R.id.dialog_datepicker);
-			picker.updateDate(date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth());
+			picker.updateDate(countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
 
 			builder.setView(dialogView)
 					.setPositiveButton(R.string.dialog_set, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i) {
-							date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
-							textDate.setText(format.print(date));
+							countdown.date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
+							textDate.setText(format.print(countdown.date));
 						}
 					})
 					.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
