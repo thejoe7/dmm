@@ -1,5 +1,6 @@
 package joewu.dmm;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -36,6 +37,12 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private EditText textDescription;
 
 	private Context context;
+
+	public interface CountdownDialogListener {
+		public void onDialogPositiveClick(Countdown countdown);
+	}
+
+	CountdownDialogListener mListener;
 
 	public CountdownDialog(Context context, Color color, String title, DateTime date, String description, DateTimeFormatter format) {
 		super();
@@ -99,7 +106,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 					public void onClick(DialogInterface dialogInterface, int i) {
 						title = textTitle.getText().toString();
 						description = textDescription.getText().toString();
-						// Do something here to tell the MainActivity
+						mListener.onDialogPositiveClick(new Countdown(title, description, color, date));
 					}
 				})
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -109,6 +116,16 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 					}
 				});
 		return builder.create();
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (CountdownDialogListener) activity;
+		} catch (ClassCastException cce) {
+			throw new ClassCastException(activity.toString() + " must implement CountdownDialogListener.");
+		}
 	}
 
 	@Override

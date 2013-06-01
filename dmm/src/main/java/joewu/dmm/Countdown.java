@@ -22,13 +22,19 @@ public class Countdown {
         this.date = new DateTime(year, month, day, 0, 0);
     }
 
+	public Countdown(String title, String description, Color color, DateTime date) {
+		this.title = title;
+		this.description = description;
+		this.color = color;
+		this.date = date;
+	}
+
     public int getDaysDiff(DateTime d2) {
         return Days.daysBetween(d2, date).getDays();
     }
 
     public boolean isPast() {
-        return date.compareTo(DateTime.now()) < 0;
-        // return (getDaysDiff() < 0);
+        return (getDaysDiff(DateTime.now()) < 0);
     }
 
     public static class CountdownComparator implements Comparator<Countdown> {

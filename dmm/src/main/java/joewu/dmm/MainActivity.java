@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends Activity /* implements SharedPreferences.OnSharedPreferenceChangeListener */ {
+public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
 
     private CardUI cardsView;
     private List<Countdown> countdowns;
@@ -92,6 +92,12 @@ public class MainActivity extends Activity /* implements SharedPreferences.OnSha
 //		super.onPause();
 //		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 //	}
+
+	public void onDialogPositiveClick(Countdown countdown) {
+		countdowns.add(countdown);
+		// Save to sharedPreference
+		loadCards();
+	}
 
     private void showSettings() {
         Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
