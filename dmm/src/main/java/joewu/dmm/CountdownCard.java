@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.fima.cardsui.objects.Card;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormatter;
 
 
@@ -20,6 +19,12 @@ public class CountdownCard extends Card {
 
     private DateTimeFormatter format;
     private Countdown countdown;
+	private int arrayIndex = -1;
+
+	public interface CardActionListener {
+		public void onCardEdit(int i);
+		public void onCardDelete(int i);
+	}
 
     public CountdownCard(Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
         super(countdown.title, countdown.description, colorToString(countdown.color), colorToString(countdown.color), hasOverflow, isClickable);
@@ -66,6 +71,14 @@ public class CountdownCard extends Card {
 
         return v;
     }
+
+	public int getArrayIndex() {
+		return arrayIndex;
+	}
+
+	public void setArrayIndex(int i) {
+		this.arrayIndex = i;
+	}
 
 	public static String colorToString(joewu.dmm.Color c) {
 		String colorString = null;

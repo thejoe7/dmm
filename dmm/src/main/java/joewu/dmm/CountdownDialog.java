@@ -25,6 +25,8 @@ import java.util.Map;
  */
 public class CountdownDialog extends DialogFragment implements View.OnClickListener {
 
+	private boolean isNew;
+
 	private Color color;
 	private String title;
 	private DateTime date;
@@ -39,14 +41,15 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private Context context;
 
 	public interface CountdownDialogListener {
-		public void onDialogPositiveClick(Countdown countdown);
+		public void onDialogPositiveClick(Countdown countdown, boolean isNew);
 	}
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(Context context, Color color, String title, DateTime date, String description, DateTimeFormatter format) {
+	public CountdownDialog(Context context, boolean isNew, Color color, String title, DateTime date, String description, DateTimeFormatter format) {
 		super();
 		this.context = context;
+		this.isNew = isNew;
 		this.color = color;
 		this.title = title;
 		this.date = date;
@@ -106,7 +109,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 					public void onClick(DialogInterface dialogInterface, int i) {
 						title = textTitle.getText().toString();
 						description = textDescription.getText().toString();
-						mListener.onDialogPositiveClick(new Countdown(title, description, color, date));
+						mListener.onDialogPositiveClick(new Countdown(title, description, color, date), isNew);
 					}
 				})
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {

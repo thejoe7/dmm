@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
+
 import com.fima.cardsui.views.CardUI;
 
 import org.joda.time.DateTime;
@@ -60,7 +62,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     public boolean onMenuItemSelected(int id, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_create:
-                showCreate();
+                createCountdown();
                 return true;
             case R.id.action_settings:
                 showSettings();
@@ -93,9 +95,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 //		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 //	}
 
-	public void onDialogPositiveClick(Countdown countdown) {
-		countdowns.add(countdown);
-		// Save to sharedPreference
+	public void onDialogPositiveClick(Countdown countdown, boolean isNew) {
+		if (isNew) {
+			countdowns.add(countdown);
+			// Save to sharedPreference
+		} else {
+
+		}
 		loadCards();
 	}
 
@@ -104,8 +110,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         startActivity(intent);
     }
 
-	private void showCreate() {
-		CountdownDialog fragment = new CountdownDialog(getBaseContext(), Color.RED, "", DateTime.now(), "", format);
+	private void createCountdown() {
+		CountdownDialog fragment = new CountdownDialog(getBaseContext(), true, Color.RED, "", DateTime.now(), "", format);
+		fragment.show(getFragmentManager(), "countdownDialog");
+	}
+
+	private void editCountdown(int index) {
+		Countdown countdown = countdowns.get(index);
+		CountdownDialog fragment = new CountdownDialog(getBaseContext(), false, countdown.color, countdown.title, countdown.date, countdown.description, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
@@ -124,6 +136,30 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         Collections.sort(countdowns, new Countdown.CountdownComparator());
         for (int i = 0; i < countdowns.size(); i++) {
             CountdownCard card = new CountdownCard(countdowns.get(i), format, true, false);
+	        card.setArrayIndex(i);
+	        card.setOnClickListener(new View.OnClickListener() {
+		        @Override
+		        public void onClick(View view) {
+			        PopupMenu popup = new PopupMenu(getBaseContext(), view.findViewById(R.id.card_overflow));
+			        popup.getMenuInflater().inflate(R.menu.menu_card, popup.getMenu());
+			        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+				        @Override
+				        public boolean onMenuItemClick(MenuItem menuItem) {
+					        switch (menuItem.getItemId()) {
+						        case R.id.action_edit:
+							        // do something
+							        return true;
+						        case R.id.action_delete:
+							        // do something
+							        return true;
+						        default:
+							        return false;
+					        }
+				        }
+			        });
+			        popup.show();
+		        }
+	        });
             if (i == 0) {
                 cardsView.addCard(card);
             } else {
