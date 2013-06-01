@@ -3,21 +3,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+	android:paddingTop="8dp"
+	android:paddingBottom="8dp"
+	android:paddingLeft="5dp"
+	android:paddingRight="5dp" >
 
-	<DatePicker android:id="@+id/dialog_create_datepicker"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:calendarViewShown="false"
-	            android:spinnersShown="true" />
+	<LinearLayout
+		android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent"
+	    android:layout_marginBottom="3dp"
+		android:weightSum="100" >
 
-	<EditText android:id="@+id/dialog_create_title_text"
+		<ImageView android:id="@+id/dialog_selector_red"
+			android:clickable="true"
+			android:layout_width="0dip"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="20"
+		    android:padding="5dp"
+		    android:adjustViewBounds="true" />
+
+		<ImageView android:id="@+id/dialog_selector_yellow"
+			android:clickable="true"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="20"
+			android:padding="5dp"
+			android:adjustViewBounds="true" />
+
+		<ImageView android:id="@+id/dialog_selector_green"
+			android:clickable="true"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="20"
+			android:padding="5dp"
+			android:adjustViewBounds="true" />
+
+		<ImageView android:id="@+id/dialog_selector_blue"
+			android:clickable="true"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="20"
+			android:padding="5dp"
+			android:adjustViewBounds="true" />
+
+		<ImageView android:id="@+id/dialog_selector_purple"
+			android:clickable="true"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="20"
+			android:padding="5dp"
+			android:adjustViewBounds="true" />
+
+	</LinearLayout>
+
+	<EditText android:id="@+id/dialog_title_text"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:inputType="textCapWords"
 	    android:hint="@string/dialog_title" />
 
-	<EditText android:id="@+id/dialog_create_description_text"
+	<EditText android:id="@+id/dialog_date_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+		android:clickable="true"
+		android:editable="false" />
+
+	<EditText android:id="@+id/dialog_description_text"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:inputType="textMultiLine"

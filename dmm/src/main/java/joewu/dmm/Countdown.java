@@ -12,10 +12,10 @@ public class Countdown {
 
     public String title;
     public String description;
-    public String color;
+    public Color color;
     public DateTime date;
 
-    public Countdown(String title, String description, String color, int year, int month, int day) {
+    public Countdown(String title, String description, Color color, int year, int month, int day) {
         this.title = title;
         this.description = description;
         this.color = color;

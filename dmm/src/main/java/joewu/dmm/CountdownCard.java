@@ -22,7 +22,7 @@ public class CountdownCard extends Card {
     private Countdown countdown;
 
     public CountdownCard(Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
-        super(countdown.title, countdown.description, countdown.color, countdown.color, hasOverflow, isClickable);
+        super(countdown.title, countdown.description, colorToString(countdown.color), colorToString(countdown.color), hasOverflow, isClickable);
         this.countdown = countdown;
         this.format = format;
     }
@@ -31,10 +31,10 @@ public class CountdownCard extends Card {
     public View getCardContent(Context context) {
         View v = LayoutInflater.from(context).inflate(R.layout.card_countdown, null);
 
-        ((ImageView) v.findViewById(R.id.card_stripe)).setBackgroundColor(Color.parseColor(countdown.color));
+        ((ImageView) v.findViewById(R.id.card_stripe)).setBackgroundColor(Color.parseColor(colorToString(countdown.color)));
 
         ((TextView) v.findViewById(R.id.card_title)).setText(countdown.title);
-        ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(countdown.color));
+        ((TextView) v.findViewById(R.id.card_title)).setTextColor(Color.parseColor(colorToString(countdown.color)));
 
         DateTime today = DateTime.now();
         int daysDiff = countdown.getDaysDiff(today);
@@ -66,4 +66,28 @@ public class CountdownCard extends Card {
 
         return v;
     }
+
+	public static String colorToString(joewu.dmm.Color c) {
+		String colorString = null;
+		switch (c) {
+			case RED:
+				colorString = "#ff4444";
+				break;
+			case YELLOW:
+				colorString = "#ffbb33";
+				break;
+			case GREEN:
+				colorString = "#99cc00";
+				break;
+			case BLUE:
+				colorString = "#33b5e5";
+				break;
+			case PURPLE:
+				colorString = "#aa66cc";
+				break;
+			default:
+				break;
+		}
+		return colorString;
+	}
 }
