@@ -106,7 +106,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	}
 
     private void showSettings() {
-        Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
 
@@ -140,7 +140,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	        card.setOnClickListener(new View.OnClickListener() {
 		        @Override
 		        public void onClick(View view) {
-			        PopupMenu popup = new PopupMenu(getBaseContext(), view.findViewById(R.id.card_overflow));
+			        PopupMenu popup = new PopupMenu(MainActivity.this, view.findViewById(R.id.card_overflow));
 			        popup.getMenuInflater().inflate(R.menu.menu_card, popup.getMenu());
 			        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 				        @Override
