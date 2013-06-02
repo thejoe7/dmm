@@ -54,10 +54,8 @@ public class CountdownCard extends Card {
         }
         ((TextView) v.findViewById(R.id.card_date)).setText(format.print(countdown.date));
 
-		Log.e("Desc", "card ["  + arrayIndex + "] has desc: \"" + countdown.description + "\"");
 	    TextView textDescription = (TextView) v.findViewById(R.id.card_description);
         if (countdown.description == null || countdown.description.isEmpty()) {
-	        Log.e("Desc", "card [" + arrayIndex + "] is in.");
 	        textDescription.setText("");
 	        textDescription.setVisibility(View.GONE);
         } else {

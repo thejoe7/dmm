@@ -6,8 +6,11 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +24,7 @@ import java.util.Map;
 /**
  * Created by joew on May 150.
  */
-public class CountdownDialog extends DialogFragment implements View.OnClickListener {
+public class CountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
 
 	private boolean isNew;
 
@@ -107,7 +110,20 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 						CountdownDialog.this.getDialog().cancel();
 					}
 				});
-		return builder.create();
+
+		AlertDialog dialog = builder.create();
+		textTitle.addTextChangedListener(this);
+		return dialog;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (countdown.title == null || countdown.title.isEmpty()) {
+			enableCreateButton(false);
+		} else {
+			enableCreateButton(true);
+		}
 	}
 
 	@Override
@@ -164,6 +180,31 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+	}
+
+	@Override
+	public void afterTextChanged(Editable s) {
+		if (s.toString().isEmpty()) {
+			enableCreateButton(false);
+		} else {
+			enableCreateButton(true);
+		}
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+	}
+
+	public void enableCreateButton(boolean enabled) {
+		AlertDialog dialog = (AlertDialog) getDialog();
+		Button btnCreate = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+		btnCreate.setEnabled(enabled);
 	}
 
 	private void showDatePicker() {
