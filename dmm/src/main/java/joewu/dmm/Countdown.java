@@ -1,14 +1,23 @@
 package joewu.dmm;
 
+import android.util.Base64;
+import android.util.Log;
+
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Created by joew on May 147.
  */
-public class Countdown {
+public class Countdown implements Serializable {
 
     public String title;
     public String description;
@@ -36,6 +45,35 @@ public class Countdown {
     public boolean isPast() {
         return (getDaysDiff(DateTime.now()) < 0);
     }
+
+	public String toString() {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(this);
+			oos.close();
+			return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+		} catch (IOException e) {
+			Log.e("Countdown", e.getMessage());
+			return null;
+		}
+	}
+
+	public static Countdown fromString(String s) {
+		try {
+			byte [] bs = Base64.decode(s, Base64.DEFAULT);
+			ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bs));
+			Countdown c = (Countdown) ois.readObject();
+			ois.close();
+			return c;
+		} catch (IOException e) {
+			Log.e("Countdown", e.getMessage());
+			return null;
+		} catch (ClassNotFoundException e) {
+			Log.e("Countdown", e.getMessage());
+			return null;
+		}
+	}
 
     public static class CountdownComparator implements Comparator<Countdown> {
 

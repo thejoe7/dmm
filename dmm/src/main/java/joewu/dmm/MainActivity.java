@@ -25,6 +25,9 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private boolean foldPastEvents;
     private DateTimeFormatter format;
 
+	public final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
+	public final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,8 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         cardsView.setSwipeable(false);
 
         countdowns = new ArrayList<Countdown>();
-        addSampleCountdowns();
+	    loadData();
+//        addSampleCountdowns();
 
     }
 
@@ -96,11 +100,11 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	public void onDialogPositiveClick(Countdown countdown, boolean isNew) {
 		if (isNew) {
 			countdowns.add(countdown);
-			// Save to sharedPreference
 		} else {
 			// countdown is updated automatically
 		}
 		loadCards();
+		saveData();
 	}
 
     private void showSettings() {
@@ -122,6 +126,44 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	public void deleteCountdown(int index) {
 		countdowns.remove(index);
 		loadCards();
+		saveData();
+	}
+
+	public void saveData() {
+		List<String> serializedCountdowns = new ArrayList<String>();
+		for (Countdown c : countdowns) {
+			String cs = c.toString();
+			if (cs != null && !cs.isEmpty()) {
+				serializedCountdowns.add(cs);
+			}
+		}
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putInt(PREF_COUNTDOWN_SIZE, serializedCountdowns.size());
+		for (int i = 0; i < serializedCountdowns.size(); i++) {
+			editor.putString(PREF_COUNTDOWN_PREFIX + i, serializedCountdowns.get(i));
+		}
+		editor.commit();
+	}
+
+	public void loadData() {
+		List<String> serializedCountdowns = new ArrayList<String>();
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
+		for (int i = 0; i < size; i++) {
+			String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, "");
+			if (!serialData.isEmpty()) {
+				serializedCountdowns.add(serialData);
+			}
+		}
+
+		countdowns.clear();
+		for (String s : serializedCountdowns) {
+			Countdown c = Countdown.fromString(s);
+			if (c != null) {
+				countdowns.add(c);
+			}
+		}
 	}
 
     private void addSampleCountdowns() {
