@@ -7,8 +7,6 @@ import android.app.Activity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
 
 import com.fima.cardsui.views.CardUI;
 
@@ -100,7 +98,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 			countdowns.add(countdown);
 			// Save to sharedPreference
 		} else {
-
+			// countdown is updated automatically
 		}
 		loadCards();
 	}
@@ -115,10 +113,15 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
-	private void editCountdown(int index) {
+	public void editCountdown(int index) {
 		Countdown countdown = countdowns.get(index);
 		CountdownDialog fragment = new CountdownDialog(countdown, false, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
+	}
+
+	public void deleteCountdown(int index) {
+		countdowns.remove(index);
+		loadCards();
 	}
 
     private void addSampleCountdowns() {
@@ -135,31 +138,8 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	    cardsView.clearCards();
         Collections.sort(countdowns, new Countdown.CountdownComparator());
         for (int i = 0; i < countdowns.size(); i++) {
-            CountdownCard card = new CountdownCard(countdowns.get(i), format, true, false);
+            CountdownCard card = new CountdownCard(MainActivity.this, countdowns.get(i), format, true, false);
 	        card.setArrayIndex(i);
-	        card.setOnClickListener(new View.OnClickListener() {
-		        @Override
-		        public void onClick(View view) {
-			        PopupMenu popup = new PopupMenu(MainActivity.this, view.findViewById(R.id.card_overflow));
-			        popup.getMenuInflater().inflate(R.menu.menu_card, popup.getMenu());
-			        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-				        @Override
-				        public boolean onMenuItemClick(MenuItem menuItem) {
-					        switch (menuItem.getItemId()) {
-						        case R.id.action_edit:
-							        // do something
-							        return true;
-						        case R.id.action_delete:
-							        // do something
-							        return true;
-						        default:
-							        return false;
-					        }
-				        }
-			        });
-			        popup.show();
-		        }
-	        });
             if (i == 0) {
                 cardsView.addCard(card);
             } else {

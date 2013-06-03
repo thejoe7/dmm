@@ -96,7 +96,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		textDescription.setText(countdown.description);
 
 		builder.setView(dialogView)
-				.setPositiveButton(R.string.dialog_create, new DialogInterface.OnClickListener() {
+				.setPositiveButton((isNew ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
 						countdown.title = textTitle.getText().toString();

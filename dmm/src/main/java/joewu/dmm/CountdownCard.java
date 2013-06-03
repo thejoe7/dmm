@@ -3,9 +3,11 @@ package joewu.dmm;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import com.fima.cardsui.objects.Card;
 import org.joda.time.DateTime;
@@ -17,17 +19,20 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class CountdownCard extends Card {
 
+	private Context context;
     private DateTimeFormatter format;
     private Countdown countdown;
 	private int arrayIndex = -1;
+	private ImageView overflow;
 
 	public interface CardActionListener {
 		public void onCardEdit(int i);
 		public void onCardDelete(int i);
 	}
 
-    public CountdownCard(Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
+    public CountdownCard(Context context, Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
         super(countdown.title, countdown.description, colorToString(countdown.color), colorToString(countdown.color), hasOverflow, isClickable);
+	    this.context = context;
         this.countdown = countdown;
         this.format = format;
     }
@@ -66,10 +71,11 @@ public class CountdownCard extends Card {
             ((LinearLayout) v.findViewById(R.id.card_content_layout))
                     .setBackgroundResource(R.drawable.selectable_background_cardbank);
         }
+	    overflow = (ImageView) v.findViewById(R.id.card_overflow);
         if (hasOverflow) {
-            ((ImageView) v.findViewById(R.id.card_overflow)).setVisibility(View.VISIBLE);
+            overflow.setVisibility(View.VISIBLE);
         } else {
-            ((ImageView) v.findViewById(R.id.card_overflow)).setVisibility(View.GONE);
+            overflow.setVisibility(View.GONE);
         }
 
         return v;
@@ -79,8 +85,39 @@ public class CountdownCard extends Card {
 		return arrayIndex;
 	}
 
+	private void onOptionDelete() {
+		((MainActivity) context).deleteCountdown(this.arrayIndex);
+	}
+
+	private void onOptionEdit() {
+		((MainActivity) context).editCountdown(this.arrayIndex);
+	}
+
 	public void setArrayIndex(int i) {
 		this.arrayIndex = i;
+		setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				PopupMenu popup = new PopupMenu(context, CountdownCard.this.overflow);
+				popup.getMenuInflater().inflate(R.menu.menu_card, popup.getMenu());
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					@Override
+					public boolean onMenuItemClick(MenuItem menuItem) {
+						switch (menuItem.getItemId()) {
+							case R.id.action_edit:
+								onOptionEdit();
+								return true;
+							case R.id.action_delete:
+								onOptionDelete();
+								return true;
+							default:
+								return false;
+						}
+					}
+				});
+				popup.show();
+			}
+		});
 	}
 
 	public static String colorToString(joewu.dmm.Color c) {

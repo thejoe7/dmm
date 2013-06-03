@@ -11,6 +11,7 @@
 
 	<string name="dialog_create">Create</string>
 	<string name="dialog_set">Set</string>
+	<string name="dialog_done">Done</string>
 	<string name="dialog_cancel">Cancel</string>
 	<string name="dialog_title">Title</string>
 	<string name="dialog_description">Description</string>
