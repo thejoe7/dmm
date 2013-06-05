@@ -48,7 +48,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		super.onResume();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		foldPastEvents = sharedPref.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
-		format = DateTimeFormat.forPattern(sharedPref.getString(SettingsActivity.DATE_FORMAT, SettingsActivity.DATE_FORMAT_DEFAULT));
+		format = DateTimeFormat.forPattern(sharedPref.getString(SettingsActivity.DATE_FORMAT, getString(R.string.default_date_format)));
 
 		loadCards();
 	}

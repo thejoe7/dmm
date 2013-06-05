@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name" >Days--</string>
+    <string name="default_date_format">MMM d, yyyy</string>
 
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>

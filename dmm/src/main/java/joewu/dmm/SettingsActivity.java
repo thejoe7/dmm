@@ -21,7 +21,6 @@ public class SettingsActivity extends PreferenceActivity {
 
 	public static final String FOLD_PAST_EVENTS = "KEY_FOLD_PAST_EVENTS";
 	public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
-	public static final String DATE_FORMAT_DEFAULT = "MMM d, yyyy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-	    private Preference foldPastEventsPref;
+	    // private Preference foldPastEventsPref;
 	    private Preference dateFormatPref;
 	    private Preference devPref;
 
@@ -60,7 +59,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             addPreferencesFromResource(R.layout.fragment_settings);
 
-	        foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
+	        // foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
 	        dateFormatPref = findPreference(DATE_FORMAT);
             devPref = findPreference("KEY_DEVELOPER");
 

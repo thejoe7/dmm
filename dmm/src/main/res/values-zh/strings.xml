@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="default_date_format">yyyy年M月d日</string>
+
+    <string name="action_create">新建</string>
+    <string name="action_settings">设置</string>
+
+	<string name="action_edit">编辑</string>
+	<string name="action_delete">删除</string>
+
+	<string name="dialog_create">新建</string>
+	<string name="dialog_set">确定</string>
+	<string name="dialog_done">确定</string>
+	<string name="dialog_cancel">取消</string>
+	<string name="dialog_title">标题</string>
+	<string name="dialog_description">备注</string>
+
+    <string name="card_days_left">天 之后</string>
+    <string name="card_days_past">天 之前</string>
+    <string name="card_description"></string>
+    <string name="card_overflow">Overflow</string>
+
+    <string name="settings_cat_preference">设置</string>
+    <string name="settings_cat_about">关于</string>
+    <string name="settings_item_date_format_title">日期格式</string>
+    <string name="settings_item_date_format_summary">选择卡片中的日期以何种格式显示</string>
+    <string name="settings_item_fold_past_events_title">收起已过去事件</string>
+    <string name="settings_item_fold_past_events_summary">将所有已经过去的事件收起成一个卡片堆</string>
+    <string name="settings_item_developer_title">开发者</string>
+    <string name="settings_item_version_title">版本</string>
+
+</resources>
