@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.fima.cardsui.views.CardUI;
 
@@ -22,6 +24,7 @@ import java.util.List;
 public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private CardUI cardsView;
+	private TextView textView;
     private List<Countdown> countdowns;
     private boolean foldPastEvents;
     private DateTimeFormatter format;
@@ -36,6 +39,8 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 
         cardsView = (CardUI) findViewById(R.id.main_cards_view);
         cardsView.setSwipeable(false);
+
+	    textView = (TextView) findViewById(R.id.main_text_view);
 
         countdowns = new ArrayList<Countdown>();
 	    loadData();
@@ -162,20 +167,25 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 
     private void loadCards() {
 	    cardsView.clearCards();
-        Collections.sort(countdowns, new Countdown.CountdownComparator());
-        for (int i = 0; i < countdowns.size(); i++) {
-            CountdownCard card = new CountdownCard(MainActivity.this, countdowns.get(i), format, true, false);
-	        card.setArrayIndex(i);
-            if (i == 0) {
-                cardsView.addCard(card);
-            } else {
-                if (foldPastEvents && countdowns.get(i).isPast()) {
-                    cardsView.addCardToLastStack(card);
-                } else {
-                    cardsView.addCard(card);
-                }
-            }
-        }
+	    if (countdowns.size() > 0) {
+		    textView.setVisibility(View.GONE);
+            Collections.sort(countdowns, new Countdown.CountdownComparator());
+	        for (int i = 0; i < countdowns.size(); i++) {
+	            CountdownCard card = new CountdownCard(MainActivity.this, countdowns.get(i), format, true, false);
+		        card.setArrayIndex(i);
+	            if (i == 0) {
+	                cardsView.addCard(card);
+	            } else {
+	                if (foldPastEvents && countdowns.get(i).isPast()) {
+	                    cardsView.addCardToLastStack(card);
+	                } else {
+	                    cardsView.addCard(card);
+	                }
+	            }
+	        }
+	    } else {
+		    textView.setVisibility(View.VISIBLE);
+	    }
         cardsView.refresh();
     }
     
