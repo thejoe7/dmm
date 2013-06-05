@@ -1,5 +1,6 @@
 package joewu.dmm;
 
+import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
+public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private CardUI cardsView;
     private List<Countdown> countdowns;
@@ -74,28 +75,11 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         }
     }
 
-//	@Override
-//	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//		Log.d("Pref", "sharedPreferences changed: " + key);
-//		if (key.equals(SettingsActivity.FOLD_PAST_EVENTS)) {
-//			foldPastEvents = sharedPreferences.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
-//		} else if (key.equals(SettingsActivity.DATE_FORMAT)) {
-//			format = DateTimeFormat.forPattern(sharedPreferences.getString(SettingsActivity.DATE_FORMAT, SettingsActivity.DATE_FORMAT_DEFAULT));
-//		}
-//		loadCards();
-//	}
-
-//	@Override
-//	public void onStart() {
-//		super.onResume();
-//		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
-//	}
-//
-//	@Override
-//	public void onStop() {
-//		super.onPause();
-//		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-//	}
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        BackupManager bm = new BackupManager(this);
+        bm.dataChanged();
+	}
 
 	public void onDialogPositiveClick(Countdown countdown, boolean isNew) {
 		if (isNew) {
