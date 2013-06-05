@@ -39,7 +39,8 @@ public class Countdown implements Serializable {
 	}
 
     public int getDaysDiff(DateTime d2) {
-        return Days.daysBetween(d2, date).getDays();
+        DateTime d3 = new DateTime(d2.getYear(), d2.getMonthOfYear(), d2.getDayOfMonth(), 0, 0);
+        return Days.daysBetween(d3, date).getDays();
     }
 
     public boolean isPast() {
