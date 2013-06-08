@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.HashMap;
@@ -49,6 +52,12 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		this.format = format;
 	}
 
+    public CountdownDialog() {
+        super();
+        this.isNew = true;
+        this.countdown = new Countdown("", "", Color.RED, 1970, 1, 1);
+        this.format = DateTimeFormat.forPattern(getString(R.string.default_date_format));
+    }
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -29,8 +29,11 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private boolean foldPastEvents;
     private DateTimeFormatter format;
 
+    private boolean firstLaunch;
+
 	public final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
 	public final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
+    public final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,10 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	    textView = (TextView) findViewById(R.id.main_text_view);
 
         countdowns = new ArrayList<Countdown>();
-	    loadData();
-//        addSampleCountdowns();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
+
+        loadData();
 
     }
 
@@ -156,17 +161,31 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	}
 
     private void addSampleCountdowns() {
-        countdowns.add(new Countdown("App Release", "", Color.GREEN, 2050, 8, 27));
-        countdowns.add(new Countdown("Work Term Ends", "", Color.YELLOW, 2013, 8, 30));
-        countdowns.add(new Countdown("Google I/O 2013", "", Color.BLUE, 2013, 5, 15));
-        countdowns.add(new Countdown("Flight to China", "AC025 @ 11:15am", Color.GREEN, 2013, 4, 23));
-        countdowns.add(new Countdown("Flight to Vancouver", "AC026 @ 3:40pm, delayed till 19:00pm", Color.YELLOW, 2013, 5, 4));
-        countdowns.add(new Countdown("Study Permit Expiry", "Remember to apply for renewal 90 days before the expiry. Consult advisors at SFU International if necessary.", Color.RED, 2013, 12, 30));
-        countdowns.add(new Countdown("Passport Expiry", "That's still quite a while from now; but the Chinese Consulate needs to be contacted two years before the expiry in maximum, so that they could perform a background check in China beforehand, which also accelerate the entire process. Ask somebody for his or her related experience, that could help a lot.", Color.PURPLE, 2020, 11, 15));
+        // add default countdown for next Christmas
+        DateTime today = DateTime.now();
+        int year = today.getYear();
+        if (today.isAfter(new DateTime(year, 12, 25, 0, 0))) {
+            year += 1;
+        }
+        countdowns.add(new Countdown("Christmas Day", "", Color.PURPLE, year, 12, 25));
+
+        // add default countdown for change log
+        DateTime update = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
+        countdowns.add(new Countdown("Days-- New Updates", getString(R.string.change_log), Color.GREEN, update));
+
+        saveData();
     }
 
     private void loadCards() {
 	    cardsView.clearCards();
+        if (this.firstLaunch) {
+            addSampleCountdowns();
+            this.firstLaunch = false;
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(APP_FIRST_LAUNCH, false);
+            editor.commit();
+        }
 	    if (countdowns.size() > 0) {
 		    textView.setVisibility(View.GONE);
             Collections.sort(countdowns, new Countdown.CountdownComparator());

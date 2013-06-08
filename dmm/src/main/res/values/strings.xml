@@ -4,6 +4,11 @@
     <string name="app_name" >Days--</string>
     <string name="default_date_format">MMM d, yyyy</string>
 
+    <string name="change_log">1. Added widget support.\n2. Created default countdown for first launch.\n3. Some minor UI tweaks.</string>
+    <string name="build_year">2013</string>
+    <string name="build_month">6</string>
+    <string name="build_date">10</string>
+
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>
 
