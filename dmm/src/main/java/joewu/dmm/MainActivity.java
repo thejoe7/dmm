@@ -3,9 +3,12 @@ package joewu.dmm;
 import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,10 +33,12 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private DateTimeFormatter format;
 
     private boolean firstLaunch;
+    private boolean newlyUpdate;
 
 	public final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
 	public final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
     public final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
+    public final String APP_VERSION_CODE = "KEY_VERSION_CODE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +51,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	    textView = (TextView) findViewById(R.id.main_text_view);
 
         countdowns = new ArrayList<Countdown>();
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
         this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
+        editor.putBoolean(APP_FIRST_LAUNCH, false);
+        this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
+        editor.putInt(APP_VERSION_CODE, getVersion());
+        editor.commit();
 
         loadData();
 
@@ -168,11 +179,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             year += 1;
         }
         countdowns.add(new Countdown("Christmas Day", "", Color.PURPLE, year, 12, 25));
+        saveData();
+    }
 
+    private void addChangeLogCountdowns() {
         // add default countdown for change log
         DateTime update = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
         countdowns.add(new Countdown("Days-- New Updates", getString(R.string.change_log), Color.GREEN, update));
-
         saveData();
     }
 
@@ -181,10 +194,10 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         if (this.firstLaunch) {
             addSampleCountdowns();
             this.firstLaunch = false;
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putBoolean(APP_FIRST_LAUNCH, false);
-            editor.commit();
+        }
+        if (this.newlyUpdate) {
+            addChangeLogCountdowns();
+            this.newlyUpdate = false;
         }
 	    if (countdowns.size() > 0) {
 		    textView.setVisibility(View.GONE);
@@ -206,6 +219,16 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		    textView.setVisibility(View.VISIBLE);
 	    }
         cardsView.refresh();
+    }
+
+    public int getVersion() {
+        int v = 0;
+        try {
+            v = getPackageManager().getPackageInfo(this.getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("MainActivity", e.getLocalizedMessage());
+        }
+        return v;
     }
     
 }
