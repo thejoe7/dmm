@@ -23,6 +23,7 @@ public class SettingsActivity extends PreferenceActivity {
 
 	public static final String FOLD_PAST_EVENTS = "KEY_FOLD_PAST_EVENTS";
 	public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
+    public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 	    // private Preference foldPastEventsPref;
+        // private Preference noChangelogPref;
 	    private Preference dateFormatPref;
 	    private Preference devPref;
         private Preference verPref;

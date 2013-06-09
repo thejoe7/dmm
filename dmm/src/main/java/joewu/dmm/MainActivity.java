@@ -31,6 +31,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	private TextView textView;
     private List<Countdown> countdowns;
     private boolean foldPastEvents;
+    private boolean noChangelog;
     private DateTimeFormatter format;
 
     private boolean firstLaunch;
@@ -54,31 +55,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         countdowns = new ArrayList<Countdown>();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
         this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
-        if (this.firstLaunch) {
-            BackupManager bm = new BackupManager(this);
-            bm.requestRestore(new RestoreObserver() {
-                @Override
-                public void restoreFinished(int error) {
-                    super.restoreFinished(error);
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    MainActivity.this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
-                    MainActivity.this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
-                    editor.putBoolean(APP_FIRST_LAUNCH, false);
-                    editor.putInt(APP_VERSION_CODE, getVersion());
-                    editor.commit();
-                    loadData();
-                }
-            });
-        } else {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
-            editor.putBoolean(APP_FIRST_LAUNCH, false);
-            editor.putInt(APP_VERSION_CODE, getVersion());
-            editor.commit();
-            loadData();
-        }
+        this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
+        editor.putBoolean(APP_FIRST_LAUNCH, false);
+        editor.putInt(APP_VERSION_CODE, getVersion());
+        editor.commit();
+        loadData();
     }
 
 	@Override
@@ -86,6 +69,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		super.onResume();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		foldPastEvents = sharedPref.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
+        noChangelog = sharedPref.getBoolean(SettingsActivity.NO_CHANGELOG, false);
 		format = DateTimeFormat.forPattern(sharedPref.getString(SettingsActivity.DATE_FORMAT, getString(R.string.default_date_format)));
 
 		loadCards();
@@ -210,12 +194,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     }
 
     private void loadCards() {
+
 	    cardsView.clearCards();
         if (this.firstLaunch) {
             addSampleCountdowns();
             this.firstLaunch = false;
         }
-        if (this.newlyUpdate) {
+        if (this.newlyUpdate && !this.noChangelog) {
             addChangeLogCountdowns();
             this.newlyUpdate = false;
         }

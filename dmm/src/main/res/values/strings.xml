@@ -36,7 +36,7 @@
     <string name="settings_item_date_format_summary">Choose how the date is displayed on cards</string>
     <string name="settings_item_fold_past_events_title">Fold past events</string>
     <string name="settings_item_fold_past_events_summary">Check to collapse all past events into a card stack</string>
-    <string name="settings_item_no_changelog_title">No Changelog Countdowns</string>
+    <string name="settings_item_no_changelog_title">No Change Logs</string>
     <string name="settings_item_no_changelog_summary">Do not automatically create change log countdowns for new features in future updates</string>
 
     <string name="settings_cat_about">About</string>

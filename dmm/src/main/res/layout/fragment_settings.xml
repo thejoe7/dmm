@@ -10,18 +10,24 @@
 
     <PreferenceCategory android:title="@string/settings_cat_preference">
 
+        <ListPreference android:id="@+id/settings_date_format"
+            android:key="KEY_DATE_FORMAT"
+            android:title="@string/settings_item_date_format_title"
+            android:entries="@array/dateFormat"
+            android:entryValues="@array/dateFormatValues"
+            android:defaultValue="MMM d, yyyy" />
+
         <CheckBoxPreference android:id="@+id/settings_fold_past_events"
             android:defaultValue="false"
             android:key="KEY_FOLD_PAST_EVENTS"
             android:title="@string/settings_item_fold_past_events_title"
             android:summary="@string/settings_item_fold_past_events_summary" />
 
-        <ListPreference android:id="@+id/settings_date_format"
-            android:key="KEY_DATE_FORMAT"
-            android:title="@string/settings_item_date_format_title"
-            android:entries="@array/dateFormat"
-            android:entryValues="@array/dateFormatValues"
-		    android:defaultValue="MMM d, yyyy" />
+        <CheckBoxPreference android:id="@+id/settings_no_changelog"
+            android:defaultValue="false"
+            android:key="KEY_NO_CHANGELOG"
+            android:title="@string/settings_item_no_changelog_title"
+            android:summary="@string/settings_item_no_changelog_summary" />
 
     </PreferenceCategory>
 
