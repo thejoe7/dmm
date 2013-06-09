@@ -198,14 +198,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         if (today.isAfter(new DateTime(year, 12, 25, 0, 0))) {
             year += 1;
         }
-        countdowns.add(new Countdown("Christmas Day", "", Color.PURPLE, year, 12, 25));
+        countdowns.add(new Countdown(getString(R.string.christmas_day), "", Color.PURPLE, year, 12, 25));
         saveData();
     }
 
     private void addChangeLogCountdowns() {
         // add default countdown for change log
         DateTime update = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
-        countdowns.add(new Countdown("Days-- New Updates", getString(R.string.change_log), Color.GREEN, update));
+        countdowns.add(new Countdown(getString(R.string.app_name) + " v" + getVersionString(), getString(R.string.change_log), Color.GREEN, update));
         saveData();
     }
 
@@ -249,6 +249,16 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             Log.e("MainActivity", e.getLocalizedMessage());
         }
         return v;
+    }
+
+    public String getVersionString() {
+        String s = "1.0";
+        try {
+            s = getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("MainActivity", e.getLocalizedMessage());
+        }
+        return s;
     }
     
 }

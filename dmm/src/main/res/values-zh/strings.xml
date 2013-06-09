@@ -3,6 +3,7 @@
 
     <string name="default_date_format">yyyy年M月d日</string>
 
+    <string name="christmas_day">圣诞节</string>
     <string name="change_log">1. 添加桌面插件支持\n2. 应用初次启动时增加默认倒数计日\n3. 其他用户界面调整</string>
 
     <string name="action_create">新建</string>
@@ -24,11 +25,14 @@
     <string name="card_overflow">Overflow</string>
 
     <string name="settings_cat_preference">设置</string>
-    <string name="settings_cat_about">关于</string>
     <string name="settings_item_date_format_title">日期格式</string>
     <string name="settings_item_date_format_summary">选择卡片中的日期以何种格式显示</string>
     <string name="settings_item_fold_past_events_title">收起已过去事件</string>
     <string name="settings_item_fold_past_events_summary">将所有已经过去的事件收起成一个卡片堆</string>
+    <string name="settings_item_no_changelog_title">隐藏应用更新信息卡片</string>
+    <string name="settings_item_no_changelog_summary">在将来的更新中不再自动生成显示更新记录的倒数计日卡片</string>
+
+    <string name="settings_cat_about">关于</string>
     <string name="settings_item_developer_title">开发者</string>
     <string name="settings_item_version_title">版本</string>
 
