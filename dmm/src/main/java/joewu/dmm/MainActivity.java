@@ -1,9 +1,9 @@
 package joewu.dmm;
 
 import android.app.backup.BackupManager;
+import android.app.backup.RestoreObserver;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fima.cardsui.views.CardUI;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
 
     private CardUI cardsView;
 	private TextView textView;
@@ -35,10 +36,10 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private boolean firstLaunch;
     private boolean newlyUpdate;
 
-	public final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
-	public final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
-    public final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
-    public final String APP_VERSION_CODE = "KEY_VERSION_CODE";
+    public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
+    public static final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
+    public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
+    public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +54,31 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         countdowns = new ArrayList<Countdown>();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
         this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
-        editor.putBoolean(APP_FIRST_LAUNCH, false);
-        this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
-        editor.putInt(APP_VERSION_CODE, getVersion());
-        editor.commit();
-
-        loadData();
-
+        if (this.firstLaunch) {
+            BackupManager bm = new BackupManager(this);
+            bm.requestRestore(new RestoreObserver() {
+                @Override
+                public void restoreFinished(int error) {
+                    super.restoreFinished(error);
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    MainActivity.this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
+                    MainActivity.this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
+                    editor.putBoolean(APP_FIRST_LAUNCH, false);
+                    editor.putInt(APP_VERSION_CODE, getVersion());
+                    editor.commit();
+                    loadData();
+                }
+            });
+        } else {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
+            editor.putBoolean(APP_FIRST_LAUNCH, false);
+            editor.putInt(APP_VERSION_CODE, getVersion());
+            editor.commit();
+            loadData();
+        }
     }
 
 	@Override
@@ -74,6 +91,12 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		loadCards();
 	}
 
+    @Override
+    public void onStop() {
+        BackupManager bm = new BackupManager(this);
+        bm.dataChanged();
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,12 +118,6 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
                 return super.onMenuItemSelected(id, item);
         }
     }
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        BackupManager bm = new BackupManager(this);
-        bm.dataChanged();
-	}
 
 	public void onDialogPositiveClick(Countdown countdown, boolean isNew) {
 		if (isNew) {
@@ -144,6 +161,10 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		}
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = sharedPref.edit();
+        int oldSize = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
+        for (int i = 0; i < oldSize; i++) {
+            editor.remove(PREF_COUNTDOWN_PREFIX + i);
+        }
 		editor.putInt(PREF_COUNTDOWN_SIZE, serializedCountdowns.size());
 		for (int i = 0; i < serializedCountdowns.size(); i++) {
 			editor.putString(PREF_COUNTDOWN_PREFIX + i, serializedCountdowns.get(i));
@@ -161,7 +182,6 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 				serializedCountdowns.add(serialData);
 			}
 		}
-
 		countdowns.clear();
 		for (String s : serializedCountdowns) {
 			Countdown c = Countdown.fromString(s);

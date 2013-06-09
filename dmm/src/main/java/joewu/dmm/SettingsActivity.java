@@ -3,11 +3,13 @@ package joewu.dmm;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.util.Log;
 import android.view.MenuItem;
 
 import org.joda.time.DateTime;
@@ -50,6 +52,7 @@ public class SettingsActivity extends PreferenceActivity {
 	    // private Preference foldPastEventsPref;
 	    private Preference dateFormatPref;
 	    private Preference devPref;
+        private Preference verPref;
 
 	    private static final DateTime date = new DateTime(2014, 1, 31, 0, 0);
 
@@ -62,18 +65,27 @@ public class SettingsActivity extends PreferenceActivity {
 	        // foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
 	        dateFormatPref = findPreference(DATE_FORMAT);
             devPref = findPreference("KEY_DEVELOPER");
+            verPref = findPreference("KEY_VERSION");
 
 	        DateTimeFormatter format = DateTimeFormat.forPattern(getPreferenceManager().getSharedPreferences().getString(DATE_FORMAT, "MMM d, yyyy"));
 	        dateFormatPref.setSummary(format.print(date));
+
             devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://plus.google.com/b/112703451623046920651/112703451623046920651/about"));
-                    startActivity(intent);
-                    return true;
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://plus.google.com/b/112703451623046920651/112703451623046920651/about"));
+                startActivity(intent);
+                return true;
                 }
             });
+            String version = "1.0.0";
+            try {
+                version = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e("SettingsActivity", e.getLocalizedMessage());
+            }
+            verPref.setSummary(version);
         }
 
 	    @Override
