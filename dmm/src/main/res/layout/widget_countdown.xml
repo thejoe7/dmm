@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/card_background_shadow"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/card_background"
+        android:weightSum="100" >
+
+        <LinearLayout android:id="@+id/widget_stripe"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:background="@color/ics_red"
+            android:layout_height="0dp"
+            android:layout_weight="40" >
+
+            <TextView android:id="@+id/widget_alias"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:text="Title" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight="60" >
+
+            <TextView android:id="@+id/widget_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:text="@string/card_countdown"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="28sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

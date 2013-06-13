@@ -22,6 +22,7 @@
 	<string name="dialog_cancel">Cancel</string>
 	<string name="dialog_title">Title</string>
 	<string name="dialog_description">Description</string>
+    <string name="dialog_alias_hint">Make an alias for display</string>
 
     <string name="card_stripe">Color Stripe</string>
     <string name="card_title">Card Title</string>
