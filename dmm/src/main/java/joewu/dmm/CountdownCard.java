@@ -21,7 +21,7 @@ public class CountdownCard extends Card {
 
 	private Context context;
     private DateTimeFormatter format;
-    private Countdown countdown;
+    private CountdownItem countdown;
 	private int arrayIndex = -1;
 	private ImageView overflow;
 
@@ -30,7 +30,7 @@ public class CountdownCard extends Card {
 		public void onCardDelete(int i);
 	}
 
-    public CountdownCard(Context context, Countdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
+    public CountdownCard(Context context, CountdownItem countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
         super(countdown.title, countdown.description, colorToString(countdown.color), colorToString(countdown.color), hasOverflow, isClickable);
 	    this.context = context;
         this.countdown = countdown;

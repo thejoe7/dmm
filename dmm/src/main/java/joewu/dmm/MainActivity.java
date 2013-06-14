@@ -23,13 +23,15 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
 
     private CardUI cardsView;
 	private TextView textView;
-    private List<Countdown> countdowns;
+    private List<CountdownItem> countdowns;
     private boolean foldPastEvents;
     private boolean noChangelog;
     private DateTimeFormatter format;
@@ -37,10 +39,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private boolean firstLaunch;
     private boolean newlyUpdate;
 
-    public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
-    public static final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
     public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
     public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
+    public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
+    public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
+
+    // legacy pref keys
+    public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
+    public static final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 
 	    textView = (TextView) findViewById(R.id.main_text_view);
 
-        countdowns = new ArrayList<Countdown>();
+        countdowns = new ArrayList<CountdownItem>();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -103,7 +109,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         }
     }
 
-	public void onDialogPositiveClick(Countdown countdown, boolean isNew) {
+	public void onDialogPositiveClick(CountdownItem countdown, boolean isNew) {
 		if (isNew) {
 			countdowns.add(countdown);
 		} else {
@@ -119,12 +125,12 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     }
 
 	private void createCountdown() {
-		CountdownDialog fragment = new CountdownDialog(new Countdown("", "", Color.RED, DateTime.now()), true, format);
+		CountdownDialog fragment = new CountdownDialog(new CountdownItem("", "", Color.RED, DateTime.now()), true, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	public void editCountdown(int index) {
-		Countdown countdown = countdowns.get(index);
+		CountdownItem countdown = countdowns.get(index);
 		CountdownDialog fragment = new CountdownDialog(countdown, false, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
@@ -136,43 +142,62 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	}
 
 	public void saveData() {
-		List<String> serializedCountdowns = new ArrayList<String>();
-		for (Countdown c : countdowns) {
-			String cs = c.toString();
-			if (cs != null && !cs.isEmpty()) {
-				serializedCountdowns.add(cs);
-			}
-		}
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor editor = sharedPref.edit();
-        int oldSize = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
-        for (int i = 0; i < oldSize; i++) {
-            editor.remove(PREF_COUNTDOWN_PREFIX + i);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Set<String> ids = new HashSet<String>();
+        for (CountdownItem c : countdowns) {
+            String cs = c.toString();
+            if (cs != null && !cs.isEmpty()) {
+                editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + c.getUuid(), cs);
+                ids.add(c.getUuid());
+            }
         }
-		editor.putInt(PREF_COUNTDOWN_SIZE, serializedCountdowns.size());
-		for (int i = 0; i < serializedCountdowns.size(); i++) {
-			editor.putString(PREF_COUNTDOWN_PREFIX + i, serializedCountdowns.get(i));
-		}
-		editor.commit();
+        editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
+        editor.commit();
 	}
 
 	public void loadData() {
-		List<String> serializedCountdowns = new ArrayList<String>();
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
-		for (int i = 0; i < size; i++) {
-			String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, "");
-			if (!serialData.isEmpty()) {
-				serializedCountdowns.add(serialData);
-			}
-		}
-		countdowns.clear();
-		for (String s : serializedCountdowns) {
-			Countdown c = Countdown.fromString(s);
-			if (c != null) {
-				countdowns.add(c);
-			}
-		}
+        countdowns.clear();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        // new countdown item format
+        Set<String> ids = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, new HashSet<String>());
+        for (String id : ids) {
+            String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + id, "");
+            if (!serialCountdown.isEmpty()) {
+                CountdownItem c = CountdownItem.fromString(serialCountdown);
+                countdowns.add(c);
+            }
+        }
+
+        // legacy hack
+        int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
+        editor.remove(PREF_COUNTDOWN_SIZE);
+        if (size > 0) {
+            List<String> oldCountdowns = new ArrayList<String>();
+            for (int i = 0; i < size; i++) {
+                String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, "");
+                editor.remove(PREF_COUNTDOWN_PREFIX + i);
+                if (!serialData.isEmpty()) {
+                    oldCountdowns.add(serialData);
+                }
+            }
+            for (String s : oldCountdowns) {
+                Countdown c = Countdown.fromString(s);
+                if (c != null) {
+                    CountdownItem ci = new CountdownItem(c.title, c.description, c.color, c.date);
+                    countdowns.add(ci);
+                    String sci = ci.toString();
+                    if (sci != null && !sci.isEmpty()) {
+                        editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + ci.getUuid(), sci);
+                        ids.add(ci.getUuid());
+                    }
+                }
+            }
+            editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
+            editor.commit();
+        }
 	}
 
     private void addSampleCountdowns() {
@@ -182,14 +207,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         if (today.isAfter(new DateTime(year, 12, 25, 0, 0))) {
             year += 1;
         }
-        countdowns.add(new Countdown(getString(R.string.christmas_day), "", Color.PURPLE, year, 12, 25));
+        countdowns.add(new CountdownItem(getString(R.string.christmas_day), "", Color.PURPLE, year, 12, 25));
         saveData();
     }
 
     private void addChangeLogCountdowns() {
         // add default countdown for change log
         DateTime update = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
-        countdowns.add(new Countdown(getString(R.string.app_name) + " v" + getVersionString(), getString(R.string.change_log), Color.GREEN, update));
+        countdowns.add(new CountdownItem(getString(R.string.app_name) + " v" + getVersionString(), getString(R.string.change_log), Color.GREEN, update));
         saveData();
     }
 
@@ -206,7 +231,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         }
 	    if (countdowns.size() > 0) {
 		    textView.setVisibility(View.GONE);
-            Collections.sort(countdowns, new Countdown.CountdownComparator());
+            Collections.sort(countdowns, new CountdownItem.CountdownComparator());
 	        for (int i = 0; i < countdowns.size(); i++) {
 	            CountdownCard card = new CountdownCard(MainActivity.this, countdowns.get(i), format, true, false);
 		        card.setArrayIndex(i);

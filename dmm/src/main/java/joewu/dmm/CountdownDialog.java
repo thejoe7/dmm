@@ -29,7 +29,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 	private boolean isNew;
 
-	private Countdown countdown;
+	private CountdownItem countdown;
 	private DateTimeFormatter format;
 
 	private Map<Color, ImageView> selectors = new HashMap<Color, ImageView>();
@@ -38,22 +38,23 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private EditText textDescription;
 
 	public interface CountdownDialogListener {
-		public void onDialogPositiveClick(Countdown countdown, boolean isNew);
+		public void onDialogPositiveClick(CountdownItem countdown, boolean isNew);
 	}
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(Countdown countdown, boolean isNew, DateTimeFormatter format) {
+	public CountdownDialog(CountdownItem countdown, boolean isNew, DateTimeFormatter format) {
 		super();
 		this.isNew = isNew;
 		this.countdown = countdown;
 		this.format = format;
 	}
 
+    // should not be used
     public CountdownDialog() {
         super();
         this.isNew = true;
-        this.countdown = new Countdown("", "", Color.RED, 1970, 1, 1);
+        this.countdown = new CountdownItem("", "", Color.RED, 1970, 1, 1);
         this.format = DateTimeFormat.forPattern(getString(R.string.default_date_format));
     }
 
