@@ -57,6 +57,7 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
         AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
+        AppPreferences.addWidgetForCountdownItem(sharedPref, c.getUuid(), appWidgetId);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
         appWidgetManager.updateAppWidget(appWidgetId, CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), alias));

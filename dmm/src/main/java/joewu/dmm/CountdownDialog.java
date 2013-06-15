@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class CountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
 
-	private boolean isNew;
+	private int index;
 
 	private CountdownItem countdown;
 	private DateTimeFormatter format;
@@ -38,14 +38,14 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private EditText textDescription;
 
 	public interface CountdownDialogListener {
-		public void onDialogPositiveClick(CountdownItem countdown, boolean isNew);
+		public void onDialogPositiveClick(CountdownItem countdown, int index);
 	}
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(CountdownItem countdown, boolean isNew, DateTimeFormatter format) {
+	public CountdownDialog(CountdownItem countdown, int index, DateTimeFormatter format) {
 		super();
-		this.isNew = isNew;
+		this.index = index;
 		this.countdown = countdown;
 		this.format = format;
 	}
@@ -53,7 +53,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
     // should not be used
     public CountdownDialog() {
         super();
-        this.isNew = true;
+        this.index = -1;
         this.countdown = new CountdownItem("", "", Color.RED, 1970, 1, 1);
         this.format = DateTimeFormat.forPattern(getString(R.string.default_date_format));
     }
@@ -104,12 +104,12 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		textDescription.setText(countdown.description);
 
 		builder.setView(dialogView)
-				.setPositiveButton((isNew ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
+				.setPositiveButton(((index == MainActivity.INVALID_COUNTDOWN_INDEX) ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
 						countdown.title = textTitle.getText().toString();
 						countdown.description = textDescription.getText().toString();
-						mListener.onDialogPositiveClick(countdown, isNew);
+						mListener.onDialogPositiveClick(countdown, index);
 					}
 				})
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {

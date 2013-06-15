@@ -24,6 +24,7 @@ public class AppPreferences {
 
     public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
     public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
+    public static final String PREF_COUNTDOWN_WIDGETS_PREFIX = "COUNTDOWN_WIDGETS_WITH_ID";
 
     public static final String PREF_WIDGET_UUID_PREFIX = "WIDGET_UUID_WITH_ID_";
     public static final String PREF_WIDGET_ALIAS_PREFIX = "WIDGET_ALIAS_WITH_ID_";
@@ -112,6 +113,37 @@ public class AppPreferences {
         editor.commit();
     }
 
+    public static void addWidgetForCountdownItem(SharedPreferences sharedPref, String uuid, int appWidgetId) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Set<String> appWidgetIds = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
+        appWidgetIds.add(Integer.toString(appWidgetId));
+        editor.putStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, appWidgetIds);
+        editor.commit();
+    }
+
+    public static void removeWidgetForCountdownItem(SharedPreferences sharedPref, String uuid, int appWidgetId) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Set<String> appWidgetIds = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
+        appWidgetIds.remove(Integer.toString(appWidgetId));
+        editor.putStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, appWidgetIds);
+        editor.commit();
+    }
+
+    public static ArrayList<Integer> getWidgetsForCountdownItem(SharedPreferences sharedPref, String uuid) {
+        Set<String> appWidgetIdStrs = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
+        ArrayList<Integer> appWidgetIds = new ArrayList<Integer>();
+        for (String idString : appWidgetIdStrs) {
+            appWidgetIds.add(Integer.parseInt(idString));
+        }
+        return appWidgetIds;
+    }
+
+    public static void removeAllWidgetsForCountdownItem(SharedPreferences sharedPref, String uuid) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid);
+        editor.commit();
+    }
+
     public static boolean isFirstLaunch(SharedPreferences sharedPref) {
         return sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
     }
@@ -151,5 +183,11 @@ public class AppPreferences {
         } else {
             return CountdownItem.fromString(serialCountdown);
         }
+    }
+
+    public static void removeCountdownItemById(SharedPreferences sharedPref, String uuid) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(PREF_COUNTDOWN_ITEM_PREFIX + uuid);
+        editor.commit();
     }
 }

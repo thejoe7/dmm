@@ -2,6 +2,7 @@ package joewu.dmm;
 
 import android.app.backup.BackupManager;
 import android.app.backup.RestoreObserver;
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -28,6 +29,8 @@ import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
+
+    public static int INVALID_COUNTDOWN_INDEX = -1;
 
     private CardUI cardsView;
 	private TextView textView;
@@ -97,14 +100,20 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         }
     }
 
-	public void onDialogPositiveClick(CountdownItem countdown, boolean isNew) {
-		if (isNew) {
+	public void onDialogPositiveClick(CountdownItem countdown, int index) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        CountdownItem c = countdowns.get(index);
+		if (index == INVALID_COUNTDOWN_INDEX) {
 			countdowns.add(countdown);
 		} else {
-			// countdown is updated automatically
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+            for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, c.getUuid())) {
+                appWidgetManager.updateAppWidget(appWidgetId,
+                        CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));
+            }
 		}
 		loadCards();
-		AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
+		AppPreferences.saveCountdownItems(sharedPref, countdowns);
 	}
 
     private void showSettings() {
@@ -113,20 +122,22 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     }
 
 	private void createCountdown() {
-		CountdownDialog fragment = new CountdownDialog(new CountdownItem("", "", Color.RED, DateTime.now()), true, format);
+		CountdownDialog fragment = new CountdownDialog(new CountdownItem("", "", Color.RED, DateTime.now()), INVALID_COUNTDOWN_INDEX, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	public void editCountdown(int index) {
 		CountdownItem countdown = countdowns.get(index);
-		CountdownDialog fragment = new CountdownDialog(countdown, false, format);
+		CountdownDialog fragment = new CountdownDialog(countdown, index, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	public void deleteCountdown(int index) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        AppPreferences.removeAllWidgetsForCountdownItem(sharedPref, countdowns.get(index).getUuid());
 		countdowns.remove(index);
 		loadCards();
-        AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
+        AppPreferences.saveCountdownItems(sharedPref, countdowns);
 	}
 
     private void addSampleCountdowns() {
