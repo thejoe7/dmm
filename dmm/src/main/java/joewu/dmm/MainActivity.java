@@ -105,15 +105,17 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         CountdownItem c = countdowns.get(index);
 		if (index == INVALID_COUNTDOWN_INDEX) {
 			countdowns.add(countdown);
+            loadCards();
+            AppPreferences.saveCountdownItems(sharedPref, countdowns);
 		} else {
+            loadCards();
+            AppPreferences.saveCountdownItem(sharedPref, c);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, c.getUuid())) {
                 appWidgetManager.updateAppWidget(appWidgetId,
                         CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));
             }
 		}
-		loadCards();
-		AppPreferences.saveCountdownItems(sharedPref, countdowns);
 	}
 
     private void showSettings() {
@@ -135,6 +137,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	public void deleteCountdown(int index) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         AppPreferences.removeAllWidgetsForCountdownItem(sharedPref, countdowns.get(index).getUuid());
+        AppPreferences.removeCountdownItemById(sharedPref, countdowns.get(index).getUuid());
 		countdowns.remove(index);
 		loadCards();
         AppPreferences.saveCountdownItems(sharedPref, countdowns);

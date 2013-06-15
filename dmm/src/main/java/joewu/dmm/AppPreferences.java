@@ -190,4 +190,18 @@ public class AppPreferences {
         editor.remove(PREF_COUNTDOWN_ITEM_PREFIX + uuid);
         editor.commit();
     }
+
+    public static void saveCountdownItem(SharedPreferences sharedPref, CountdownItem countdown) {
+        String serialCountdown = countdown.toString();
+        if (serialCountdown != null && !serialCountdown.isEmpty()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            Set<String> ids = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, new HashSet<String>());
+            if (!ids.contains(countdown.getUuid())) {
+                ids.add(countdown.getUuid());
+                editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
+            }
+            editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + countdown.getUuid(), serialCountdown);
+            editor.commit();
+        }
+    }
 }
