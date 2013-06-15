@@ -139,10 +139,10 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
     }
 
     private String getCountdownAlias() {
-        if (textAlias.toString().isEmpty() && selectedIndex >= 0 && selectedIndex < countdowns.size()) {
+        if (textAlias.getText().toString().isEmpty() && selectedIndex >= 0 && selectedIndex < countdowns.size()) {
             return countdowns.get(selectedIndex).title;
         } else {
-            return textAlias.toString();
+            return textAlias.getText().toString();
         }
     }
 }

@@ -20,8 +20,7 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private List<CountdownItem> countdowns;
 
-    public String WIDGET_COUNTDOWN_UUID = "WIDGET_COUNTDOWN_UUID";
-    public String WIDGET_COUNTDOWN_ALIAS = "WIDGET_COUNTDOWN_ALIAS";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,25 +36,29 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
         Bundle extras = launchIntent.getExtras();
         if (extras != null) {
             appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-
-            Intent cancelResultValue = new Intent();
-            cancelResultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            setResult(RESULT_CANCELED, cancelResultValue);
         }
 
-        setContentView(R.layout.widget_countdown_configure);
-        CountdownWidgetDialog fragment = new CountdownWidgetDialog(countdowns, format);
-        fragment.show(getFragmentManager(), "countdownWidgetDialog");
+        Intent cancelResultValue = new Intent();
+        cancelResultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        setResult(RESULT_CANCELED, cancelResultValue);
+
+        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            finish();
+        } else {
+            setContentView(R.layout.widget_countdown_configure);
+            CountdownWidgetDialog fragment = new CountdownWidgetDialog(countdowns, format);
+            fragment.show(getFragmentManager(), "countdownWidgetDialog");
+        }
     }
 
     public void onDialogPositiveClick(int index, String alias) {
-        if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
-            Intent resultValue = new Intent();
-            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            resultValue.putExtra(WIDGET_COUNTDOWN_UUID, countdowns.get(index).getUuid());
-            resultValue.putExtra(WIDGET_COUNTDOWN_ALIAS, alias);
-            setResult(RESULT_OK, resultValue);
-        }
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        setResult(RESULT_OK, resultValue);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        appWidgetManager.updateAppWidget(appWidgetId, CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, countdowns.get(index).getUuid(), alias));
+
         finish();
     }
 

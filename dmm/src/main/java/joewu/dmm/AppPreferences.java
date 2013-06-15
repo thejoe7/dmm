@@ -119,4 +119,13 @@ public class AppPreferences {
     public static DateTimeFormatter getDateFormat(SharedPreferences sharedPref, String defaultFormat) {
         return DateTimeFormat.forPattern(sharedPref.getString(DATE_FORMAT, defaultFormat));
     }
+
+    public static CountdownItem getCountdownItemById(SharedPreferences sharedPref, String uuid) {
+        String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + uuid, "");
+        if (serialCountdown.isEmpty()) {
+            return null;
+        } else {
+            return CountdownItem.fromString(serialCountdown);
+        }
+    }
 }
