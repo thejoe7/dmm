@@ -39,15 +39,6 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
     private boolean firstLaunch;
     private boolean newlyUpdate;
 
-    public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
-    public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
-    public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
-    public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
-
-    // legacy pref keys
-    public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
-    public static final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,23 +52,20 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         countdowns = new ArrayList<CountdownItem>();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        this.firstLaunch = sharedPref.getBoolean(APP_FIRST_LAUNCH, true);
-        this.newlyUpdate = (sharedPref.getInt(APP_VERSION_CODE, 0) < getVersion());
-        editor.putBoolean(APP_FIRST_LAUNCH, false);
-        editor.putInt(APP_VERSION_CODE, getVersion());
-        editor.commit();
-        loadData();
+        this.firstLaunch = AppPreferences.isFirstLaunch(sharedPref);
+        this.newlyUpdate = AppPreferences.getAppVersionCode(sharedPref) < getVersion();
+        AppPreferences.setFirstLaunch(sharedPref, false);
+        AppPreferences.setAppVersionCode(sharedPref, getVersion());
+        this.countdowns = AppPreferences.loadCountdownItems(sharedPref);
     }
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		foldPastEvents = sharedPref.getBoolean(SettingsActivity.FOLD_PAST_EVENTS, false);
-        noChangelog = sharedPref.getBoolean(SettingsActivity.NO_CHANGELOG, false);
-		format = DateTimeFormat.forPattern(sharedPref.getString(SettingsActivity.DATE_FORMAT, getString(R.string.default_date_format)));
-
+        this.foldPastEvents = AppPreferences.foldPastEvents(sharedPref);
+        this.noChangelog = AppPreferences.noChangelog(sharedPref);
+        this.format = AppPreferences.getDateFormat(sharedPref, getString(R.string.default_date_format));
 		loadCards();
 	}
 
@@ -116,7 +104,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 			// countdown is updated automatically
 		}
 		loadCards();
-		saveData();
+		AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
 	}
 
     private void showSettings() {
@@ -138,66 +126,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	public void deleteCountdown(int index) {
 		countdowns.remove(index);
 		loadCards();
-		saveData();
-	}
-
-	public void saveData() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Set<String> ids = new HashSet<String>();
-        for (CountdownItem c : countdowns) {
-            String cs = c.toString();
-            if (cs != null && !cs.isEmpty()) {
-                editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + c.getUuid(), cs);
-                ids.add(c.getUuid());
-            }
-        }
-        editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
-        editor.commit();
-	}
-
-	public void loadData() {
-        countdowns.clear();
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        // new countdown item format
-        Set<String> ids = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, new HashSet<String>());
-        for (String id : ids) {
-            String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + id, "");
-            if (!serialCountdown.isEmpty()) {
-                CountdownItem c = CountdownItem.fromString(serialCountdown);
-                countdowns.add(c);
-            }
-        }
-
-        // legacy hack
-        int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
-        editor.remove(PREF_COUNTDOWN_SIZE);
-        if (size > 0) {
-            List<String> oldCountdowns = new ArrayList<String>();
-            for (int i = 0; i < size; i++) {
-                String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, "");
-                editor.remove(PREF_COUNTDOWN_PREFIX + i);
-                if (!serialData.isEmpty()) {
-                    oldCountdowns.add(serialData);
-                }
-            }
-            for (String s : oldCountdowns) {
-                Countdown c = Countdown.fromString(s);
-                if (c != null) {
-                    CountdownItem ci = new CountdownItem(c.title, c.description, c.color, c.date);
-                    countdowns.add(ci);
-                    String sci = ci.toString();
-                    if (sci != null && !sci.isEmpty()) {
-                        editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + ci.getUuid(), sci);
-                        ids.add(ci.getUuid());
-                    }
-                }
-            }
-            editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
-            editor.commit();
-        }
+        AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
 	}
 
     private void addSampleCountdowns() {
@@ -208,14 +137,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             year += 1;
         }
         countdowns.add(new CountdownItem(getString(R.string.christmas_day), "", Color.PURPLE, year, 12, 25));
-        saveData();
+        AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
     }
 
     private void addChangeLogCountdowns() {
         // add default countdown for change log
         DateTime update = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
         countdowns.add(new CountdownItem(getString(R.string.app_name) + " v" + getVersionString(), getString(R.string.change_log), Color.GREEN, update));
-        saveData();
+        AppPreferences.saveCountdownItems(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
     }
 
     private void loadCards() {

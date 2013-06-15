@@ -21,10 +21,6 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class SettingsActivity extends PreferenceActivity {
 
-	public static final String FOLD_PAST_EVENTS = "KEY_FOLD_PAST_EVENTS";
-	public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
-    public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +61,11 @@ public class SettingsActivity extends PreferenceActivity {
             addPreferencesFromResource(R.layout.fragment_settings);
 
 	        // foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
-	        dateFormatPref = findPreference(DATE_FORMAT);
+	        dateFormatPref = findPreference("KEY_DATE_FORMAT");
             devPref = findPreference("KEY_DEVELOPER");
             verPref = findPreference("KEY_VERSION");
 
-	        DateTimeFormatter format = DateTimeFormat.forPattern(getPreferenceManager().getSharedPreferences().getString(DATE_FORMAT, "MMM d, yyyy"));
+            DateTimeFormatter format = AppPreferences.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 	        dateFormatPref.setSummary(format.print(date));
 
             devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -92,8 +88,8 @@ public class SettingsActivity extends PreferenceActivity {
 
 	    @Override
 	    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		    if (key.equals(SettingsActivity.DATE_FORMAT)) {
-			    DateTimeFormatter format = DateTimeFormat.forPattern(sharedPreferences.getString(DATE_FORMAT, "MMM d, yyyy"));
+		    if (key.equals(AppPreferences.DATE_FORMAT)) {
+                DateTimeFormatter format = AppPreferences.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 			    dateFormatPref.setSummary(format.print(date));
 		    }
 	    }
