@@ -31,12 +31,12 @@ public class CountdownWidget extends AppWidgetProvider {
             rv.setImageViewResource(R.id.widget_stripe, R.color.grey);
         } else {
             int daysDiff = countdown.getDaysDiff(DateTime.now());
-            if (daysDiff > 0) {
+            if (daysDiff >= 0) {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(daysDiff));
                 rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(android.R.color.black));
             } else {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(-daysDiff));
-                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(android.R.color.darker_gray));
+                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(R.color.dark_gray));
             }
             int colorRes;
             switch (countdown.color) {

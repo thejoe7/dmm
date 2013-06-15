@@ -49,14 +49,23 @@ public class CountdownCard extends Card {
 
         DateTime today = DateTime.now();
         int daysDiff = countdown.getDaysDiff(today);
+        TextView countdownText = (TextView) v.findViewById(R.id.card_countdown);
+        TextView daysLeftText = (TextView) v.findViewById(R.id.card_days_left);
+        TextView dateText = (TextView) v.findViewById(R.id.card_date);
         if (daysDiff >= 0) {
-            ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(daysDiff));
-            ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_left));
+            countdownText.setText(Integer.toString(daysDiff));
+//            countdownText.setTextColor(context.getResources().getColor(android.R.color.black));
+            daysLeftText.setText(context.getString(R.string.card_days_left));
+//            daysLeftText.setTextColor(context.getResources().getColor(android.R.color.black));
+//            dateText.setTextColor(context.getResources().getColor(android.R.color.black));
         } else {
-            ((TextView) v.findViewById(R.id.card_countdown)).setText(Integer.toString(-daysDiff));
-            ((TextView) v.findViewById(R.id.card_days_left)).setText(context.getString(R.string.card_days_past));
+            countdownText.setText(Integer.toString(-daysDiff));
+//            countdownText.setTextColor(context.getResources().getColor(R.color.dark_gray));
+            daysLeftText.setText(context.getString(R.string.card_days_past));
+//            daysLeftText.setTextColor(context.getResources().getColor(R.color.dark_gray));
+//            dateText.setTextColor(context.getResources().getColor(R.color.dark_gray));
         }
-        ((TextView) v.findViewById(R.id.card_date)).setText(format.print(countdown.date));
+        dateText.setText(format.print(countdown.date));
 
 	    TextView textDescription = (TextView) v.findViewById(R.id.card_description);
         if (countdown.description == null || countdown.description.isEmpty()) {
