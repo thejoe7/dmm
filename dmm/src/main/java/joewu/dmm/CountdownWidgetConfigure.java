@@ -52,13 +52,18 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
     }
 
     public void onDialogPositiveClick(int index, String alias) {
+        CountdownItem c = countdowns.get(index);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
+        AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        appWidgetManager.updateAppWidget(appWidgetId, CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), alias));
+
         Intent resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         setResult(RESULT_OK, resultValue);
-
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        appWidgetManager.updateAppWidget(appWidgetId, CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, countdowns.get(index).getUuid(), alias));
-
         finish();
     }
 

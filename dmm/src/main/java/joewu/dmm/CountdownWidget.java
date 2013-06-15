@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
@@ -17,8 +18,9 @@ public class CountdownWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         for (int appWidgetId: appWidgetIds) {
-            RemoteViews rv = buildRemoteViews(context, appWidgetId, "", "");
+            RemoteViews rv = buildRemoteViews(context, appWidgetId, AppPreferences.getWidgetUuid(sharedPref, appWidgetId), AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
             appWidgetManager.updateAppWidget(appWidgetId, rv);
         }
     }
@@ -41,22 +43,22 @@ public class CountdownWidget extends AppWidgetProvider {
             int colorRes;
             switch (countdown.color) {
                 case RED:
-                    colorRes = R.color.ics_red;
+                    colorRes = R.drawable.tile_red;
                     break;
                 case YELLOW:
-                    colorRes = R.color.ics_yellow;
+                    colorRes = R.drawable.tile_yellow;
                     break;
                 case GREEN:
-                    colorRes = R.color.ics_green;
+                    colorRes = R.drawable.tile_green;
                     break;
                 case BLUE:
-                    colorRes = R.color.ics_blue;
+                    colorRes = R.drawable.tile_blue;
                     break;
                 case PURPLE:
-                    colorRes = R.color.ics_purple;
+                    colorRes = R.drawable.tile_purple;
                     break;
                 default:
-                    colorRes = R.color.grey;
+                    colorRes = R.drawable.tile_gray;
                     break;
             }
             rv.setImageViewResource(R.id.widget_stripe, colorRes);

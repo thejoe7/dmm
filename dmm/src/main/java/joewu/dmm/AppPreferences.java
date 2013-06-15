@@ -21,8 +21,12 @@ public class AppPreferences {
     public static final String FOLD_PAST_EVENTS = "KEY_FOLD_PAST_EVENTS";
     public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
     public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
+
     public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
     public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
+
+    public static final String PREF_WIDGET_UUID_PREFIX = "WIDGET_UUID_WITH_ID_";
+    public static final String PREF_WIDGET_ALIAS_PREFIX = "WIDGET_ALIAS_WITH_ID_";
 
     // legacy pref keys
     public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
@@ -86,6 +90,26 @@ public class AppPreferences {
 
         Collections.sort(countdowns, new CountdownItem.CountdownComparator());
         return countdowns;
+    }
+
+    public static String getWidgetUuid(SharedPreferences sharedPref, int appWidgetId) {
+        return sharedPref.getString(PREF_WIDGET_UUID_PREFIX + appWidgetId, "");
+    }
+
+    public static void setWidgetUuid(SharedPreferences sharedPref, int appWidgetId, String uuid) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PREF_WIDGET_UUID_PREFIX + appWidgetId, uuid);
+        editor.commit();
+    }
+
+    public static String getWidgetAlias(SharedPreferences sharedPref, int appWidgetId) {
+        return sharedPref.getString(PREF_WIDGET_ALIAS_PREFIX + appWidgetId, "");
+    }
+
+    public static void setWidgetAlias(SharedPreferences sharedPref, int appWidgetId, String alias) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PREF_WIDGET_ALIAS_PREFIX + appWidgetId, alias);
+        editor.commit();
     }
 
     public static boolean isFirstLaunch(SharedPreferences sharedPref) {
