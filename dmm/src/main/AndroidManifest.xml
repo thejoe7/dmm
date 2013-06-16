@@ -40,6 +40,7 @@
         <receiver android:name="CountdownWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="COUNTDOWN_WIDGET_UPDATED_BY_ALARM" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

@@ -7,4 +7,5 @@
     android:resizeMode="horizontal|vertical"
     android:initialLayout="@layout/widget_countdown"
     android:configure="joewu.dmm.CountdownWidgetConfigure"
+    android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

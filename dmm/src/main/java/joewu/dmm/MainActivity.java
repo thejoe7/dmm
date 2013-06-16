@@ -112,8 +112,9 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             AppPreferences.saveCountdownItem(sharedPref, c);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, c.getUuid())) {
-                appWidgetManager.updateAppWidget(appWidgetId,
-                        CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));
+                CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
+//                appWidgetManager.updateAppWidget(appWidgetId,
+//                        CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));
             }
 		}
 	}

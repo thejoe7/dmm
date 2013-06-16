@@ -1,28 +1,66 @@
 package joewu.dmm;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import org.joda.time.DateTime;
+
+import java.io.PushbackInputStream;
 
 /**
  * Created by joewu on 11/06/13.
  */
 public class CountdownWidget extends AppWidgetProvider {
 
+    public static String COUNTDOWN_WIDGET_UPDATE_TOKEN = "COUNTDOWN_WIDGET_UPDATED_BY_ALARM";
+
+    private static AlarmManager sAlarmManager;
+    private static PendingIntent sPendingIntent;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (COUNTDOWN_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            ComponentName thisWidget = new ComponentName(context.getPackageName(), CountdownWidget.class.getName());
+            int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+            onUpdate(context, appWidgetManager, appWidgetIds);
+        }
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        for (int appWidgetId: appWidgetIds) {
-            RemoteViews rv = buildRemoteViews(context, appWidgetId, AppPreferences.getWidgetUuid(sharedPref, appWidgetId), AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
-            appWidgetManager.updateAppWidget(appWidgetId, rv);
+        for (int appWidgetId : appWidgetIds) {
+            updateAppWidget(context, appWidgetManager, appWidgetId);
         }
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        if (sAlarmManager != null && sPendingIntent != null) {
+            sAlarmManager.cancel(sPendingIntent);
+        }
+        super.onDisabled(context);
+    }
+
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        for (int appWidgetId : appWidgetIds) {
+            String uuid = AppPreferences.getWidgetUuid(sharedPref, appWidgetId);
+            AppPreferences.removeWidgetForCountdownItem(sharedPref, uuid, appWidgetId);
+        }
+        super.onDeleted(context, appWidgetIds);
     }
 
     public static RemoteViews buildRemoteViews(final Context context, final int appWidgetId, String uuid, String alias) {
@@ -69,7 +107,13 @@ public class CountdownWidget extends AppWidgetProvider {
     }
 
     public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId) {
-        final RemoteViews views = buildRemoteViews(context, appWidgetId, "", "");
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        final RemoteViews views = buildRemoteViews(context, appWidgetId, AppPreferences.getWidgetUuid(sharedPref, appWidgetId), AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
         appWidgetManager.updateAppWidget(appWidgetId, views);
+    }
+
+    public static void saveAlarmManager(AlarmManager am, PendingIntent pi) {
+        sAlarmManager = am;
+        sPendingIntent = pi;
     }
 }
