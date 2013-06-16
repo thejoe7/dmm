@@ -4,7 +4,7 @@
     android:minWidth="40dp"
     android:minHeight="40dp"
     android:minResizeWidth="40dp"
-    android:resizeMode="horizontal"
+    android:resizeMode="horizontal|vertical"
     android:initialLayout="@layout/widget_countdown"
     android:configure="joewu.dmm.CountdownWidgetConfigure"
     android:widgetCategory="home_screen" />

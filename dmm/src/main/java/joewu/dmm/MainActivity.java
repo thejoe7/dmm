@@ -102,13 +102,13 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 
 	public void onDialogPositiveClick(CountdownItem countdown, int index) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        CountdownItem c = countdowns.get(index);
 		if (index == INVALID_COUNTDOWN_INDEX) {
 			countdowns.add(countdown);
             loadCards();
-            AppPreferences.saveCountdownItems(sharedPref, countdowns);
+            AppPreferences.saveCountdownItem(sharedPref, countdown);
 		} else {
             loadCards();
+            CountdownItem c = countdowns.get(index);
             AppPreferences.saveCountdownItem(sharedPref, c);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, c.getUuid())) {
