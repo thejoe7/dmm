@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="joewu.dmm"
+    android:installLocation="internalOnly"
     android:versionCode="2"
     android:versionName="1.01" >
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -46,6 +49,18 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_countdown_provider" />
         </receiver>
+        <receiver android:name="joewu.dmm.AutoStart"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="joewu.dmm.StartService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
