@@ -108,10 +108,9 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             AppPreferences.saveCountdownItem(sharedPref, countdown);
 		} else {
             loadCards();
-            CountdownItem c = countdowns.get(index);
-            AppPreferences.saveCountdownItem(sharedPref, c);
+            AppPreferences.saveCountdownItem(sharedPref, countdown);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-            for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, c.getUuid())) {
+            for (int appWidgetId : AppPreferences.getWidgetsForCountdownItem(sharedPref, countdown.getUuid())) {
                 CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 //                appWidgetManager.updateAppWidget(appWidgetId,
 //                        CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));

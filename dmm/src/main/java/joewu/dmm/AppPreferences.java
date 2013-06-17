@@ -28,6 +28,7 @@ public class AppPreferences {
 
     public static final String PREF_WIDGET_UUID_PREFIX = "WIDGET_UUID_WITH_ID_";
     public static final String PREF_WIDGET_ALIAS_PREFIX = "WIDGET_ALIAS_WITH_ID_";
+    public static final String PREF_WIDGET_SIZE_PREFIX = "WIDGET_SIZE_WITH_ID_";
 
     // legacy pref keys
     public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
@@ -110,6 +111,16 @@ public class AppPreferences {
     public static void setWidgetAlias(SharedPreferences sharedPref, int appWidgetId, String alias) {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(PREF_WIDGET_ALIAS_PREFIX + appWidgetId, alias);
+        editor.commit();
+    }
+
+    public static String getWidgetSize(SharedPreferences sharedPref, int appWidgetId) {
+        return sharedPref.getString(PREF_WIDGET_SIZE_PREFIX + appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
+    }
+
+    public static void setWidgetSize(SharedPreferences sharedPref, int appWidgetId, String widgetSize) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PREF_WIDGET_SIZE_PREFIX + appWidgetId, widgetSize);
         editor.commit();
     }
 

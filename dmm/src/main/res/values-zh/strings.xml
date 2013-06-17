@@ -4,7 +4,7 @@
     <string name="default_date_format">yyyy年M月d日</string>
 
     <string name="christmas_day">圣诞节</string>
-    <string name="change_log">1. 添加桌面插件支持\n2. 应用初次启动时增加默认倒数计日\n3. 其他用户界面调整</string>
+    <string name="change_log">1. 添加桌面插件支持\n2. 使用谷歌账户自动备份应用数据\n3. 其他用户界面调整</string>
 
     <string name="action_create">新建</string>
     <string name="action_settings">设置</string>
@@ -22,8 +22,10 @@
 
     <string name="card_days_left">天 之后</string>
     <string name="card_days_past">天 之前</string>
-    <string name="card_description"></string>
-    <string name="card_overflow">Overflow</string>
+
+    <string name="widget_days_left">天后是</string>
+    <string name="widget_days_past">天前是</string>
+    <string name="widget_date_unknown">某天</string>
 
     <string name="settings_cat_preference">设置</string>
     <string name="settings_item_date_format_title">日期格式</string>

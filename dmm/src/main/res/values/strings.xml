@@ -5,10 +5,10 @@
     <string name="default_date_format">MMM d, yyyy</string>
 
     <string name="christmas_day">Christmas Day</string>
-    <string name="change_log">1. Added widget support.\n2. Created default countdown for first launch.\n3. Some minor UI tweaks.</string>
+    <string name="change_log">1. Added widget support.\n2. Auto-backup app data using Google account.\n3. Some minor UI tweaks.</string>
     <string name="build_year">2013</string>
     <string name="build_month">6</string>
-    <string name="build_date">10</string>
+    <string name="build_date">16</string>
 
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>
@@ -22,7 +22,7 @@
 	<string name="dialog_cancel">Cancel</string>
 	<string name="dialog_title">Title</string>
 	<string name="dialog_description">Description</string>
-    <string name="dialog_alias_hint">Make an alias for display</string>
+    <string name="dialog_alias_hint">Make an alias for display?</string>
 
     <string name="card_stripe">Color Stripe</string>
     <string name="card_title">Card Title</string>
@@ -31,6 +31,10 @@
     <string name="card_days_past">days past since</string>
     <string name="card_description"></string>
     <string name="card_overflow">Overflow</string>
+
+    <string name="widget_days_left">until</string>
+    <string name="widget_days_past">since</string>
+    <string name="widget_date_unknown">someday</string>
 
     <string name="settings_cat_preference">Preference</string>
     <string name="settings_item_date_format_title">Choose date format</string>

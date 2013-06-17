@@ -8,13 +8,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import org.joda.time.DateTime;
-
-import java.io.PushbackInputStream;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  * Created by joewu on 11/06/13.
@@ -22,6 +21,13 @@ import java.io.PushbackInputStream;
 public class CountdownWidget extends AppWidgetProvider {
 
     public static String COUNTDOWN_WIDGET_UPDATE_TOKEN = "COUNTDOWN_WIDGET_UPDATED_BY_ALARM";
+
+    public static String COUNTDOWN_WIDGET_SIZE_1X1 = "COUNTDOWN_WIDGET_SIZE_1X1";
+    public static String COUNTDOWN_WIDGET_SIZE_2X2 = "COUNTDOWN_WIDGET_SIZE_2X2";
+    public static String COUNTDOWN_WIDGET_SIZE_1X3 = "COUNTDOWN_WIDGET_SIZE_1X3";
+
+    private static int unitHeight = 58;
+    private static int unitWidth = 64;
 
     private static AlarmManager sAlarmManager;
     private static PendingIntent sPendingIntent;
@@ -63,20 +69,69 @@ public class CountdownWidget extends AppWidgetProvider {
         super.onDeleted(context, appWidgetIds);
     }
 
-    public static RemoteViews buildRemoteViews(final Context context, final int appWidgetId, String uuid, String alias) {
-        final RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_countdown);
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+//        String toastString = String.format("(%d x %d) - (%d x %d)",
+//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
+//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
+//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT),
+//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH));
+//        Toast.makeText(context, toastString, Toast.LENGTH_LONG).show();
+        int minHeight = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+        int minWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        if (minHeight >= unitHeight && minWidth >= 3 * unitWidth) {
+            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X3);
+        } else if (minHeight >= 2 * unitHeight && minWidth >= 2 * unitWidth) {
+            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_2X2);
+        } else {
+            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X1);
+        }
+        updateAppWidget(context, appWidgetManager, appWidgetId);
+    }
+
+    public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        final RemoteViews views = buildRemoteViews(context, appWidgetId,
+                AppPreferences.getWidgetSize(sharedPref, appWidgetId),
+                AppPreferences.getWidgetUuid(sharedPref, appWidgetId),
+                AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
+        appWidgetManager.updateAppWidget(appWidgetId, views);
+    }
+
+    public static void saveAlarmManager(AlarmManager am, PendingIntent pi) {
+        sAlarmManager = am;
+        sPendingIntent = pi;
+    }
+
+    public static RemoteViews buildRemoteViews(final Context context, final int appWidgetId, String widgetSize, String uuid, String alias) {
+        if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_1X1)) {
+            return getRemoteViewSmall(context, R.layout.widget_countdown_1x1, uuid, alias);
+        } else if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_2X2)) {
+            return getRemoteViewSmall(context, R.layout.widget_countdown_2x2, uuid, alias);
+        } else if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_1X3)) {
+            return RemoteViewsgetRemoteViewLarge(context, R.layout.widget_countdown_1x3, uuid, alias);
+        } else {
+            // return 1x1 widget by default
+            return getRemoteViewSmall(context, R.layout.widget_countdown_1x1, uuid, alias);
+        }
+    }
+
+    private static RemoteViews getRemoteViewSmall(final Context context, int layout, String uuid, String alias) {
+        final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
         CountdownItem countdown = AppPreferences.getCountdownItemById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
+
         if (uuid.isEmpty() || countdown == null) {
             rv.setTextViewText(R.id.widget_countdown, "0");
-            rv.setImageViewResource(R.id.widget_stripe, R.color.grey);
+            rv.setImageViewResource(R.id.widget_stripe, R.drawable.tile_gray);
         } else {
             int daysDiff = countdown.getDaysDiff(DateTime.now());
             if (daysDiff >= 0) {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(daysDiff));
-                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(android.R.color.black));
+                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(R.color.dark_gray));
             } else {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(-daysDiff));
-                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(R.color.dark_gray));
+                rv.setTextColor(R.id.widget_countdown, context.getResources().getColor(android.R.color.darker_gray));
             }
             int colorRes;
             switch (countdown.color) {
@@ -106,14 +161,58 @@ public class CountdownWidget extends AppWidgetProvider {
         return rv;
     }
 
-    public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        final RemoteViews views = buildRemoteViews(context, appWidgetId, AppPreferences.getWidgetUuid(sharedPref, appWidgetId), AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
-        appWidgetManager.updateAppWidget(appWidgetId, views);
-    }
+    private static RemoteViews RemoteViewsgetRemoteViewLarge(final Context context, int layout, String uuid, String alias) {
+        final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
+        CountdownItem countdown = AppPreferences.getCountdownItemById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
 
-    public static void saveAlarmManager(AlarmManager am, PendingIntent pi) {
-        sAlarmManager = am;
-        sPendingIntent = pi;
+        if (uuid.isEmpty() || countdown == null) {
+            rv.setTextViewText(R.id.widget_countdown, "0");
+            rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_left) + " " + context.getString(R.string.widget_date_unknown));
+            rv.setTextColor(R.id.widget_alias, context.getResources().getColor(R.color.dark_gray));
+            rv.setImageViewResource(R.id.widget_stripe, R.drawable.tile_gray);
+        } else {
+            DateTimeFormatter format = AppPreferences.getDateFormat(PreferenceManager.getDefaultSharedPreferences(context), context.getString(R.string.default_date_format));
+            int daysDiff = countdown.getDaysDiff(DateTime.now());
+            if (daysDiff >= 0) {
+                rv.setTextViewText(R.id.widget_countdown, Integer.toString(daysDiff));
+                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_left) + " " + format.print(countdown.date));
+            } else {
+                rv.setTextViewText(R.id.widget_countdown, Integer.toString(-daysDiff));
+                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_past) + " " + format.print(countdown.date));
+            }
+            int colorRes;
+            int tileRes;
+            switch (countdown.color) {
+                case RED:
+                    colorRes = R.color.ics_red;
+                    tileRes = R.drawable.tile_red;
+                    break;
+                case YELLOW:
+                    colorRes = R.color.ics_yellow;
+                    tileRes = R.drawable.tile_yellow;
+                    break;
+                case GREEN:
+                    colorRes = R.color.ics_green;
+                    tileRes = R.drawable.tile_green;
+                    break;
+                case BLUE:
+                    colorRes = R.color.ics_blue;
+                    tileRes = R.drawable.tile_blue;
+                    break;
+                case PURPLE:
+                    colorRes = R.color.ics_purple;
+                    tileRes = R.drawable.tile_purple;
+                    break;
+                default:
+                    colorRes = R.color.dark_gray;
+                    tileRes = R.drawable.tile_gray;
+                    break;
+            }
+            rv.setTextColor(R.id.widget_alias, context.getResources().getColor(colorRes));
+            rv.setImageViewResource(R.id.widget_stripe, tileRes);
+        }
+        rv.setTextViewText(R.id.widget_alias, alias);
+
+        return rv;
     }
 }

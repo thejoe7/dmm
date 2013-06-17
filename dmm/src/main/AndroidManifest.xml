@@ -40,9 +40,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="CountdownWidget">
+        <receiver android:name="joewu.dmm.CountdownWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
                 <action android:name="COUNTDOWN_WIDGET_UPDATED_BY_ALARM" />
             </intent-filter>
             <meta-data
