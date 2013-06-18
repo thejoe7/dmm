@@ -71,16 +71,10 @@ public class CountdownWidget extends AppWidgetProvider {
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-//        String toastString = String.format("(%d x %d) - (%d x %d)",
-//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
-//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
-//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT),
-//                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH));
-//        Toast.makeText(context, toastString, Toast.LENGTH_LONG).show();
         int minHeight = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
         int minWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        if (minHeight >= unitHeight && minWidth >= 3 * unitWidth) {
+        if (minWidth >= 3 * unitWidth) {
             AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X3);
         } else if (minHeight >= 2 * unitHeight && minWidth >= 2 * unitWidth) {
             AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_2X2);
@@ -96,6 +90,9 @@ public class CountdownWidget extends AppWidgetProvider {
                 AppPreferences.getWidgetSize(sharedPref, appWidgetId),
                 AppPreferences.getWidgetUuid(sharedPref, appWidgetId),
                 AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent openAppIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        views.setOnClickPendingIntent(R.id.widget_frame, openAppIntent);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
