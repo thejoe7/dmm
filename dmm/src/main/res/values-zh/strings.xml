@@ -4,7 +4,7 @@
     <string name="default_date_format">yyyy年M月d日</string>
 
     <string name="christmas_day">圣诞节</string>
-    <string name="change_log">1. 添加桌面插件支持\n2. 使用谷歌账户自动备份应用数据\n3. 其他用户界面调整</string>
+    <string name="change_log">1. 修正少数Bugs.</string>
 
     <string name="action_create">新建</string>
     <string name="action_settings">设置</string>

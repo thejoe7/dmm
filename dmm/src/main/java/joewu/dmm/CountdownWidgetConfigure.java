@@ -55,32 +55,34 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
     }
 
     public void onDialogPositiveClick(int index, String alias) {
-        CountdownItem c = countdowns.get(index);
+        if (index != -1) {
+            CountdownItem c = countdowns.get(index);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
-        AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
-        AppPreferences.setWidgetSize(sharedPref, appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
-        AppPreferences.addWidgetForCountdownItem(sharedPref, c.getUuid(), appWidgetId);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
+            AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
+            AppPreferences.setWidgetSize(sharedPref, appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
+            AppPreferences.addWidgetForCountdownItem(sharedPref, c.getUuid(), appWidgetId);
 
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+            CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 
-        Intent intent = new Intent(CountdownWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
+            Intent intent = new Intent(CountdownWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
 
-        CountdownWidget.saveAlarmManager(alarmManager, pendingIntent);
+            CountdownWidget.saveAlarmManager(alarmManager, pendingIntent);
 
-        Intent resultValue = new Intent();
-        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        setResult(RESULT_OK, resultValue);
+            Intent resultValue = new Intent();
+            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            setResult(RESULT_OK, resultValue);
+        }
         finish();
     }
 
