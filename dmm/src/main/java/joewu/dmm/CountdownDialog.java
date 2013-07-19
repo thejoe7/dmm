@@ -223,19 +223,19 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private void setColorUnchecked(Color c) {
 		switch (c) {
 			case RED:
-				selectors.get(Color.RED).setImageResource(R.drawable.red_unchecked);
+				selectors.get(Color.RED).setImageResource(R.drawable.red_unselected);
 				break;
 			case YELLOW:
-				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_unchecked);
+				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_unselected);
 				break;
 			case GREEN:
-				selectors.get(Color.GREEN).setImageResource(R.drawable.green_unchecked);
+				selectors.get(Color.GREEN).setImageResource(R.drawable.green_unselected);
 				break;
 			case BLUE:
-				selectors.get(Color.BLUE).setImageResource(R.drawable.blue_unchecked);
+                selectors.get(Color.BLUE).setImageResource(R.drawable.blue_unselected);
 				break;
 			case PURPLE:
-				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_unchecked);
+				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_unselected);
 				break;
 			default:
 				break;
@@ -245,19 +245,19 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	private void setColorChecked(Color c) {
 		switch (c) {
 			case RED:
-				selectors.get(Color.RED).setImageResource(R.drawable.red_checked);
+				selectors.get(Color.RED).setImageResource(R.drawable.red_selected);
 				break;
 			case YELLOW:
-				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_checked);
+				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_selected);
 				break;
 			case GREEN:
-				selectors.get(Color.GREEN).setImageResource(R.drawable.green_checked);
+				selectors.get(Color.GREEN).setImageResource(R.drawable.green_selected);
 				break;
 			case BLUE:
-				selectors.get(Color.BLUE).setImageResource(R.drawable.blue_checked);
+                selectors.get(Color.BLUE).setImageResource(R.drawable.blue_selected);
 				break;
 			case PURPLE:
-				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_checked);
+				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_selected);
 				break;
 			default:
 				break;
