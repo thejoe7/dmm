@@ -55,7 +55,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
         super();
         this.index = -1;
         this.countdown = new CountdownItem("", "", Color.RED, 1970, 1, 1);
-        this.format = DateTimeFormat.forPattern(getString(R.string.default_date_format));
+        this.format = DateTimeFormat.forPattern(MainActivity.sharedMainActivity.getResources().getString(R.string.default_date_format));
     }
 
 	@Override
@@ -143,6 +143,14 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 			throw new ClassCastException(activity.toString() + " must implement CountdownDialogListener.");
 		}
 	}
+
+    @Override
+    public void onDestroyView() {
+        if (getDialog() != null && getRetainInstance()) {
+            getDialog().setOnDismissListener(null);
+        }
+        super.onDestroyView();
+    }
 
 	@Override
 	public void onClick(View view) {

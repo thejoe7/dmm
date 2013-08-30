@@ -30,6 +30,8 @@ import java.util.Set;
 
 public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
 
+    public static MainActivity sharedMainActivity = null;
+
     public static int INVALID_COUNTDOWN_INDEX = -1;
 
     private CardUI cardsView;
@@ -60,6 +62,7 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         AppPreferences.setFirstLaunch(sharedPref, false);
         AppPreferences.setAppVersionCode(sharedPref, getVersion());
         this.countdowns = AppPreferences.loadCountdownItems(sharedPref);
+        sharedMainActivity = this;
     }
 
 	@Override
