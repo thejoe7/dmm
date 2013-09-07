@@ -6,13 +6,10 @@ buildscript {
         classpath 'com.android.tools.build:gradle:0.5.+'
     }
 }
-apply plugin: 'android'
+apply plugin: 'android-library'
 
 dependencies {
     compile files('libs/android-support-v4.jar')
-    compile files('libs/joda-time-2.2.jar')
-    compile project(':libraries:CardsUILib')
-    compile project(':libraries:GoogleDateTimePickers')
 }
 
 android {
@@ -20,7 +17,16 @@ android {
     buildToolsVersion "17.0.0"
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 16
+        minSdkVersion 7
+        targetSdkVersion 17
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            res.srcDirs = ['res']
+        }
     }
 }
