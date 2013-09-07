@@ -5,10 +5,10 @@
     <string name="default_date_format">MMM d, yyyy</string>
 
     <string name="christmas_day">Christmas Day</string>
-    <string name="change_log">1. Updated date picker.\n2. Fixed crashes.</string>
+    <string name="change_log">1. Updated date picker.</string>
     <string name="build_year">2013</string>
-    <string name="build_month">8</string>
-    <string name="build_date">29</string>
+    <string name="build_month">9</string>
+    <string name="build_date">7</string>
 
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>

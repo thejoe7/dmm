@@ -4,7 +4,7 @@
     <string name="default_date_format">yyyy年M月d日</string>
 
     <string name="christmas_day">圣诞节</string>
-    <string name="change_log">1. 更新日期选择界面.\n2. 修正强制退出.</string>
+    <string name="change_log">1. 更新日期选择界面.</string>
 
     <string name="action_create">新建</string>
     <string name="action_settings">设置</string>
