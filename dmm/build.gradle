@@ -9,7 +9,6 @@ buildscript {
 apply plugin: 'android'
 
 dependencies {
-    compile files('libs/android-support-v4.jar')
     compile files('libs/joda-time-2.2.jar')
     compile project(':libraries:CardsUILib')
     compile project(':libraries:GoogleDateTimePickers')
@@ -21,6 +20,6 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 16
+        targetSdkVersion 17
     }
 }

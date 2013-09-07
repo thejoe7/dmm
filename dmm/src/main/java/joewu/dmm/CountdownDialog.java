@@ -22,6 +22,8 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import mirko.android.datetimepicker.date.DatePickerDialog;
+
 /**
  * Created by joew on May 150.
  */
@@ -224,7 +226,13 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	}
 
 	private void showDatePicker() {
-		DatePickerDialog fragment = new DatePickerDialog();
+		DatePickerDialog fragment = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+                countdown.date = new DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0);
+                textDate.setText(format.print(countdown.date));
+            }
+        }, countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
 		fragment.show(getFragmentManager(), "datePickerDialog");
 	}
 
@@ -272,35 +280,35 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		}
 	}
 
-	private class DatePickerDialog extends DialogFragment {
-		private DatePicker picker;
-
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			LayoutInflater inflater = getActivity().getLayoutInflater();
-
-			View dialogView = inflater.inflate(R.layout.dialog_datepicker, null);
-
-			picker = (DatePicker) dialogView.findViewById(R.id.dialog_datepicker);
-			picker.updateDate(countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
-
-			builder.setView(dialogView)
-					.setPositiveButton(R.string.dialog_set, new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialogInterface, int i) {
-							countdown.date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
-							textDate.setText(format.print(countdown.date));
-						}
-					})
-					.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialogInterface, int i) {
-							DatePickerDialog.this.getDialog().cancel();
-						}
-					});
-
-			return builder.create();
-		}
-	}
+//	private class DatePickerDialog extends DialogFragment {
+//		private DatePicker picker;
+//
+//		@Override
+//		public Dialog onCreateDialog(Bundle savedInstanceState) {
+//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//			LayoutInflater inflater = getActivity().getLayoutInflater();
+//
+//			View dialogView = inflater.inflate(R.layout.dialog_datepicker, null);
+//
+//			picker = (DatePicker) dialogView.findViewById(R.id.dialog_datepicker);
+//			picker.updateDate(countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
+//
+//			builder.setView(dialogView)
+//					.setPositiveButton(R.string.dialog_set, new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialogInterface, int i) {
+//							countdown.date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
+//							textDate.setText(format.print(countdown.date));
+//						}
+//					})
+//					.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialogInterface, int i) {
+//							DatePickerDialog.this.getDialog().cancel();
+//						}
+//					});
+//
+//			return builder.create();
+//		}
+//	}
 }
