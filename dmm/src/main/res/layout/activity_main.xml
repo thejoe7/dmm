@@ -4,7 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-	<TextView android:id="@+id/main_text_view"
+    <ListView android:id="@+id/lv_countdowns"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:listSelector="@null" />
+
+	<TextView android:id="@+id/tv_empty_message"
 		android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginTop="24dp"
@@ -12,7 +20,7 @@
         android:layout_marginRight="36dp"
 	    android:gravity="center"
 	    android:textAlignment="center"
-	    android:text="try adding a new countdown by clicking the + button"
+	    android:text="@string/message_empty_countdown_default"
 	    android:textSize="16sp"
 	    android:textColor="@android:color/darker_gray"/>
 

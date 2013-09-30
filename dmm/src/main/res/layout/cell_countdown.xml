@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp" >
+
+    <ImageView android:id="@+id/iv_card_stripe"
+        android:layout_width="12dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@color/ics_red" />
+
+    <ImageButton android:id="@+id/ib_card_overflow"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp"
+        android:src="@drawable/button_overflow"
+        android:background="@null"
+        android:scaleType="centerInside" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/iv_card_stripe"
+        android:layout_toLeftOf="@id/ib_card_overflow"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" >
+
+        <TextView android:id="@+id/tv_card_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/card_title"
+            android:singleLine="true"
+            android:textColor="@color/ics_red"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/stroke" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp" >
+
+            <TextView android:id="@+id/tv_card_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/card_countdown"
+                android:textStyle="bold"
+                android:textSize="40sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_card_countdown"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp" >
+
+                <TextView android:id="@+id/tv_card_days_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_days_left"
+                    android:textSize="16sp" />
+
+                <TextView android:id="@+id/tv_card_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/build_date"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView android:id="@+id/card_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:ellipsize="end"
+            android:text="@string/card_description"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

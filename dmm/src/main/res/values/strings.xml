@@ -29,12 +29,16 @@
     <string name="card_countdown">0</string>
     <string name="card_days_left">days left until</string>
     <string name="card_days_past">days past since</string>
-    <string name="card_description"></string>
+    <string name="card_description">Empty description</string>
     <string name="card_overflow">Overflow</string>
 
     <string name="widget_days_left">until</string>
     <string name="widget_days_past">since</string>
     <string name="widget_date_unknown">someday</string>
+
+    <string name="message_empty_countdown_default">there\'s no countdown available</string>
+    <string name="message_empty_future_countdown">try adding a new countdown by clicking the + button</string>
+    <string name="message_empty_past_countdown">umm&#8230; there\'s no past countdown</string>
 
     <string name="settings_cat_preference">Preference</string>
     <string name="settings_item_date_format_title">Choose date format</string>
