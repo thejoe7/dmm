@@ -20,6 +20,9 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.values.HoloColor;
+
 /**
  * Created by joewu on 11/06/13.
  */
@@ -29,7 +32,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
     private EditText textAlias;
     private ImageView stripe;
 
-    private List<CountdownItem> countdowns;
+    private List<DaysCountdown> countdowns;
     private int selectedIndex;
     private DateTimeFormatter format;
 
@@ -40,7 +43,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
 
     CountdownWidgetDialogListener mListener;
 
-    public CountdownWidgetDialog(List<CountdownItem> countdowns, DateTimeFormatter format) {
+    public CountdownWidgetDialog(List<DaysCountdown> countdowns, DateTimeFormatter format) {
         super();
         this.countdowns = countdowns;
         this.format = format;
@@ -102,19 +105,19 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
         this.selectedIndex = (int) id;
         int colorRes;
         switch (countdowns.get(this.selectedIndex).color) {
-            case RED:
+            case HoloColor.RedLight:
                 colorRes = R.color.ics_red;
                 break;
-            case YELLOW:
+            case HoloColor.YellowLight:
                 colorRes = R.color.ics_yellow;
                 break;
-            case GREEN:
+            case HoloColor.GreenLight:
                 colorRes = R.color.ics_green;
                 break;
-            case BLUE:
+            case HoloColor.BlueLight:
                 colorRes = R.color.ics_blue;
                 break;
-            case PURPLE:
+            case HoloColor.PurpleLight:
                 colorRes = R.color.ics_purple;
                 break;
             default:
@@ -132,7 +135,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
 
     private ArrayAdapter<String> getSpinnerDataAdapter() {
         List<String> titleList = new ArrayList<String>();
-        for (CountdownItem c : countdowns) {
+        for (DaysCountdown c : countdowns) {
             titleList.add(c.title + " (" + format.print(c.date) + ")");
         }
         return new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, titleList);

@@ -22,6 +22,9 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.values.HoloColor;
+import joewu.dmm.values.RepeatMode;
 import mirko.android.datetimepicker.date.DatePickerDialog;
 
 /**
@@ -31,21 +34,21 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 	private int index;
 
-	private CountdownItem countdown;
+	private DaysCountdown countdown;
 	private DateTimeFormatter format;
 
-	private Map<Color, ImageView> selectors = new HashMap<Color, ImageView>();
+	private Map<Integer, ImageView> selectors = new HashMap<Integer, ImageView>();
 	private EditText textDate;
 	private EditText textTitle;
 	private EditText textDescription;
 
 	public interface CountdownDialogListener {
-		public void onDialogPositiveClick(CountdownItem countdown, int index);
+		public void onDialogPositiveClick(DaysCountdown countdown, int index);
 	}
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(CountdownItem countdown, int index, DateTimeFormatter format) {
+	public CountdownDialog(DaysCountdown countdown, int index, DateTimeFormatter format) {
 		super();
 		this.index = index;
 		this.countdown = countdown;
@@ -56,7 +59,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
     public CountdownDialog() {
         super();
         this.index = -1;
-        this.countdown = new CountdownItem("", "", Color.RED, 1970, 1, 1);
+        this.countdown = new DaysCountdown("", "", HoloColor.RedLight, 1970, 1, 1, RepeatMode.None);
         this.format = DateTimeFormat.forPattern(MainActivity.sharedMainActivity.getResources().getString(R.string.default_date_format));
     }
 
@@ -67,21 +70,21 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 		View dialogView = inflater.inflate(R.layout.dialog_countdown, null);
 
-		selectors.put(Color.RED, (ImageView) dialogView.findViewById(R.id.dialog_selector_red));
-		selectors.put(Color.YELLOW, (ImageView) dialogView.findViewById(R.id.dialog_selector_yellow));
-		selectors.put(Color.GREEN, (ImageView) dialogView.findViewById(R.id.dialog_selector_green));
-		selectors.put(Color.BLUE, (ImageView) dialogView.findViewById(R.id.dialog_selector_blue));
-		selectors.put(Color.PURPLE, (ImageView) dialogView.findViewById(R.id.dialog_selector_purple));
+		selectors.put(HoloColor.RedLight, (ImageView) dialogView.findViewById(R.id.dialog_selector_red));
+		selectors.put(HoloColor.YellowLight, (ImageView) dialogView.findViewById(R.id.dialog_selector_yellow));
+		selectors.put(HoloColor.GreenLight, (ImageView) dialogView.findViewById(R.id.dialog_selector_green));
+		selectors.put(HoloColor.BlueLight, (ImageView) dialogView.findViewById(R.id.dialog_selector_blue));
+		selectors.put(HoloColor.PurpleLight, (ImageView) dialogView.findViewById(R.id.dialog_selector_purple));
 
 		textDate = (EditText) dialogView.findViewById(R.id.dialog_date_text);
 		textTitle = (EditText) dialogView.findViewById(R.id.dialog_title_text);
 		textDescription = (EditText) dialogView.findViewById(R.id.dialog_description_text);
 
-		selectors.get(Color.RED).setOnClickListener(this);
-		selectors.get(Color.YELLOW).setOnClickListener(this);
-		selectors.get(Color.GREEN).setOnClickListener(this);
-		selectors.get(Color.BLUE).setOnClickListener(this);
-		selectors.get(Color.PURPLE).setOnClickListener(this);
+		selectors.get(HoloColor.RedLight).setOnClickListener(this);
+		selectors.get(HoloColor.YellowLight).setOnClickListener(this);
+		selectors.get(HoloColor.GreenLight).setOnClickListener(this);
+		selectors.get(HoloColor.BlueLight).setOnClickListener(this);
+		selectors.get(HoloColor.PurpleLight).setOnClickListener(this);
 
 		textDate.setOnClickListener(this);
 		textDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -93,7 +96,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 			}
 		});
 
-		for (Color c : Color.values()) {
+		for (Integer c : HoloColor.colors) {
 			if (countdown.color == c) {
 				setColorChecked(c);
 			} else {
@@ -129,7 +132,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	@Override
 	public void onStart() {
 		super.onStart();
-		if (countdown.title == null || countdown.title.isEmpty()) {
+		if (countdown.title == null || countdown.title.trim().isEmpty()) {
 			enableCreateButton(false);
 		} else {
 			enableCreateButton(true);
@@ -158,37 +161,37 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.dialog_selector_red:
-				if (countdown.color != Color.RED) {
+				if (countdown.color != HoloColor.RedLight) {
 					setColorUnchecked(countdown.color);
-					countdown.color = Color.RED;
+					countdown.color = HoloColor.RedLight;
 					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_yellow:
-				if (countdown.color != Color.YELLOW) {
+				if (countdown.color != HoloColor.YellowLight) {
 					setColorUnchecked(countdown.color);
-					countdown.color = Color.YELLOW;
+					countdown.color = HoloColor.YellowLight;
 					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_green:
-				if (countdown.color != Color.GREEN) {
+				if (countdown.color != HoloColor.GreenLight) {
 					setColorUnchecked(countdown.color);
-					countdown.color = Color.GREEN;
+					countdown.color = HoloColor.GreenLight;
 					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_blue:
-				if (countdown.color != Color.BLUE) {
+				if (countdown.color != HoloColor.BlueLight) {
 					setColorUnchecked(countdown.color);
-					countdown.color = Color.BLUE;
+					countdown.color = HoloColor.BlueLight;
 					setColorChecked(countdown.color);
 				}
 				break;
 			case R.id.dialog_selector_purple:
-				if (countdown.color != Color.PURPLE) {
+				if (countdown.color != HoloColor.PurpleLight) {
 					setColorUnchecked(countdown.color);
-					countdown.color = Color.PURPLE;
+					countdown.color = HoloColor.PurpleLight;
 					setColorChecked(countdown.color);
 				}
 				break;
@@ -207,7 +210,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 	@Override
 	public void afterTextChanged(Editable s) {
-		if (s.toString().isEmpty()) {
+		if (s.toString().trim().isEmpty()) {
 			enableCreateButton(false);
 		} else {
 			enableCreateButton(true);
@@ -236,79 +239,48 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 		fragment.show(getFragmentManager(), "datePickerDialog");
 	}
 
-	private void setColorUnchecked(Color c) {
+	private void setColorUnchecked(Integer c) {
 		switch (c) {
-			case RED:
-				selectors.get(Color.RED).setImageResource(R.drawable.red_unselected);
+			case HoloColor.RedLight:
+				selectors.get(HoloColor.RedLight).setImageResource(R.drawable.red_unselected);
 				break;
-			case YELLOW:
-				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_unselected);
+			case HoloColor.YellowLight:
+				selectors.get(HoloColor.YellowLight).setImageResource(R.drawable.yellow_unselected);
 				break;
-			case GREEN:
-				selectors.get(Color.GREEN).setImageResource(R.drawable.green_unselected);
+			case HoloColor.GreenLight:
+				selectors.get(HoloColor.GreenLight).setImageResource(R.drawable.green_unselected);
 				break;
-			case BLUE:
-                selectors.get(Color.BLUE).setImageResource(R.drawable.blue_unselected);
+			case HoloColor.BlueLight:
+                selectors.get(HoloColor.BlueLight).setImageResource(R.drawable.blue_unselected);
 				break;
-			case PURPLE:
-				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_unselected);
+			case HoloColor.PurpleLight:
+				selectors.get(HoloColor.PurpleLight).setImageResource(R.drawable.purple_unselected);
 				break;
 			default:
 				break;
 		}
 	}
 
-	private void setColorChecked(Color c) {
+	private void setColorChecked(Integer c) {
 		switch (c) {
-			case RED:
-				selectors.get(Color.RED).setImageResource(R.drawable.red_selected);
+			case HoloColor.RedLight:
+				selectors.get(HoloColor.RedLight).setImageResource(R.drawable.red_selected);
 				break;
-			case YELLOW:
-				selectors.get(Color.YELLOW).setImageResource(R.drawable.yellow_selected);
+			case HoloColor.YellowLight:
+				selectors.get(HoloColor.YellowLight).setImageResource(R.drawable.yellow_selected);
 				break;
-			case GREEN:
-				selectors.get(Color.GREEN).setImageResource(R.drawable.green_selected);
+			case HoloColor.GreenLight:
+				selectors.get(HoloColor.GreenLight).setImageResource(R.drawable.green_selected);
 				break;
-			case BLUE:
-                selectors.get(Color.BLUE).setImageResource(R.drawable.blue_selected);
+			case HoloColor.BlueLight:
+                selectors.get(HoloColor.BlueLight).setImageResource(R.drawable.blue_selected);
 				break;
-			case PURPLE:
-				selectors.get(Color.PURPLE).setImageResource(R.drawable.purple_selected);
+			case HoloColor.PurpleLight:
+				selectors.get(HoloColor.PurpleLight).setImageResource(R.drawable.purple_selected);
 				break;
 			default:
 				break;
 		}
 	}
 
-//	private class DatePickerDialog extends DialogFragment {
-//		private DatePicker picker;
-//
-//		@Override
-//		public Dialog onCreateDialog(Bundle savedInstanceState) {
-//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//			LayoutInflater inflater = getActivity().getLayoutInflater();
-//
-//			View dialogView = inflater.inflate(R.layout.dialog_datepicker, null);
-//
-//			picker = (DatePicker) dialogView.findViewById(R.id.dialog_datepicker);
-//			picker.updateDate(countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
-//
-//			builder.setView(dialogView)
-//					.setPositiveButton(R.string.dialog_set, new DialogInterface.OnClickListener() {
-//						@Override
-//						public void onClick(DialogInterface dialogInterface, int i) {
-//							countdown.date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
-//							textDate.setText(format.print(countdown.date));
-//						}
-//					})
-//					.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-//						@Override
-//						public void onClick(DialogInterface dialogInterface, int i) {
-//							DatePickerDialog.this.getDialog().cancel();
-//						}
-//					});
-//
-//			return builder.create();
-//		}
-//	}
 }

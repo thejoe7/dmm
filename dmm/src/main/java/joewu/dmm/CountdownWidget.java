@@ -15,6 +15,9 @@ import android.widget.RemoteViews;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
+import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.values.HoloColor;
+
 /**
  * Created by joewu on 11/06/13.
  */
@@ -64,7 +67,7 @@ public class CountdownWidget extends AppWidgetProvider {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         for (int appWidgetId : appWidgetIds) {
             String uuid = AppPreferences.getWidgetUuid(sharedPref, appWidgetId);
-            AppPreferences.removeWidgetForCountdownItem(sharedPref, uuid, appWidgetId);
+            AppPreferences.removeWidgetForDaysCountdown(sharedPref, uuid, appWidgetId);
         }
         super.onDeleted(context, appWidgetIds);
     }
@@ -116,7 +119,7 @@ public class CountdownWidget extends AppWidgetProvider {
 
     private static RemoteViews getRemoteViewSmall(final Context context, int layout, String uuid, String alias) {
         final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
-        CountdownItem countdown = AppPreferences.getCountdownItemById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
+        DaysCountdown countdown = AppPreferences.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
 
         if (uuid.isEmpty() || countdown == null) {
             rv.setTextViewText(R.id.widget_countdown, "0");
@@ -132,19 +135,19 @@ public class CountdownWidget extends AppWidgetProvider {
             }
             int colorRes;
             switch (countdown.color) {
-                case RED:
+                case HoloColor.RedLight:
                     colorRes = R.drawable.tile_red;
                     break;
-                case YELLOW:
+                case HoloColor.YellowLight:
                     colorRes = R.drawable.tile_yellow;
                     break;
-                case GREEN:
+                case HoloColor.GreenLight:
                     colorRes = R.drawable.tile_green;
                     break;
-                case BLUE:
+                case HoloColor.BlueLight:
                     colorRes = R.drawable.tile_blue;
                     break;
-                case PURPLE:
+                case HoloColor.PurpleLight:
                     colorRes = R.drawable.tile_purple;
                     break;
                 default:
@@ -160,7 +163,7 @@ public class CountdownWidget extends AppWidgetProvider {
 
     private static RemoteViews RemoteViewsgetRemoteViewLarge(final Context context, int layout, String uuid, String alias) {
         final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
-        CountdownItem countdown = AppPreferences.getCountdownItemById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
+        DaysCountdown countdown = AppPreferences.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
 
         if (uuid.isEmpty() || countdown == null) {
             rv.setTextViewText(R.id.widget_countdown, "0");
@@ -180,23 +183,23 @@ public class CountdownWidget extends AppWidgetProvider {
             int colorRes;
             int tileRes;
             switch (countdown.color) {
-                case RED:
+                case HoloColor.RedLight:
                     colorRes = R.color.ics_red;
                     tileRes = R.drawable.tile_red;
                     break;
-                case YELLOW:
+                case HoloColor.YellowLight:
                     colorRes = R.color.ics_yellow;
                     tileRes = R.drawable.tile_yellow;
                     break;
-                case GREEN:
+                case HoloColor.GreenLight:
                     colorRes = R.color.ics_green;
                     tileRes = R.drawable.tile_green;
                     break;
-                case BLUE:
+                case HoloColor.BlueLight:
                     colorRes = R.color.ics_blue;
                     tileRes = R.drawable.tile_blue;
                     break;
-                case PURPLE:
+                case HoloColor.PurpleLight:
                     colorRes = R.color.ics_purple;
                     tileRes = R.drawable.tile_purple;
                     break;

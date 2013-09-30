@@ -13,6 +13,9 @@ import com.fima.cardsui.objects.Card;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
+import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.values.HoloColor;
+
 
 /**
  * Created by joe7wu on 2013-05-25.
@@ -21,7 +24,7 @@ public class CountdownCard extends Card {
 
 	private Context context;
     private DateTimeFormatter format;
-    private CountdownItem countdown;
+    private DaysCountdown countdown;
 	private int arrayIndex = -1;
 	private ImageView overflow;
 
@@ -30,7 +33,7 @@ public class CountdownCard extends Card {
 		public void onCardDelete(int i);
 	}
 
-    public CountdownCard(Context context, CountdownItem countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
+    public CountdownCard(Context context, DaysCountdown countdown, DateTimeFormatter format, boolean hasOverflow, boolean isClickable) {
         super(countdown.title, countdown.description, colorToString(countdown.color), colorToString(countdown.color), hasOverflow, isClickable);
 	    this.context = context;
         this.countdown = countdown;
@@ -129,22 +132,22 @@ public class CountdownCard extends Card {
 		});
 	}
 
-	public static String colorToString(joewu.dmm.Color c) {
+	public static String colorToString(int c) {
 		String colorString = null;
 		switch (c) {
-			case RED:
+			case HoloColor.RedLight:
 				colorString = "#ff4444";
 				break;
-			case YELLOW:
+			case HoloColor.YellowLight:
 				colorString = "#ffbb33";
 				break;
-			case GREEN:
+			case HoloColor.GreenLight:
 				colorString = "#99cc00";
 				break;
-			case BLUE:
+			case HoloColor.BlueLight:
 				colorString = "#33b5e5";
 				break;
-			case PURPLE:
+			case HoloColor.PurpleLight:
 				colorString = "#aa66cc";
 				break;
 			default:

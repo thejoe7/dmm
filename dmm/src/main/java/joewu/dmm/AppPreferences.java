@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.values.HoloColor;
+import joewu.dmm.values.RepeatMode;
+
 /**
  * Created by joewu on 14/06/13.
  */
@@ -22,75 +26,106 @@ public class AppPreferences {
     public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
     public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
 
-    public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
-    public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
-    public static final String PREF_COUNTDOWN_WIDGETS_PREFIX = "COUNTDOWN_WIDGETS_WITH_ID";
+    public static final String PREF_ITEM_IDS = "ITEM_IDS";
+    public static final String PREF_ITEM_YEAR_PREFIX = "ITEM_YEAR_";
+    public static final String PREF_ITEM_MONTH_PREFIX = "ITEM_MONTH_";
+    public static final String PREF_ITEM_DAY_PREFIX = "ITEM_DAY_";
+    public static final String PREF_ITEM_TITLE_PREFIX = "ITEM_TITLE_";
+    public static final String PREF_ITEM_DESC_PREFIX = "ITEM_DESC_";
+    public static final String PREF_ITEM_COLOR_PREFIX = "ITEM_COLOR_";
+    public static final String PREF_ITEM_REPEAT_PREFIX = "ITEM_REPEAT_";
 
     public static final String PREF_WIDGET_UUID_PREFIX = "WIDGET_UUID_WITH_ID_";
     public static final String PREF_WIDGET_ALIAS_PREFIX = "WIDGET_ALIAS_WITH_ID_";
     public static final String PREF_WIDGET_SIZE_PREFIX = "WIDGET_SIZE_WITH_ID_";
 
     // legacy pref keys
+    public static final String PREF_COUNTDOWN_IDS = "COUNTDOWN_IDS";
+    public static final String PREF_COUNTDOWN_ITEM_PREFIX = "COUNTDOWN_WITH_ID_";
+    public static final String PREF_COUNTDOWN_WIDGETS_PREFIX = "COUNTDOWN_WIDGETS_WITH_ID";
+
     public static final String PREF_COUNTDOWN_SIZE = "COUNTDOWN_SIZE";
     public static final String PREF_COUNTDOWN_PREFIX = "COUNTDOWN_ITEM_";
 
-    public static void saveCountdownItems(SharedPreferences sharedPref, List<CountdownItem> countdowns) {
+    public static void saveDaysCountdowns(SharedPreferences sharedPref, List<DaysCountdown> countdowns) {
         SharedPreferences.Editor editor = sharedPref.edit();
         Set<String> ids = new HashSet<String>();
-        for (CountdownItem c : countdowns) {
-            String cs = c.toString();
-            if (cs != null && !cs.isEmpty()) {
-                editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + c.getUuid(), cs);
-                ids.add(c.getUuid());
-            }
+        for (DaysCountdown dc : countdowns) {
+            String uuid = dc.getUuid();
+            ids.add(uuid);
+            editor.putInt(PREF_ITEM_YEAR_PREFIX + uuid, dc.date.getYear());
+            editor.putInt(PREF_ITEM_MONTH_PREFIX + uuid, dc.date.getMonthOfYear());
+            editor.putInt(PREF_ITEM_DAY_PREFIX + uuid, dc.date.getDayOfMonth());
+            editor.putString(PREF_ITEM_TITLE_PREFIX + uuid, dc.title);
+            editor.putString(PREF_ITEM_DESC_PREFIX + uuid, dc.description);
+            editor.putInt(PREF_ITEM_COLOR_PREFIX + uuid, dc.color);
+            editor.putInt(PREF_ITEM_REPEAT_PREFIX + uuid, dc.repeat);
         }
-        editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
+        editor.putStringSet(PREF_ITEM_IDS, ids);
         editor.commit();
     }
 
-    public static ArrayList<CountdownItem> loadCountdownItems(SharedPreferences sharedPref) {
-        ArrayList<CountdownItem> countdowns = new ArrayList<CountdownItem>();
+    public static ArrayList<DaysCountdown> loadDaysCountdowns(SharedPreferences sharedPref) {
+        ArrayList<DaysCountdown> countdowns = new ArrayList<DaysCountdown>();
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        // new countdown item format
-        Set<String> ids = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, new HashSet<String>());
+        // new days countdown items
+        Set<String> ids = sharedPref.getStringSet(PREF_ITEM_IDS, new HashSet<String>());
         for (String id : ids) {
-            String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + id, "");
-            if (!serialCountdown.isEmpty()) {
-                CountdownItem c = CountdownItem.fromString(serialCountdown);
-                countdowns.add(c);
+            int year = sharedPref.getInt(PREF_ITEM_YEAR_PREFIX + id, -1);
+            int month = sharedPref.getInt(PREF_ITEM_MONTH_PREFIX + id, -1);
+            int day = sharedPref.getInt(PREF_ITEM_DAY_PREFIX + id, -1);
+            String title = sharedPref.getString(PREF_ITEM_TITLE_PREFIX + id, null);
+            String desc = sharedPref.getString(PREF_ITEM_DESC_PREFIX + id, "");
+            int color = sharedPref.getInt(PREF_ITEM_COLOR_PREFIX + id, HoloColor.Gray);
+            int repeat = sharedPref.getInt(PREF_ITEM_REPEAT_PREFIX + id, RepeatMode.None);
+            if (year != -1 && month != -1 && day != -1 && title != null) {
+                DaysCountdown dc = new DaysCountdown(id, title, desc, color, year, month, day, repeat);
+                countdowns.add(dc);
             }
         }
 
-        // legacy hack
-        int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, 0);
-        editor.remove(PREF_COUNTDOWN_SIZE);
-        if (size > 0) {
-            List<String> oldCountdowns = new ArrayList<String>();
-            for (int i = 0; i < size; i++) {
-                String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, "");
-                editor.remove(PREF_COUNTDOWN_PREFIX + i);
-                if (!serialData.isEmpty()) {
-                    oldCountdowns.add(serialData);
-                }
-            }
-            for (String s : oldCountdowns) {
-                Countdown c = Countdown.fromString(s);
-                if (c != null) {
-                    CountdownItem ci = new CountdownItem(c.title, c.description, c.color, c.date);
-                    countdowns.add(ci);
-                    String sci = ci.toString();
-                    if (sci != null && !sci.isEmpty()) {
-                        editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + ci.getUuid(), sci);
-                        ids.add(ci.getUuid());
+        // legacy hack for CountdownItem
+        Set<String> oldIds = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, null);
+        if (oldIds != null) {
+            editor.remove(PREF_COUNTDOWN_IDS);
+            for (String id : oldIds) {
+                String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + id, null);
+                editor.remove(PREF_COUNTDOWN_ITEM_PREFIX + id);
+                if (serialCountdown != null) {
+                    CountdownItem c = CountdownItem.fromString(serialCountdown);
+                    if (c != null) {
+                        DaysCountdown dc = new DaysCountdown(id, c.title, c.description, HoloColor.convertFromColor(c.color), c.date.getYear(), c.date.getMonthOfYear(), c.date.getDayOfMonth(), RepeatMode.None);
+                        countdowns.add(dc);
+                        // TODO: save back dc
+                        ids.add(id);
                     }
                 }
             }
-            editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
+            editor.putStringSet(PREF_ITEM_IDS, ids);
             editor.commit();
         }
 
-        Collections.sort(countdowns, new CountdownItem.CountdownComparator());
+        // legacy hack for Countdown
+        int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, -1);
+        if (size >= 0) {
+            editor.remove(PREF_COUNTDOWN_SIZE);
+            for (int i = 0; i < size; i++) {
+                String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, null);
+                editor.remove(PREF_COUNTDOWN_PREFIX + i);
+                if (serialData != null) {
+                    Countdown c = Countdown.fromString(serialData);
+                    if (c != null) {
+                        DaysCountdown dc = new DaysCountdown(c.title, c.description, HoloColor.convertFromColor(c.color), c.date.getYear(), c.date.getMonthOfYear(), c.date.getDayOfMonth(), RepeatMode.None);
+                        countdowns.add(dc);
+                        // TODO: save back dc
+                        ids.add(dc.getUuid());
+                    }
+                }
+            }
+            editor.putStringSet(PREF_ITEM_IDS, ids);
+            editor.commit();
+        }
         return countdowns;
     }
 
@@ -124,7 +159,7 @@ public class AppPreferences {
         editor.commit();
     }
 
-    public static void addWidgetForCountdownItem(SharedPreferences sharedPref, String uuid, int appWidgetId) {
+    public static void addWidgetForDaysCountdown(SharedPreferences sharedPref, String uuid, int appWidgetId) {
         SharedPreferences.Editor editor = sharedPref.edit();
         Set<String> appWidgetIds = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
         appWidgetIds.add(Integer.toString(appWidgetId));
@@ -132,7 +167,7 @@ public class AppPreferences {
         editor.commit();
     }
 
-    public static void removeWidgetForCountdownItem(SharedPreferences sharedPref, String uuid, int appWidgetId) {
+    public static void removeWidgetForDaysCountdown(SharedPreferences sharedPref, String uuid, int appWidgetId) {
         SharedPreferences.Editor editor = sharedPref.edit();
         Set<String> appWidgetIds = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
         appWidgetIds.remove(Integer.toString(appWidgetId));
@@ -140,7 +175,7 @@ public class AppPreferences {
         editor.commit();
     }
 
-    public static ArrayList<Integer> getWidgetsForCountdownItem(SharedPreferences sharedPref, String uuid) {
+    public static ArrayList<Integer> getWidgetsForDaysCountdown(SharedPreferences sharedPref, String uuid) {
         Set<String> appWidgetIdStrs = sharedPref.getStringSet(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid, new HashSet<String>());
         ArrayList<Integer> appWidgetIds = new ArrayList<Integer>();
         for (String idString : appWidgetIdStrs) {
@@ -149,7 +184,7 @@ public class AppPreferences {
         return appWidgetIds;
     }
 
-    public static void removeAllWidgetsForCountdownItem(SharedPreferences sharedPref, String uuid) {
+    public static void removeAllWidgetsForDaysCountdown(SharedPreferences sharedPref, String uuid) {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.remove(PREF_COUNTDOWN_WIDGETS_PREFIX + uuid);
         editor.commit();
@@ -187,32 +222,47 @@ public class AppPreferences {
         return DateTimeFormat.forPattern(sharedPref.getString(DATE_FORMAT, defaultFormat));
     }
 
-    public static CountdownItem getCountdownItemById(SharedPreferences sharedPref, String uuid) {
-        String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + uuid, "");
-        if (serialCountdown.isEmpty()) {
-            return null;
+    public static DaysCountdown getDaysCountdownById(SharedPreferences sharedPref, String uuid) {
+        int year = sharedPref.getInt(PREF_ITEM_YEAR_PREFIX + uuid, -1);
+        int month = sharedPref.getInt(PREF_ITEM_MONTH_PREFIX + uuid, -1);
+        int day = sharedPref.getInt(PREF_ITEM_DAY_PREFIX + uuid, -1);
+        String title = sharedPref.getString(PREF_ITEM_TITLE_PREFIX + uuid, null);
+        String desc = sharedPref.getString(PREF_ITEM_DESC_PREFIX + uuid, "");
+        int color = sharedPref.getInt(PREF_ITEM_COLOR_PREFIX + uuid, HoloColor.Gray);
+        int repeat = sharedPref.getInt(PREF_ITEM_REPEAT_PREFIX + uuid, RepeatMode.None);
+        if (year != -1 && month != -1 && day != -1 && title != null) {
+            return new DaysCountdown(uuid, title, desc, color, year, month, day, repeat);
         } else {
-            return CountdownItem.fromString(serialCountdown);
+            return null;
         }
     }
 
-    public static void removeCountdownItemById(SharedPreferences sharedPref, String uuid) {
+    public static void removeDaysCountdownById(SharedPreferences sharedPref, String uuid) {
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.remove(PREF_COUNTDOWN_ITEM_PREFIX + uuid);
+        editor.remove(PREF_ITEM_YEAR_PREFIX + uuid);
+        editor.remove(PREF_ITEM_MONTH_PREFIX + uuid);
+        editor.remove(PREF_ITEM_DAY_PREFIX + uuid);
+        editor.remove(PREF_ITEM_TITLE_PREFIX + uuid);
+        editor.remove(PREF_ITEM_DESC_PREFIX + uuid);
+        editor.remove(PREF_ITEM_COLOR_PREFIX + uuid);
+        editor.remove(PREF_ITEM_REPEAT_PREFIX + uuid);
         editor.commit();
     }
 
-    public static void saveCountdownItem(SharedPreferences sharedPref, CountdownItem countdown) {
-        String serialCountdown = countdown.toString();
-        if (serialCountdown != null && !serialCountdown.isEmpty()) {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            Set<String> ids = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, new HashSet<String>());
-            if (!ids.contains(countdown.getUuid())) {
-                ids.add(countdown.getUuid());
-                editor.putStringSet(PREF_COUNTDOWN_IDS, ids);
-            }
-            editor.putString(PREF_COUNTDOWN_ITEM_PREFIX + countdown.getUuid(), serialCountdown);
-            editor.commit();
-        }
+    public static void saveDaysCountdown(SharedPreferences sharedPref, DaysCountdown dc) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String uuid = dc.getUuid();
+        editor.putInt(PREF_ITEM_YEAR_PREFIX + uuid, dc.date.getYear());
+        editor.putInt(PREF_ITEM_MONTH_PREFIX + uuid, dc.date.getMonthOfYear());
+        editor.putInt(PREF_ITEM_DAY_PREFIX + uuid, dc.date.getDayOfMonth());
+        editor.putString(PREF_ITEM_TITLE_PREFIX + uuid, dc.title);
+        editor.putString(PREF_ITEM_DESC_PREFIX + uuid, dc.description);
+        editor.putInt(PREF_ITEM_COLOR_PREFIX + uuid, dc.color);
+        editor.putInt(PREF_ITEM_REPEAT_PREFIX + uuid, dc.repeat);
+        Set<String> ids = sharedPref.getStringSet(PREF_ITEM_IDS, new HashSet<String>());
+        ids.add(uuid);
+        editor.putStringSet(PREF_ITEM_IDS, ids);
+        editor.commit();
     }
+
 }

@@ -9,11 +9,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
-import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
 import java.util.List;
+
+import joewu.dmm.objects.DaysCountdown;
 
 /**
  * Created by joewu on 11/06/13.
@@ -21,7 +22,7 @@ import java.util.List;
 public class CountdownWidgetConfigure extends Activity implements CountdownWidgetDialog.CountdownWidgetDialogListener {
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    private List<CountdownItem> countdowns;
+    private List<DaysCountdown> countdowns;
 
 
 
@@ -32,7 +33,7 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
         // load countdown items and date format setting
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         DateTimeFormatter format = AppPreferences.getDateFormat(sharedPref, getString(R.string.default_date_format));
-        this.countdowns = AppPreferences.loadCountdownItems(sharedPref);
+        this.countdowns = AppPreferences.loadDaysCountdowns(sharedPref);
 
 
         Intent launchIntent = getIntent();
@@ -56,13 +57,13 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
 
     public void onDialogPositiveClick(int index, String alias) {
         if (index != -1) {
-            CountdownItem c = countdowns.get(index);
+            DaysCountdown c = countdowns.get(index);
 
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
             AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
             AppPreferences.setWidgetSize(sharedPref, appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
-            AppPreferences.addWidgetForCountdownItem(sharedPref, c.getUuid(), appWidgetId);
+            AppPreferences.addWidgetForDaysCountdown(sharedPref, c.getUuid(), appWidgetId);
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
