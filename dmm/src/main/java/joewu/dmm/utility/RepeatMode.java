@@ -1,4 +1,4 @@
-package joewu.dmm.values;
+package joewu.dmm.utility;
 
 /**
  * Created by joewu on 9/29/13.

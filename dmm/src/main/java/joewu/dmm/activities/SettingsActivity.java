@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.activities;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import joewu.dmm.utility.PreferencesUtils;
+import joewu.dmm.R;
 
 /**
  * Created by joe7wu on 2013-05-24.
@@ -65,7 +67,7 @@ public class SettingsActivity extends PreferenceActivity {
             devPref = findPreference("KEY_DEVELOPER");
             verPref = findPreference("KEY_VERSION");
 
-            DateTimeFormatter format = AppPreferences.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
+            DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 	        dateFormatPref.setSummary(format.print(date));
 
             devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -88,8 +90,8 @@ public class SettingsActivity extends PreferenceActivity {
 
 	    @Override
 	    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		    if (key.equals(AppPreferences.DATE_FORMAT)) {
-                DateTimeFormatter format = AppPreferences.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
+		    if (key.equals(PreferencesUtils.DATE_FORMAT)) {
+                DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 			    dateFormatPref.setSummary(format.print(date));
 		    }
 	    }

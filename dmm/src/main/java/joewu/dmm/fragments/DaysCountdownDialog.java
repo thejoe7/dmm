@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -22,15 +21,17 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import joewu.dmm.R;
+import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
-import joewu.dmm.values.RepeatMode;
+import joewu.dmm.utility.HoloColor;
+import joewu.dmm.utility.RepeatMode;
 import mirko.android.datetimepicker.date.DatePickerDialog;
 
 /**
  * Created by joew on May 150.
  */
-public class CountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
+public class DaysCountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
 
 	private int index;
 
@@ -48,7 +49,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 
 	CountdownDialogListener mListener;
 
-	public CountdownDialog(DaysCountdown countdown, int index, DateTimeFormatter format) {
+	public DaysCountdownDialog(DaysCountdown countdown, int index, DateTimeFormatter format) {
 		super();
 		this.index = index;
 		this.countdown = countdown;
@@ -56,7 +57,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 	}
 
     // should not be used
-    public CountdownDialog() {
+    public DaysCountdownDialog() {
         super();
         this.index = -1;
         this.countdown = new DaysCountdown("", "", HoloColor.RedLight, 1970, 1, 1, RepeatMode.None);
@@ -120,7 +121,7 @@ public class CountdownDialog extends DialogFragment implements View.OnClickListe
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
-						CountdownDialog.this.getDialog().cancel();
+						DaysCountdownDialog.this.getDialog().cancel();
 					}
 				});
 

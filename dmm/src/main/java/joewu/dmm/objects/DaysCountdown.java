@@ -5,9 +5,6 @@ import org.joda.time.Days;
 
 import java.util.UUID;
 
-import joewu.dmm.values.HoloColor;
-import joewu.dmm.values.RepeatMode;
-
 /**
  * Created by joewu on 9/29/13.
  */

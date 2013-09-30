@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.services;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import java.util.Calendar;
+
+import joewu.dmm.widgets.SingleWidget;
 
 /**
  * Created by joewu on 16/06/13.
@@ -25,7 +27,7 @@ public class StartService extends Service {
     }
 
     private void setWidgetUpdateAlarm() {
-        Intent updateIntent = new Intent(CountdownWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
+        Intent updateIntent = new Intent(SingleWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, updateIntent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
@@ -35,6 +37,6 @@ public class StartService extends Service {
         calendar.set(Calendar.MILLISECOND, 0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
 
-        CountdownWidget.saveAlarmManager(alarmManager, pendingIntent);
+        SingleWidget.saveAlarmManager(alarmManager, pendingIntent);
     }
 }

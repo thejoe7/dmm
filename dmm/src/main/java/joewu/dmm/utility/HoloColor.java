@@ -1,4 +1,4 @@
-package joewu.dmm.values;
+package joewu.dmm.utility;
 
 import joewu.dmm.Color;
 

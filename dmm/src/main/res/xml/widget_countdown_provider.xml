@@ -5,6 +5,6 @@
     android:minHeight="64dp"
     android:resizeMode="horizontal|vertical"
     android:initialLayout="@layout/widget_countdown_1x1"
-    android:configure="joewu.dmm.CountdownWidgetConfigure"
+    android:configure="joewu.dmm.activities.SingleWidgetConfigureActivity"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

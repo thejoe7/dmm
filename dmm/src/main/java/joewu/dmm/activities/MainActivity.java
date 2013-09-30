@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.activities;
 
 import android.app.backup.BackupManager;
 import android.appwidget.AppWidgetManager;
@@ -24,11 +24,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import joewu.dmm.fragments.DaysCountdownDialog;
+import joewu.dmm.ui.CountdownCard;
+import joewu.dmm.widgets.SingleWidget;
+import joewu.dmm.utility.PreferencesUtils;
+import joewu.dmm.R;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
-import joewu.dmm.values.RepeatMode;
+import joewu.dmm.utility.HoloColor;
+import joewu.dmm.utility.RepeatMode;
 
-public class MainActivity extends Activity implements CountdownDialog.CountdownDialogListener {
+public class MainActivity extends Activity implements DaysCountdownDialog.CountdownDialogListener {
 
     public static MainActivity sharedMainActivity = null;
 
@@ -57,11 +62,11 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
         countdowns = new ArrayList<DaysCountdown>();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        this.firstLaunch = AppPreferences.isFirstLaunch(sharedPref);
-        this.newlyUpdate = AppPreferences.getAppVersionCode(sharedPref) < getVersion();
-        AppPreferences.setFirstLaunch(sharedPref, false);
-        AppPreferences.setAppVersionCode(sharedPref, getVersion());
-        this.countdowns = AppPreferences.loadDaysCountdowns(sharedPref);
+        this.firstLaunch = PreferencesUtils.isFirstLaunch(sharedPref);
+        this.newlyUpdate = PreferencesUtils.getAppVersionCode(sharedPref) < getVersion();
+        PreferencesUtils.setFirstLaunch(sharedPref, false);
+        PreferencesUtils.setAppVersionCode(sharedPref, getVersion());
+        this.countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
         sharedMainActivity = this;
     }
 
@@ -69,9 +74,9 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	public void onResume() {
 		super.onResume();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        this.foldPastEvents = AppPreferences.foldPastEvents(sharedPref);
-        this.noChangelog = AppPreferences.noChangelog(sharedPref);
-        this.format = AppPreferences.getDateFormat(sharedPref, getString(R.string.default_date_format));
+        this.foldPastEvents = PreferencesUtils.foldPastEvents(sharedPref);
+        this.noChangelog = PreferencesUtils.noChangelog(sharedPref);
+        this.format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
 		loadCards();
 	}
 
@@ -108,15 +113,15 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 		if (index == INVALID_COUNTDOWN_INDEX) {
 			countdowns.add(countdown);
             loadCards();
-            AppPreferences.saveDaysCountdown(sharedPref, countdown);
+            PreferencesUtils.saveDaysCountdown(sharedPref, countdown);
 		} else {
             loadCards();
-            AppPreferences.saveDaysCountdown(sharedPref, countdown);
+            PreferencesUtils.saveDaysCountdown(sharedPref, countdown);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-            for (int appWidgetId : AppPreferences.getWidgetsForDaysCountdown(sharedPref, countdown.getUuid())) {
-                CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
+            for (int appWidgetId : PreferencesUtils.getWidgetsForDaysCountdown(sharedPref, countdown.getUuid())) {
+                SingleWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 //                appWidgetManager.updateAppWidget(appWidgetId,
-//                        CountdownWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), AppPreferences.getWidgetAlias(sharedPref, appWidgetId)));
+//                        SingleWidget.buildRemoteViews(getApplicationContext(), appWidgetId, c.getUuid(), PreferencesUtils.getWidgetAlias(sharedPref, appWidgetId)));
             }
 		}
 	}
@@ -129,23 +134,23 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
 	private void createCountdown() {
         DateTime now = DateTime.now();
         DateTime today = new DateTime(now.getYear(), now.getMonthOfYear(), now.getDayOfMonth(), 0, 0, 0);
-		CountdownDialog fragment = new CountdownDialog(new DaysCountdown("", "", HoloColor.RedLight, today, RepeatMode.None), INVALID_COUNTDOWN_INDEX, format);
+		DaysCountdownDialog fragment = new DaysCountdownDialog(new DaysCountdown("", "", HoloColor.RedLight, today, RepeatMode.None), INVALID_COUNTDOWN_INDEX, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	public void editCountdown(int index) {
 		DaysCountdown countdown = countdowns.get(index);
-		CountdownDialog fragment = new CountdownDialog(countdown, index, format);
+		DaysCountdownDialog fragment = new DaysCountdownDialog(countdown, index, format);
 		fragment.show(getFragmentManager(), "countdownDialog");
 	}
 
 	public void deleteCountdown(int index) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        AppPreferences.removeAllWidgetsForDaysCountdown(sharedPref, countdowns.get(index).getUuid());
-        AppPreferences.removeDaysCountdownById(sharedPref, countdowns.get(index).getUuid());
+        PreferencesUtils.removeAllWidgetsForDaysCountdown(sharedPref, countdowns.get(index).getUuid());
+        PreferencesUtils.removeDaysCountdownById(sharedPref, countdowns.get(index).getUuid());
 		countdowns.remove(index);
 		loadCards();
-        AppPreferences.saveDaysCountdowns(sharedPref, countdowns);
+        PreferencesUtils.saveDaysCountdowns(sharedPref, countdowns);
 	}
 
     private void addSampleCountdowns() {
@@ -156,14 +161,14 @@ public class MainActivity extends Activity implements CountdownDialog.CountdownD
             year += 1;
         }
         countdowns.add(new DaysCountdown(getString(R.string.christmas_day), "", HoloColor.PurpleLight, year, 12, 25, RepeatMode.None));
-        AppPreferences.saveDaysCountdowns(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
+        PreferencesUtils.saveDaysCountdowns(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
     }
 
     private void addChangeLogCountdowns() {
         // add default countdown for change log
         DateTime updateDate = new DateTime(Integer.parseInt(getString(R.string.build_year)), Integer.parseInt(getString(R.string.build_month)), Integer.parseInt(getString(R.string.build_date)), 0, 0);
         countdowns.add(new DaysCountdown(getString(R.string.app_name) + " v" + getVersionString(), getString(R.string.change_log), HoloColor.GreenLight, updateDate, RepeatMode.None));
-        AppPreferences.saveDaysCountdowns(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
+        PreferencesUtils.saveDaysCountdowns(PreferenceManager.getDefaultSharedPreferences(this), countdowns);
     }
 
     private void loadCards() {

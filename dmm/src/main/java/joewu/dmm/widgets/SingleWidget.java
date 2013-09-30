@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.widgets;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -15,13 +15,16 @@ import android.widget.RemoteViews;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
+import joewu.dmm.R;
+import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
+import joewu.dmm.utility.HoloColor;
+import joewu.dmm.utility.PreferencesUtils;
 
 /**
  * Created by joewu on 11/06/13.
  */
-public class CountdownWidget extends AppWidgetProvider {
+public class SingleWidget extends AppWidgetProvider {
 
     public static String COUNTDOWN_WIDGET_UPDATE_TOKEN = "COUNTDOWN_WIDGET_UPDATED_BY_ALARM";
 
@@ -40,7 +43,7 @@ public class CountdownWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         if (COUNTDOWN_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName thisWidget = new ComponentName(context.getPackageName(), CountdownWidget.class.getName());
+            ComponentName thisWidget = new ComponentName(context.getPackageName(), SingleWidget.class.getName());
             int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
             onUpdate(context, appWidgetManager, appWidgetIds);
         }
@@ -66,8 +69,8 @@ public class CountdownWidget extends AppWidgetProvider {
     public void onDeleted(Context context, int[] appWidgetIds) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         for (int appWidgetId : appWidgetIds) {
-            String uuid = AppPreferences.getWidgetUuid(sharedPref, appWidgetId);
-            AppPreferences.removeWidgetForDaysCountdown(sharedPref, uuid, appWidgetId);
+            String uuid = PreferencesUtils.getWidgetUuid(sharedPref, appWidgetId);
+            PreferencesUtils.removeWidgetForDaysCountdown(sharedPref, uuid, appWidgetId);
         }
         super.onDeleted(context, appWidgetIds);
     }
@@ -78,11 +81,11 @@ public class CountdownWidget extends AppWidgetProvider {
         int minWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         if (minWidth >= 3 * unitWidth) {
-            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X3);
+            PreferencesUtils.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X3);
         } else if (minHeight >= 2 * unitHeight && minWidth >= 2 * unitWidth) {
-            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_2X2);
+            PreferencesUtils.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_2X2);
         } else {
-            AppPreferences.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X1);
+            PreferencesUtils.setWidgetSize(sharedPref, appWidgetId, COUNTDOWN_WIDGET_SIZE_1X1);
         }
         updateAppWidget(context, appWidgetManager, appWidgetId);
     }
@@ -90,9 +93,9 @@ public class CountdownWidget extends AppWidgetProvider {
     public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         final RemoteViews views = buildRemoteViews(context, appWidgetId,
-                AppPreferences.getWidgetSize(sharedPref, appWidgetId),
-                AppPreferences.getWidgetUuid(sharedPref, appWidgetId),
-                AppPreferences.getWidgetAlias(sharedPref, appWidgetId));
+                PreferencesUtils.getWidgetSize(sharedPref, appWidgetId),
+                PreferencesUtils.getWidgetUuid(sharedPref, appWidgetId),
+                PreferencesUtils.getWidgetAlias(sharedPref, appWidgetId));
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent openAppIntent = PendingIntent.getActivity(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_frame, openAppIntent);
@@ -119,7 +122,7 @@ public class CountdownWidget extends AppWidgetProvider {
 
     private static RemoteViews getRemoteViewSmall(final Context context, int layout, String uuid, String alias) {
         final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
-        DaysCountdown countdown = AppPreferences.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
+        DaysCountdown countdown = PreferencesUtils.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
 
         if (uuid.isEmpty() || countdown == null) {
             rv.setTextViewText(R.id.widget_countdown, "0");
@@ -163,7 +166,7 @@ public class CountdownWidget extends AppWidgetProvider {
 
     private static RemoteViews RemoteViewsgetRemoteViewLarge(final Context context, int layout, String uuid, String alias) {
         final RemoteViews rv = new RemoteViews(context.getPackageName(), layout);
-        DaysCountdown countdown = AppPreferences.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
+        DaysCountdown countdown = PreferencesUtils.getDaysCountdownById(PreferenceManager.getDefaultSharedPreferences(context), uuid);
 
         if (uuid.isEmpty() || countdown == null) {
             rv.setTextViewText(R.id.widget_countdown, "0");
@@ -171,7 +174,7 @@ public class CountdownWidget extends AppWidgetProvider {
             rv.setTextColor(R.id.widget_alias, context.getResources().getColor(R.color.dark_gray));
             rv.setImageViewResource(R.id.widget_stripe, R.drawable.tile_gray);
         } else {
-            DateTimeFormatter format = AppPreferences.getDateFormat(PreferenceManager.getDefaultSharedPreferences(context), context.getString(R.string.default_date_format));
+            DateTimeFormatter format = PreferencesUtils.getDateFormat(PreferenceManager.getDefaultSharedPreferences(context), context.getString(R.string.default_date_format));
             int daysDiff = countdown.getDaysDiff(DateTime.now());
             if (daysDiff >= 0) {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(daysDiff));

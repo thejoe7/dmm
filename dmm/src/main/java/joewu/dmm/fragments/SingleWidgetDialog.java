@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,13 +19,14 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import joewu.dmm.R;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
+import joewu.dmm.utility.HoloColor;
 
 /**
  * Created by joewu on 11/06/13.
  */
-public class CountdownWidgetDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
+public class SingleWidgetDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
     private Spinner countdownSpinner;
     private EditText textAlias;
@@ -43,7 +43,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
 
     CountdownWidgetDialogListener mListener;
 
-    public CountdownWidgetDialog(List<DaysCountdown> countdowns, DateTimeFormatter format) {
+    public SingleWidgetDialog(List<DaysCountdown> countdowns, DateTimeFormatter format) {
         super();
         this.countdowns = countdowns;
         this.format = format;
@@ -51,7 +51,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
     }
 
     // default constructor, shouldn't be used
-    public CountdownWidgetDialog() {
+    public SingleWidgetDialog() {
         super();
         this.countdowns = null;
         this.format = null;
@@ -77,7 +77,7 @@ public class CountdownWidgetDialog extends DialogFragment implements AdapterView
                 .setPositiveButton(R.string.dialog_create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mListener.onDialogPositiveClick(CountdownWidgetDialog.this.selectedIndex, CountdownWidgetDialog.this.getCountdownAlias());
+                        mListener.onDialogPositiveClick(SingleWidgetDialog.this.selectedIndex, SingleWidgetDialog.this.getCountdownAlias());
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {

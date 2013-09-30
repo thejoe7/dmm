@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,8 +13,10 @@ import com.fima.cardsui.objects.Card;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
+import joewu.dmm.R;
+import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
+import joewu.dmm.utility.HoloColor;
 
 
 /**

@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.activities;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -14,12 +14,16 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
+import joewu.dmm.fragments.SingleWidgetDialog;
+import joewu.dmm.widgets.SingleWidget;
+import joewu.dmm.utility.PreferencesUtils;
+import joewu.dmm.R;
 import joewu.dmm.objects.DaysCountdown;
 
 /**
  * Created by joewu on 11/06/13.
  */
-public class CountdownWidgetConfigure extends Activity implements CountdownWidgetDialog.CountdownWidgetDialogListener {
+public class SingleWidgetConfigureActivity extends Activity implements SingleWidgetDialog.CountdownWidgetDialogListener {
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private List<DaysCountdown> countdowns;
@@ -32,8 +36,8 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
 
         // load countdown items and date format setting
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        DateTimeFormatter format = AppPreferences.getDateFormat(sharedPref, getString(R.string.default_date_format));
-        this.countdowns = AppPreferences.loadDaysCountdowns(sharedPref);
+        DateTimeFormatter format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
+        this.countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
 
 
         Intent launchIntent = getIntent();
@@ -50,7 +54,7 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
             finish();
         } else {
             setContentView(R.layout.widget_countdown_configure);
-            CountdownWidgetDialog fragment = new CountdownWidgetDialog(countdowns, format);
+            SingleWidgetDialog fragment = new SingleWidgetDialog(countdowns, format);
             fragment.show(getFragmentManager(), "countdownWidgetDialog");
         }
     }
@@ -60,15 +64,15 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
             DaysCountdown c = countdowns.get(index);
 
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            AppPreferences.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
-            AppPreferences.setWidgetAlias(sharedPref, appWidgetId, alias);
-            AppPreferences.setWidgetSize(sharedPref, appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
-            AppPreferences.addWidgetForDaysCountdown(sharedPref, c.getUuid(), appWidgetId);
+            PreferencesUtils.setWidgetUuid(sharedPref, appWidgetId, c.getUuid());
+            PreferencesUtils.setWidgetAlias(sharedPref, appWidgetId, alias);
+            PreferencesUtils.setWidgetSize(sharedPref, appWidgetId, SingleWidget.COUNTDOWN_WIDGET_SIZE_1X1);
+            PreferencesUtils.addWidgetForDaysCountdown(sharedPref, c.getUuid(), appWidgetId);
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-            CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
+            SingleWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 
-            Intent intent = new Intent(CountdownWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
+            Intent intent = new Intent(SingleWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Calendar calendar = Calendar.getInstance();
@@ -78,7 +82,7 @@ public class CountdownWidgetConfigure extends Activity implements CountdownWidge
             calendar.set(Calendar.MILLISECOND, 0);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
 
-            CountdownWidget.saveAlarmManager(alarmManager, pendingIntent);
+            SingleWidget.saveAlarmManager(alarmManager, pendingIntent);
 
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

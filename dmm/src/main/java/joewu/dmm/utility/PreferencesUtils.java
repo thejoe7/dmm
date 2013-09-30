@@ -1,4 +1,4 @@
-package joewu.dmm;
+package joewu.dmm.utility;
 
 import android.content.SharedPreferences;
 
@@ -6,19 +6,19 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import joewu.dmm.Countdown;
+import joewu.dmm.CountdownItem;
+import joewu.dmm.widgets.SingleWidget;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.values.HoloColor;
-import joewu.dmm.values.RepeatMode;
 
 /**
  * Created by joewu on 14/06/13.
  */
-public class AppPreferences {
+public class PreferencesUtils {
 
     public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
     public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
@@ -150,7 +150,7 @@ public class AppPreferences {
     }
 
     public static String getWidgetSize(SharedPreferences sharedPref, int appWidgetId) {
-        return sharedPref.getString(PREF_WIDGET_SIZE_PREFIX + appWidgetId, CountdownWidget.COUNTDOWN_WIDGET_SIZE_1X1);
+        return sharedPref.getString(PREF_WIDGET_SIZE_PREFIX + appWidgetId, SingleWidget.COUNTDOWN_WIDGET_SIZE_1X1);
     }
 
     public static void setWidgetSize(SharedPreferences sharedPref, int appWidgetId, String widgetSize) {
