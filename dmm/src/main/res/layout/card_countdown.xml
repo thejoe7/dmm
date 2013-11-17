@@ -89,7 +89,7 @@
                 android:layout_marginRight="16dip"
                 android:ellipsize="end"
                 android:text="@string/card_description"
-                android:textColor="@color/grey"
+                android:textColor="@color/gray"
                 android:textSize="14sp" />
 
         </LinearLayout>

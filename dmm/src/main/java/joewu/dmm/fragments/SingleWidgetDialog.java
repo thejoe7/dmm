@@ -121,7 +121,7 @@ public class SingleWidgetDialog extends DialogFragment implements AdapterView.On
                 colorRes = R.color.ics_purple;
                 break;
             default:
-                colorRes = R.color.grey;
+                colorRes = R.color.gray;
                 break;
         }
         stripe.setBackgroundColor(getResources().getColor(colorRes));
@@ -130,7 +130,7 @@ public class SingleWidgetDialog extends DialogFragment implements AdapterView.On
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         this.selectedIndex = -1;
-        stripe.setBackgroundColor(getResources().getColor(R.color.grey));
+        stripe.setBackgroundColor(getResources().getColor(R.color.gray));
     }
 
     private ArrayAdapter<String> getSpinnerDataAdapter() {

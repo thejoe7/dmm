@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.fima.cardsui.views.CardUI;
@@ -24,6 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import joewu.dmm.adapters.DaysItemAdapter;
 import joewu.dmm.fragments.DaysCountdownDialog;
 import joewu.dmm.ui.CountdownCard;
 import joewu.dmm.widgets.SingleWidget;
@@ -42,6 +44,10 @@ public class MainActivity extends Activity implements DaysCountdownDialog.Countd
     private CardUI cardsView;
 	private TextView textView;
     private List<DaysCountdown> countdowns;
+
+    private ListView cardList;
+    private DaysItemAdapter adapter;
+
     private boolean foldPastEvents;
     private boolean noChangelog;
     private DateTimeFormatter format;
@@ -57,7 +63,9 @@ public class MainActivity extends Activity implements DaysCountdownDialog.Countd
         cardsView = (CardUI) findViewById(R.id.main_cards_view);
         cardsView.setSwipeable(false);
 
-	    textView = (TextView) findViewById(R.id.main_text_view);
+	    textView = (TextView) findViewById(R.id.tv_empty_message);
+        cardList = (ListView) findViewById(R.id.lv_countdowns);
+        cardList.setEmptyView(findViewById(R.id.tv_empty_message));
 
         countdowns = new ArrayList<DaysCountdown>();
 
@@ -67,6 +75,10 @@ public class MainActivity extends Activity implements DaysCountdownDialog.Countd
         PreferencesUtils.setFirstLaunch(sharedPref, false);
         PreferencesUtils.setAppVersionCode(sharedPref, getVersion());
         this.countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
+        this.format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
+        adapter = new DaysItemAdapter(this, format, this.countdowns);
+        cardList.setAdapter(adapter);
+
         sharedMainActivity = this;
     }
 
@@ -77,6 +89,7 @@ public class MainActivity extends Activity implements DaysCountdownDialog.Countd
         this.foldPastEvents = PreferencesUtils.foldPastEvents(sharedPref);
         this.noChangelog = PreferencesUtils.noChangelog(sharedPref);
         this.format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
+        adapter.setFormat(format);
 		loadCards();
 	}
 
@@ -207,6 +220,8 @@ public class MainActivity extends Activity implements DaysCountdownDialog.Countd
 		    textView.setVisibility(View.VISIBLE);
 	    }
         cardsView.refresh();
+
+        adapter.addObjects(countdowns);
     }
 
     public int getVersion() {

@@ -56,4 +56,13 @@ public class DaysCountdown {
     public boolean isPast() {
         return (getDaysDiff(DateTime.now()) < 0);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (o == this) return true;
+        if (!(o instanceof DaysCountdown)) return false;
+        DaysCountdown odc = (DaysCountdown) o;
+        return this.uuid.equals(odc.uuid);
+    }
 }
