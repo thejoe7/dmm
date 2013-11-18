@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import joewu.dmm.R;
-import joewu.dmm.fragments.DaysCountdownDialog;
+import joewu.dmm.fragments.ContentDialogFragment;
 import joewu.dmm.objects.DaysCountdown;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.widgets.SingleWidget;
@@ -126,7 +126,7 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
     }
 
     private void onOptionEdit(DaysCountdown countdown) {
-        DaysCountdownDialog dialogFragment = new DaysCountdownDialog(countdown, false, new DaysCountdownDialog.CountdownDialogListener() {
+        ContentDialogFragment dialogFragment = new ContentDialogFragment(countdown, false, new ContentDialogFragment.CountdownDialogListener() {
             @Override
             public void onDialogPositiveClick(DaysCountdown countdown) {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

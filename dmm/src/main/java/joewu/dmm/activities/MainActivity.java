@@ -1,7 +1,6 @@
 package joewu.dmm.activities;
 
 import android.app.backup.BackupManager;
-import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -19,8 +18,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import joewu.dmm.adapters.DaysItemAdapter;
-import joewu.dmm.fragments.DaysCountdownDialog;
-import joewu.dmm.widgets.SingleWidget;
+import joewu.dmm.fragments.ContentDialogFragment;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
 import joewu.dmm.objects.DaysCountdown;
@@ -119,7 +117,7 @@ public class MainActivity extends Activity {
 	private void createCountdown() {
         DateTime now = DateTime.now();
         DateTime today = new DateTime(now.getYear(), now.getMonthOfYear(), now.getDayOfMonth(), 0, 0, 0);
-        DaysCountdownDialog dialogFragment = new DaysCountdownDialog(new DaysCountdown("", "", HoloColor.RedLight, today, RepeatMode.None), true, new DaysCountdownDialog.CountdownDialogListener() {
+        ContentDialogFragment dialogFragment = new ContentDialogFragment(new DaysCountdown("", "", HoloColor.RedLight, today, RepeatMode.None), true, new ContentDialogFragment.CountdownDialogListener() {
             @Override
             public void onDialogPositiveClick(DaysCountdown countdown) {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);

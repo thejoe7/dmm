@@ -17,14 +17,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import joewu.dmm.R;
-import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
 import joewu.dmm.utility.HoloColor;
 import joewu.dmm.utility.PreferencesUtils;
@@ -34,7 +32,7 @@ import mirko.android.datetimepicker.date.DatePickerDialog;
 /**
  * Created by joew on May 150.
  */
-public class DaysCountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
+public class ContentDialogFragment extends DialogFragment implements View.OnClickListener, TextWatcher {
 
 	private DaysCountdown countdown;
 	private DateTimeFormatter format;
@@ -51,7 +49,7 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 
 	CountdownDialogListener listener;
 
-	public DaysCountdownDialog(DaysCountdown countdown, boolean isNew, CountdownDialogListener listener) {
+	public ContentDialogFragment(DaysCountdown countdown, boolean isNew, CountdownDialogListener listener) {
 		super();
 		this.countdown = new DaysCountdown(countdown);
         this.isNew = isNew;
@@ -59,7 +57,7 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 	}
 
     // should not be used
-    public DaysCountdownDialog() {
+    public ContentDialogFragment() {
         super();
         this.countdown = new DaysCountdown("", "", HoloColor.RedLight, 1970, 1, 1, RepeatMode.None);
         this.isNew = true;
@@ -123,7 +121,7 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
-						DaysCountdownDialog.this.getDialog().cancel();
+						ContentDialogFragment.this.getDialog().cancel();
 					}
 				});
 

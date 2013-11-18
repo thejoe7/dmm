@@ -14,7 +14,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
-import joewu.dmm.fragments.SingleWidgetDialog;
+import joewu.dmm.fragments.SingleWidgetDialogFragment;
 import joewu.dmm.widgets.SingleWidget;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
@@ -23,7 +23,7 @@ import joewu.dmm.objects.DaysCountdown;
 /**
  * Created by joewu on 11/06/13.
  */
-public class SingleWidgetConfigureActivity extends Activity implements SingleWidgetDialog.CountdownWidgetDialogListener {
+public class SingleWidgetConfigureActivity extends Activity implements SingleWidgetDialogFragment.CountdownWidgetDialogListener {
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private List<DaysCountdown> countdowns;
@@ -54,7 +54,7 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
             finish();
         } else {
             setContentView(R.layout.widget_countdown_configure);
-            SingleWidgetDialog fragment = new SingleWidgetDialog(countdowns, format);
+            SingleWidgetDialogFragment fragment = new SingleWidgetDialogFragment(countdowns, format);
             fragment.show(getFragmentManager(), "countdownWidgetDialog");
         }
     }

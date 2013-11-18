@@ -26,7 +26,7 @@ import joewu.dmm.utility.HoloColor;
 /**
  * Created by joewu on 11/06/13.
  */
-public class SingleWidgetDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
+public class SingleWidgetDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
     private Spinner countdownSpinner;
     private EditText textAlias;
@@ -43,7 +43,7 @@ public class SingleWidgetDialog extends DialogFragment implements AdapterView.On
 
     CountdownWidgetDialogListener mListener;
 
-    public SingleWidgetDialog(List<DaysCountdown> countdowns, DateTimeFormatter format) {
+    public SingleWidgetDialogFragment(List<DaysCountdown> countdowns, DateTimeFormatter format) {
         super();
         this.countdowns = countdowns;
         this.format = format;
@@ -51,7 +51,7 @@ public class SingleWidgetDialog extends DialogFragment implements AdapterView.On
     }
 
     // default constructor, shouldn't be used
-    public SingleWidgetDialog() {
+    public SingleWidgetDialogFragment() {
         super();
         this.countdowns = null;
         this.format = null;
@@ -77,7 +77,7 @@ public class SingleWidgetDialog extends DialogFragment implements AdapterView.On
                 .setPositiveButton(R.string.dialog_create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mListener.onDialogPositiveClick(SingleWidgetDialog.this.selectedIndex, SingleWidgetDialog.this.getCountdownAlias());
+                        mListener.onDialogPositiveClick(SingleWidgetDialogFragment.this.selectedIndex, SingleWidgetDialogFragment.this.getCountdownAlias());
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
