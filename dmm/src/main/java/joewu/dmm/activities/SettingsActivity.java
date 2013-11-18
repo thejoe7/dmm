@@ -60,7 +60,7 @@ public class SettingsActivity extends PreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            addPreferencesFromResource(R.layout.fragment_settings);
+            addPreferencesFromResource(R.layout.activity_settings);
 
 	        // foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
 	        dateFormatPref = findPreference("KEY_DATE_FORMAT");

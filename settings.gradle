@@ -1,1 +1,1 @@
-include ':libraries:CardsUILib', ':libraries:GoogleDateTimePickers', ':dmm'
+include ':libraries:GoogleDateTimePickers', ':dmm'

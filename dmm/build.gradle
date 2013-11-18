@@ -10,7 +10,6 @@ apply plugin: 'android'
 
 dependencies {
     compile files('libs/joda-time-2.2.jar')
-    compile project(':libraries:CardsUILib')
     compile project(':libraries:GoogleDateTimePickers')
 }
 
