@@ -44,6 +44,15 @@ public class DaysCountdown {
         this.uuid = uuid;
     }
 
+    public DaysCountdown(DaysCountdown o) {
+        this.title = o.title;
+        this.description = o.description;
+        this.color = o.color;
+        this.date = o.date;
+        this.repeat = o.repeat;
+        this.uuid = o.uuid;
+    }
+
     public String getUuid() {
         return uuid;
     }

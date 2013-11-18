@@ -29,6 +29,7 @@ public class BaseAdapter<T> extends ArrayAdapter<T> {
             }
         }
         if (modified) {
+            sortObjects();
             notifyDataSetChanged();
         }
     }
@@ -38,9 +39,12 @@ public class BaseAdapter<T> extends ArrayAdapter<T> {
         // filter duplicates
         if (!this.objects.contains(object)) {
             this.objects.add(object);
+            sortObjects();
             notifyDataSetChanged();
         }
     }
+
+    protected void sortObjects() { }
 
     @Override
     public void remove(T object) {

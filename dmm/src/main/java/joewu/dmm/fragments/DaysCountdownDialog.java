@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
 import joewu.dmm.utility.HoloColor;
+import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.utility.RepeatMode;
 import mirko.android.datetimepicker.date.DatePickerDialog;
 
@@ -33,10 +36,9 @@ import mirko.android.datetimepicker.date.DatePickerDialog;
  */
 public class DaysCountdownDialog extends DialogFragment implements View.OnClickListener, TextWatcher {
 
-	private int index;
-
 	private DaysCountdown countdown;
 	private DateTimeFormatter format;
+    private boolean isNew;
 
 	private Map<Integer, ImageView> selectors = new HashMap<Integer, ImageView>();
 	private EditText textDate;
@@ -44,24 +46,24 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 	private EditText textDescription;
 
 	public interface CountdownDialogListener {
-		public void onDialogPositiveClick(DaysCountdown countdown, int index);
+		public void onDialogPositiveClick(DaysCountdown countdown);
 	}
 
-	CountdownDialogListener mListener;
+	CountdownDialogListener listener;
 
-	public DaysCountdownDialog(DaysCountdown countdown, int index, DateTimeFormatter format) {
+	public DaysCountdownDialog(DaysCountdown countdown, boolean isNew, CountdownDialogListener listener) {
 		super();
-		this.index = index;
-		this.countdown = countdown;
-		this.format = format;
+		this.countdown = new DaysCountdown(countdown);
+        this.isNew = isNew;
+        this.listener = listener;
 	}
 
     // should not be used
     public DaysCountdownDialog() {
         super();
-        this.index = -1;
         this.countdown = new DaysCountdown("", "", HoloColor.RedLight, 1970, 1, 1, RepeatMode.None);
-        this.format = DateTimeFormat.forPattern(MainActivity.sharedMainActivity.getResources().getString(R.string.default_date_format));
+        this.isNew = true;
+        this.listener = null;
     }
 
 	@Override
@@ -110,12 +112,12 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 		textDescription.setText(countdown.description);
 
 		builder.setView(dialogView)
-				.setPositiveButton(((index == MainActivity.INVALID_COUNTDOWN_INDEX) ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
+				.setPositiveButton((isNew ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
 						countdown.title = textTitle.getText().toString();
 						countdown.description = textDescription.getText().toString();
-						mListener.onDialogPositiveClick(countdown, index);
+						listener.onDialogPositiveClick(countdown);
 					}
 				})
 				.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -143,11 +145,8 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		try {
-			mListener = (CountdownDialogListener) activity;
-		} catch (ClassCastException cce) {
-			throw new ClassCastException(activity.toString() + " must implement CountdownDialogListener.");
-		}
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        this.format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
 	}
 
     @Override
@@ -206,7 +205,7 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        // Do nothing
 	}
 
 	@Override
@@ -220,7 +219,7 @@ public class DaysCountdownDialog extends DialogFragment implements View.OnClickL
 
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+        // Do nothing
 	}
 
 	public void enableCreateButton(boolean enabled) {
