@@ -136,7 +136,7 @@ public class SingleWidgetDialogFragment extends DialogFragment implements Adapte
     private ArrayAdapter<String> getSpinnerDataAdapter() {
         List<String> titleList = new ArrayList<String>();
         for (DaysCountdown c : countdowns) {
-            titleList.add(c.title + " (" + format.print(c.date) + ")");
+            titleList.add(c.title + " (" + format.print(c.getNextDate()) + ")");
         }
         return new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, titleList);
     }

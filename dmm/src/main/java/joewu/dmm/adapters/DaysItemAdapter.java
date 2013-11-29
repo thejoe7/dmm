@@ -88,7 +88,7 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
             holder.value.setText(String.valueOf(-daysDiff));
             holder.daysLeft.setText(context.getString(R.string.card_days_past));
         }
-        holder.date.setText(format.print(countdown.date));
+        holder.date.setText(format.print(countdown.getNextDate()));
 
         if (countdown.description == null || countdown.description.isEmpty()) {
             holder.description.setText("");
@@ -153,7 +153,7 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
         Collections.sort(this.objects, new Comparator<DaysCountdown>() {
             @Override
             public int compare(DaysCountdown c1, DaysCountdown c2) {
-                return c1.date.compareTo(c2.date);
+                return c1.getNextDate().compareTo(c2.getNextDate());
             }
         });
     }

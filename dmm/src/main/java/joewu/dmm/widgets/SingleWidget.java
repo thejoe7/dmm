@@ -178,10 +178,10 @@ public class SingleWidget extends AppWidgetProvider {
             int daysDiff = countdown.getDaysDiff(DateTime.now());
             if (daysDiff >= 0) {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(daysDiff));
-                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_left) + " " + format.print(countdown.date));
+                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_left) + " " + format.print(countdown.getNextDate()));
             } else {
                 rv.setTextViewText(R.id.widget_countdown, Integer.toString(-daysDiff));
-                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_past) + " " + format.print(countdown.date));
+                rv.setTextViewText(R.id.widget_date, context.getString(R.string.widget_days_past) + " " + format.print(countdown.getNextDate()));
             }
             int colorRes;
             int tileRes;

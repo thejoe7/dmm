@@ -106,7 +106,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
 		}
 
 		textTitle.setText(countdown.title);
-		textDate.setText(format.print(countdown.date));
+		textDate.setText(format.print(countdown.getOriginalDate()));
 		textDescription.setText(countdown.description);
 
 		builder.setView(dialogView)
@@ -231,9 +231,9 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
             @Override
             public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
                 countdown.date = new DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0);
-                textDate.setText(format.print(countdown.date));
+                textDate.setText(format.print(countdown.getOriginalDate()));
             }
-        }, countdown.date.getYear(), countdown.date.getMonthOfYear() - 1, countdown.date.getDayOfMonth());
+        }, countdown.getOriginalDate().getYear(), countdown.getOriginalDate().getMonthOfYear() - 1, countdown.getOriginalDate().getDayOfMonth());
 		fragment.show(getFragmentManager(), "datePickerDialog");
 	}
 
