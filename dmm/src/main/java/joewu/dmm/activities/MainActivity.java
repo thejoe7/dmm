@@ -4,6 +4,7 @@ import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.preference.PreferenceManager;
@@ -103,6 +104,11 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.action_settings:
                 showSettings();
+                return true;
+            case R.id.action_rate:
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+                startActivity(intent);
                 return true;
             default:
                 return super.onMenuItemSelected(id, item);

@@ -37,6 +37,10 @@
             android:title="@string/settings_item_developer_title"
             android:summary="@string/settings_item_developer_summary" />
 
+        <Preference android:key="KEY_THANKS"
+            android:title="@string/settings_item_thanks_title"
+            android:summary="@string/settings_item_thanks_summary" />
+
         <Preference android:key="KEY_VERSION"
             android:title="@string/settings_item_version_title" />
 

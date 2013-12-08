@@ -8,6 +8,7 @@
 
     <string name="action_create">新建</string>
     <string name="action_settings">设置</string>
+    <string name="action_rate">评价应用</string>
 
 	<string name="action_edit">编辑</string>
 	<string name="action_delete">删除</string>
@@ -27,6 +28,8 @@
     <string name="widget_days_past">天前是</string>
     <string name="widget_date_unknown">某天</string>
 
+    <string name="message_empty_countdown_default">没有倒数计日？创建一个吧！</string>
+
     <string name="settings_cat_preference">设置</string>
     <string name="settings_item_date_format_title">日期格式</string>
     <string name="settings_item_date_format_summary">选择卡片中的日期以何种格式显示</string>
@@ -37,6 +40,7 @@
 
     <string name="settings_cat_about">关于</string>
     <string name="settings_item_developer_title">开发者</string>
+    <string name="settings_item_thanks_title">特别感谢</string>
     <string name="settings_item_version_title">版本</string>
 
 </resources>

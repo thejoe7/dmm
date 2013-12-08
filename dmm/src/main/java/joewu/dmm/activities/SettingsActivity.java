@@ -74,7 +74,7 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://plus.google.com/b/112703451623046920651/112703451623046920651/about"));
+                intent.setData(Uri.parse("https://plus.google.com/+JoeWu/about"));
                 startActivity(intent);
                 return true;
                 }
