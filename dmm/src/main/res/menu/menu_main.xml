@@ -11,4 +11,10 @@
         android:showAsAction="never"
         android:icon="@drawable/ic_action_settings">
     </item>
+    <item android:id="@+id/action_rate"
+        android:title="@string/action_rate"
+        android:orderInCategory="1000"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_action_favourite">
+    </item>
 </menu>
