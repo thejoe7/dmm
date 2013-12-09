@@ -33,6 +33,11 @@
     <string name="card_description">Empty description</string>
     <string name="card_overflow">Overflow</string>
 
+    <string name="repeat_weekly">Weekly</string>
+    <string name="repeat_monthly">Monthly</string>
+    <string name="repeat_yearly">Yearly</string>
+    <string name="repeat_custom">Custom</string>
+
     <string name="widget_days_left">until</string>
     <string name="widget_days_past">since</string>
     <string name="widget_date_unknown">someday</string>

@@ -4,17 +4,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -42,6 +47,13 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
 	private EditText textDate;
 	private EditText textTitle;
 	private EditText textDescription;
+    private ImageView repeatImage;
+
+    private ViewGroup repeatContainer;
+    private TextView weeklyText;
+    private TextView monthlyText;
+    private TextView yearlyText;
+    private EditText customText;
 
 	public interface CountdownDialogListener {
 		public void onDialogPositiveClick(DaysCountdown countdown);
@@ -80,6 +92,13 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
 		textDate = (EditText) dialogView.findViewById(R.id.dialog_date_text);
 		textTitle = (EditText) dialogView.findViewById(R.id.dialog_title_text);
 		textDescription = (EditText) dialogView.findViewById(R.id.dialog_description_text);
+        repeatImage = (ImageView) dialogView.findViewById(R.id.dialog_repeat_image);
+
+        repeatContainer = (ViewGroup) dialogView.findViewById(R.id.dialog_repeat_container);
+        weeklyText = (TextView) dialogView.findViewById(R.id.dialog_repeat_weekly);
+        monthlyText = (TextView) dialogView.findViewById(R.id.dialog_repeat_monthly);
+        yearlyText = (TextView) dialogView.findViewById(R.id.dialog_repeat_yearly);
+        customText = (EditText) dialogView.findViewById(R.id.dialog_repeat_custom);
 
 		selectors.get(HoloColor.RedLight).setOnClickListener(this);
 		selectors.get(HoloColor.YellowLight).setOnClickListener(this);
@@ -108,6 +127,90 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
 		textTitle.setText(countdown.title);
 		textDate.setText(format.print(countdown.getOriginalDate()));
 		textDescription.setText(countdown.description);
+
+        if (countdown.repeat == RepeatMode.None) {
+            repeatImage.setImageResource(R.drawable.ic_action_repeat);
+            repeatContainer.setVisibility(View.GONE);
+        } else {
+            repeatImage.setImageResource(R.drawable.ic_action_repeat_holo);
+            repeatContainer.setVisibility(View.VISIBLE);
+            if (countdown.repeat != 7) customText.setText(String.valueOf(countdown.repeat));
+        }
+        setRepeatColor(countdown.repeat);
+        weeklyText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRepeatColor(7);
+                countdown.repeat = 7;
+                if (customText.hasFocus()) {
+                    hideKeyboard();
+                }
+            }
+        });
+        monthlyText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRepeatColor(RepeatMode.Month);
+                countdown.repeat = RepeatMode.Month;
+                if (customText.hasFocus()) {
+                    hideKeyboard();
+                }
+            }
+        });
+        yearlyText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRepeatColor(RepeatMode.Year);
+                countdown.repeat= RepeatMode.Year;
+                if (customText.hasFocus()) {
+                    hideKeyboard();
+                }
+            }
+        });
+        customText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.e("JOE", "onFocusChange: " + String.valueOf(hasFocus));
+                if (hasFocus) {
+                    if (customText.getText().toString().isEmpty()) {
+                        setRepeatColor(RepeatMode.None);
+                        countdown.repeat = RepeatMode.None;
+                    } else {
+                        int repeat = Integer.valueOf(customText.getText().toString());
+                        setRepeatColor(repeat);
+                        countdown.repeat = repeat;
+                    }
+                }
+            }
+        });
+        customText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {/* Do Nothing. */}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {/* Do Nothing. */}
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    int repeat = Integer.valueOf(customText.getText().toString());
+                    setRepeatColor(repeat);
+                    countdown.repeat = repeat;
+                }
+            }
+        });
+        repeatImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (countdown.repeat == RepeatMode.None) {
+                    repeatImage.setImageResource(R.drawable.ic_action_repeat_holo);
+                    weeklyText.performClick();
+                    repeatContainer.setVisibility(View.VISIBLE);
+                } else {
+                    repeatImage.setImageResource(R.drawable.ic_action_repeat);
+                    countdown.repeat = RepeatMode.None;
+                    repeatContainer.setVisibility(View.GONE);
+                }
+            }
+        });
 
 		builder.setView(dialogView)
 				.setPositiveButton((isNew ? R.string.dialog_create : R.string.dialog_done), new DialogInterface.OnClickListener() {
@@ -281,4 +384,43 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
 		}
 	}
 
+    private void setRepeatColor(int repeatMode) {
+        switch (repeatMode) {
+            case RepeatMode.None:
+                weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                customText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                break;
+            case 7: // weekly
+                weeklyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                customText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                break;
+            case RepeatMode.Month:
+                weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                monthlyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                customText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                break;
+            case RepeatMode.Year:
+                weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                yearlyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                customText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                break;
+            default:
+                weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
+                customText.setTextColor(getResources().getColor(R.color.ics_blue));
+                break;
+        }
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(customText.getWindowToken(), 0);
+    }
 }

@@ -24,6 +24,11 @@
     <string name="card_days_left">天 之后</string>
     <string name="card_days_past">天 之前</string>
 
+    <string name="repeat_weekly">每周</string>
+    <string name="repeat_monthly">每月</string>
+    <string name="repeat_yearly">每年</string>
+    <string name="repeat_custom">自定义</string>
+
     <string name="widget_days_left">天后是</string>
     <string name="widget_days_past">天前是</string>
     <string name="widget_date_unknown">某天</string>

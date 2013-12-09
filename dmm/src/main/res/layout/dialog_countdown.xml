@@ -65,12 +65,94 @@
 	    android:inputType="text"
 	    android:hint="@string/dialog_title" />
 
-	<EditText android:id="@+id/dialog_date_text"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="5dp"
-		android:clickable="true"
-		android:editable="false" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp" >
+
+        <ImageView
+            android:id="@+id/dialog_repeat_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="4dp"
+            android:src="@drawable/ic_action_repeat" />
+
+        <EditText android:id="@+id/dialog_date_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/dialog_repeat_image"
+            android:clickable="true"
+            android:editable="false" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_repeat_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp" >
+
+        <TextView
+            android:id="@+id/dialog_repeat_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:text="@string/repeat_weekly"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/dialog_repeat_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:text="@string/repeat_monthly"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/dialog_repeat_yearly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:text="@string/repeat_yearly"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/dialog_repeat_custom"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:numeric="integer"
+            android:imeOptions="actionDone"
+            android:textSize="14sp"
+            android:textColorHint="@android:color/secondary_text_light_nodisable"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:hint="Custom"/>
+
+    </LinearLayout>
 
 	<EditText android:id="@+id/dialog_description_text"
 	    android:layout_width="match_parent"
