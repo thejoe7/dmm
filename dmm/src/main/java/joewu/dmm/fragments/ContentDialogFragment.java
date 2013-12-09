@@ -134,7 +134,8 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
         } else {
             repeatImage.setImageResource(R.drawable.ic_action_repeat_holo);
             repeatContainer.setVisibility(View.VISIBLE);
-            if (countdown.repeat != 7) customText.setText(String.valueOf(countdown.repeat));
+            if (countdown.repeat != 7 && countdown.repeat != RepeatMode.Month && countdown.repeat != RepeatMode.Year)
+                customText.setText(String.valueOf(countdown.repeat));
         }
         setRepeatColor(countdown.repeat);
         weeklyText.setOnClickListener(new View.OnClickListener() {
