@@ -27,7 +27,8 @@
     <string name="repeat_weekly">每周</string>
     <string name="repeat_monthly">每月</string>
     <string name="repeat_yearly">每年</string>
-    <string name="repeat_custom">自定义</string>
+    <string name="repeat_custom">X</string>
+    <string name="repeat_custom_unit">天</string>
 
     <string name="widget_days_left">天后是</string>
     <string name="widget_days_past">天前是</string>
@@ -47,5 +48,7 @@
     <string name="settings_item_developer_title">开发者</string>
     <string name="settings_item_thanks_title">特别感谢</string>
     <string name="settings_item_version_title">版本</string>
+
+    <string name="error_too_many_days">别闹了！你真的需要数那么多天嘛？!</string>
 
 </resources>

@@ -139,18 +139,26 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/dialog_repeat_custom"
-            android:layout_width="60dp"
+            android:id="@+id/dialog_repeat_custom_value"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:gravity="center"
+            android:gravity="right"
             android:inputType="numberDecimal"
             android:numeric="integer"
             android:imeOptions="actionDone"
             android:textSize="14sp"
             android:textColorHint="@android:color/secondary_text_light_nodisable"
             android:textColor="@android:color/secondary_text_light_nodisable"
-            android:hint="Custom"/>
+            android:hint="@string/repeat_custom"/>
+
+        <TextView
+            android:id="@+id/dialog_repeat_custom_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:text="@string/repeat_custom_unit"/>
 
     </LinearLayout>
 
