@@ -11,7 +11,7 @@ public class HoloColor {
     public final static int RedLight = R.color.ics_red;
     public final static int YellowLight = R.color.ics_yellow;
     public final static int GreenLight = R.color.ics_green;
-    public final static int BlueLight = R.color.blue;
+    public final static int BlueLight = R.color.ics_blue;
     public final static int PurpleLight = R.color.ics_purple;
 
     public final static int[] colors = {RedLight, YellowLight, GreenLight, BlueLight, PurpleLight};
