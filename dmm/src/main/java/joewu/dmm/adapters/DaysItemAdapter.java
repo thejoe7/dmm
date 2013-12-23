@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import joewu.dmm.R;
+import joewu.dmm.activities.MainActivity;
 import joewu.dmm.fragments.ContentDialogFragment;
 import joewu.dmm.objects.DaysCountdown;
 import joewu.dmm.utility.PreferencesUtils;
@@ -136,6 +137,7 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
                 for (int appWidgetId : PreferencesUtils.getWidgetsForDaysCountdown(sharedPref, countdown.getUuid())) {
                     SingleWidget.updateAppWidget(context, appWidgetManager, appWidgetId);
                 }
+                ((MainActivity) getContext()).scrollCardListTo(countdown);
             }
         });
         dialogFragment.show(fragmentManager, "countdownDialog");
@@ -162,5 +164,10 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
     public void add(DaysCountdown object) {
         this.objects.remove(object);
         super.add(object);
+    }
+
+    @Override
+    public int getPosition(DaysCountdown item) {
+        return objects.indexOf(item);
     }
 }

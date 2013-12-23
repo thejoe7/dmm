@@ -128,6 +128,10 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void scrollCardListTo(DaysCountdown countdown) {
+        cardList.smoothScrollToPosition(adapter.getPosition(countdown));
+    }
+
     private void showSettings() {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
@@ -142,6 +146,7 @@ public class MainActivity extends Activity {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 adapter.add(countdown);
                 PreferencesUtils.saveDaysCountdown(sharedPref, countdown);
+                scrollCardListTo(countdown);
             }
         });
         dialogFragment.show(getFragmentManager(), "countdownDialog");
