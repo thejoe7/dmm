@@ -48,8 +48,8 @@
     <string name="settings_cat_preference">Preference</string>
     <string name="settings_item_date_format_title">Choose date format</string>
     <string name="settings_item_date_format_summary">Choose how the date is displayed on cards</string>
-    <string name="settings_item_fold_past_events_title">Fold past events</string>
-    <string name="settings_item_fold_past_events_summary">Check to collapse all past events into a card stack</string>
+    <string name="settings_item_hide_past_events_title">Hide past events</string>
+    <string name="settings_item_hide_past_events_summary">Check to not display all past events in the countdown list</string>
     <string name="settings_item_no_changelog_title">No Change Logs</string>
     <string name="settings_item_no_changelog_summary">Do not automatically create change log countdowns for new features in future updates</string>
 

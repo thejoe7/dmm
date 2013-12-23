@@ -17,6 +17,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import joewu.dmm.adapters.DaysItemAdapter;
 import joewu.dmm.fragments.ContentDialogFragment;
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
     private ListView cardList;
     private DaysItemAdapter adapter;
 
-    private boolean foldPastEvents;
+    private boolean hidePastEvents;
     private boolean noChangelog;
     private DateTimeFormatter format;
 
@@ -66,10 +67,11 @@ public class MainActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        foldPastEvents = PreferencesUtils.foldPastEvents(sharedPref);
+        hidePastEvents = PreferencesUtils.hidePastEvents(sharedPref);
         noChangelog = PreferencesUtils.noChangelog(sharedPref);
         format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
 
+        adapter.clear();
         adapter.setFormat(format);
         if (firstLaunch) {
             adapter.add(getSampleCountdowns());
@@ -79,7 +81,18 @@ public class MainActivity extends Activity {
             adapter.add(getChangeLogCountdown());
             newlyUpdate = false;
         }
-        adapter.addObjects(PreferencesUtils.loadDaysCountdowns(sharedPref));
+        List<DaysCountdown> filtered = new ArrayList<DaysCountdown>();
+        List<DaysCountdown> objects = PreferencesUtils.loadDaysCountdowns(sharedPref);
+        if (objects != null) {
+            if (hidePastEvents) {
+                for (DaysCountdown dc : objects) {
+                    if (!dc.isPast()) filtered.add(dc);
+                }
+            } else {
+                filtered = objects;
+            }
+            adapter.addObjects(filtered);
+        }
 	}
 
     @Override

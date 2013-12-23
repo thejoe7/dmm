@@ -17,11 +17,11 @@
             android:entryValues="@array/dateFormatValues"
             android:defaultValue="MMM d, yyyy" />
 
-        <CheckBoxPreference android:id="@+id/settings_fold_past_events"
+        <CheckBoxPreference android:id="@+id/settings_hide_past_events"
             android:defaultValue="false"
-            android:key="KEY_FOLD_PAST_EVENTS"
-            android:title="@string/settings_item_fold_past_events_title"
-            android:summary="@string/settings_item_fold_past_events_summary" />
+            android:key="KEY_HIDE_PAST_EVENTS"
+            android:title="@string/settings_item_hide_past_events_title"
+            android:summary="@string/settings_item_hide_past_events_summary" />
 
         <CheckBoxPreference android:id="@+id/settings_no_changelog"
             android:defaultValue="false"

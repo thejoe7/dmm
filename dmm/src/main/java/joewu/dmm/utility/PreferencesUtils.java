@@ -22,7 +22,7 @@ public class PreferencesUtils {
 
     public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
     public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
-    public static final String FOLD_PAST_EVENTS = "KEY_FOLD_PAST_EVENTS";
+    public static final String HIDE_PAST_EVENTS = "KEY_HIDE_PAST_EVENTS";
     public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
     public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
 
@@ -210,8 +210,8 @@ public class PreferencesUtils {
         editor.commit();
     }
 
-    public static boolean foldPastEvents(SharedPreferences sharedPref) {
-        return sharedPref.getBoolean(FOLD_PAST_EVENTS, false);
+    public static boolean hidePastEvents(SharedPreferences sharedPref) {
+        return sharedPref.getBoolean(HIDE_PAST_EVENTS, false);
     }
 
     public static boolean noChangelog(SharedPreferences sharedPref) {

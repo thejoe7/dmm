@@ -48,7 +48,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-	    // private Preference foldPastEventsPref;
+	    // private Preference hidePastEventsPref;
         // private Preference noChangelogPref;
 	    private Preference dateFormatPref;
 	    private Preference devPref;
@@ -62,7 +62,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             addPreferencesFromResource(R.layout.activity_settings);
 
-	        // foldPastEventsPref = findPreference(FOLD_PAST_EVENTS);
+	        // foldPastEventsPref = hidePreference(HIDE_PAST_EVENTS);
 	        dateFormatPref = findPreference("KEY_DATE_FORMAT");
             devPref = findPreference("KEY_DEVELOPER");
             verPref = findPreference("KEY_VERSION");
