@@ -113,6 +113,9 @@
 
     <style name="Theme.Translucent" parent="AppBaseTheme">
         <item name="android:actionBarStyle">@android:style/Theme.Holo.Light.NoActionBar</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_dmmtheme</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_dmmtheme</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.DmmTheme</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
