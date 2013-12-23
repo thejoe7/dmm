@@ -135,7 +135,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
             repeatImage.setImageResource(R.drawable.ic_action_repeat);
             repeatContainer.setVisibility(View.GONE);
         } else {
-            repeatImage.setImageResource(R.drawable.ic_action_repeat_holo);
+            repeatImage.setImageResource(R.drawable.ic_action_repeat_pressed);
             repeatContainer.setVisibility(View.VISIBLE);
             if (countdown.repeat != 7 && countdown.repeat != RepeatMode.Month && countdown.repeat != RepeatMode.Year)
                 customValueText.setText(String.valueOf(countdown.repeat));
@@ -220,7 +220,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
             @Override
             public void onClick(View v) {
                 if (countdown.repeat == RepeatMode.None) {
-                    repeatImage.setImageResource(R.drawable.ic_action_repeat_holo);
+                    repeatImage.setImageResource(R.drawable.ic_action_repeat_pressed);
                     weeklyText.performClick();
                     repeatContainer.setVisibility(View.VISIBLE);
                 } else {
@@ -413,7 +413,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
                 customUnitText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 break;
             case 7: // weekly
-                weeklyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                weeklyText.setTextColor(getResources().getColor(R.color.ics_red));
                 monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 customValueText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
@@ -421,7 +421,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
                 break;
             case RepeatMode.Month:
                 weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
-                monthlyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                monthlyText.setTextColor(getResources().getColor(R.color.ics_red));
                 yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 customValueText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 customUnitText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
@@ -429,7 +429,7 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
             case RepeatMode.Year:
                 weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
-                yearlyText.setTextColor(getResources().getColor(R.color.ics_blue));
+                yearlyText.setTextColor(getResources().getColor(R.color.ics_red));
                 customValueText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 customUnitText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 break;
@@ -437,8 +437,8 @@ public class ContentDialogFragment extends DialogFragment implements View.OnClic
                 weeklyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 monthlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
                 yearlyText.setTextColor(getResources().getColor(android.R.color.secondary_text_light_nodisable));
-                customValueText.setTextColor(getResources().getColor(R.color.ics_blue));
-                customUnitText.setTextColor(getResources().getColor(R.color.ics_blue));
+                customValueText.setTextColor(getResources().getColor(R.color.ics_red));
+                customUnitText.setTextColor(getResources().getColor(R.color.ics_red));
                 break;
         }
     }

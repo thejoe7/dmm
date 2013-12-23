@@ -3,7 +3,7 @@
         android:title="@string/action_create"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/ic_action_create">
+        android:icon="@drawable/ic_action_new">
     </item>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
