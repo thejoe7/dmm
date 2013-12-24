@@ -42,15 +42,28 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".widgets.SingleWidget">
+        <receiver
+            android:name=".widgets.SingleWidget"
+            android:label="@string/widget_name_single">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
-                <action android:name="COUNTDOWN_WIDGET_UPDATED_BY_ALARM" />
+                <action android:name="SINGLE_WIDGET_UPDATED_BY_ALARM" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_countdown_provider" />
+                android:resource="@xml/single_widget_provider" />
+        </receiver>
+        <receiver android:name=".widgets.ListWidget"
+            android:label="@string/widget_name_list">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
+                <action android:name="LIST_WIDGET_UPDATE_BY_ALARM" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/list_widget_provider" />
         </receiver>
         <receiver android:name=".services.AutoStartReceiver"
             android:enabled="true"
@@ -60,6 +73,9 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".services.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <service android:name=".services.StartService"
             android:enabled="true"

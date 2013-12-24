@@ -18,6 +18,7 @@ import org.joda.time.format.DateTimeFormatter;
 import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.services.StartService;
 import joewu.dmm.utility.HoloColor;
 import joewu.dmm.utility.PreferencesUtils;
 
@@ -25,9 +26,6 @@ import joewu.dmm.utility.PreferencesUtils;
  * Created by joewu on 11/06/13.
  */
 public class SingleWidget extends AppWidgetProvider {
-
-    public static String COUNTDOWN_WIDGET_UPDATE_TOKEN = "COUNTDOWN_WIDGET_UPDATED_BY_ALARM";
-
     public static String COUNTDOWN_WIDGET_SIZE_1X1 = "COUNTDOWN_WIDGET_SIZE_1X1";
     public static String COUNTDOWN_WIDGET_SIZE_2X2 = "COUNTDOWN_WIDGET_SIZE_2X2";
     public static String COUNTDOWN_WIDGET_SIZE_1X3 = "COUNTDOWN_WIDGET_SIZE_1X3";
@@ -41,7 +39,7 @@ public class SingleWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (COUNTDOWN_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
+        if (StartService.SINGLE_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             ComponentName thisWidget = new ComponentName(context.getPackageName(), SingleWidget.class.getName());
             int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
@@ -109,14 +107,14 @@ public class SingleWidget extends AppWidgetProvider {
 
     public static RemoteViews buildRemoteViews(final Context context, final int appWidgetId, String widgetSize, String uuid, String alias) {
         if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_1X1)) {
-            return getRemoteViewSmall(context, R.layout.widget_countdown_1x1, uuid, alias);
+            return getRemoteViewSmall(context, R.layout.widget_single_1x1, uuid, alias);
         } else if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_2X2)) {
-            return getRemoteViewSmall(context, R.layout.widget_countdown_2x2, uuid, alias);
+            return getRemoteViewSmall(context, R.layout.widget_single_2x2, uuid, alias);
         } else if (widgetSize.equals(COUNTDOWN_WIDGET_SIZE_1X3)) {
-            return RemoteViewsgetRemoteViewLarge(context, R.layout.widget_countdown_1x3, uuid, alias);
+            return RemoteViewsgetRemoteViewLarge(context, R.layout.widget_single_1x3, uuid, alias);
         } else {
             // return 1x1 widget by default
-            return getRemoteViewSmall(context, R.layout.widget_countdown_1x1, uuid, alias);
+            return getRemoteViewSmall(context, R.layout.widget_single_1x1, uuid, alias);
         }
     }
 

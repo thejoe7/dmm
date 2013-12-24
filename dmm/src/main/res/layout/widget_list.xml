@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_widget_bg"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="8dp" >
+
+    <ListView android:id="@+id/lv_countdowns"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="4dp"
+        android:divider="@android:color/transparent"
+        android:scrollbars="none"
+        android:listSelector="@null"
+        android:overScrollMode="never" />
+
+    <TextView
+        android:id="@+id/tv_empty_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/card_bg"
+        android:textSize="18sp"
+        android:text="@string/message_empty_countdown_widget" />
+
+</RelativeLayout>

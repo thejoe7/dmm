@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import joewu.dmm.fragments.SingleWidgetDialogFragment;
+import joewu.dmm.services.StartService;
 import joewu.dmm.widgets.SingleWidget;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
@@ -72,17 +73,7 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             SingleWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 
-            Intent intent = new Intent(SingleWidget.COUNTDOWN_WIDGET_UPDATE_TOKEN);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
-
-            SingleWidget.saveAlarmManager(alarmManager, pendingIntent);
+            StartService.WidgetUpdateHelper.setSingleWidgetUpdateAlarm(this);
 
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

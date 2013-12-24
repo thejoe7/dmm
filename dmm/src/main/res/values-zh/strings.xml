@@ -35,6 +35,7 @@
     <string name="widget_date_unknown">某天</string>
 
     <string name="message_empty_countdown_default">没有倒数计日？创建一个吧！</string>
+    <string name="message_empty_countdown_widget">没有可以显示的倒数计日</string>
 
     <string name="settings_cat_preference">设置</string>
     <string name="settings_item_date_format_title">日期格式</string>
@@ -50,5 +51,10 @@
     <string name="settings_item_version_title">版本</string>
 
     <string name="error_too_many_days">别闹了！你真的需要数那么多天嘛？!</string>
+
+    <string name="widget_name_single">Days--单一事件</string>
+    <string name="widget_name_list">Days--事件列表</string>
+
+    <string name="widget_loading_message">加载中...</string>
 
 </resources>

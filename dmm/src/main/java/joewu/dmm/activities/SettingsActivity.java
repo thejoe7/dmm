@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
+import joewu.dmm.services.StartService;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
 
@@ -94,6 +95,9 @@ public class SettingsActivity extends PreferenceActivity {
                 DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 			    dateFormatPref.setSummary(format.print(date));
 		    }
+            if (key.equals(PreferencesUtils.DATE_FORMAT) || key.equals(PreferencesUtils.HIDE_PAST_EVENTS)) {
+                StartService.WidgetUpdateHelper.setListWidgetUpdateAlarm(getActivity());
+            }
 	    }
 
 	    @Override

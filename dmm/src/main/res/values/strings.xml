@@ -44,6 +44,7 @@
     <string name="widget_date_unknown">someday</string>
 
     <string name="message_empty_countdown_default">You don\'t have any countdown yet. Why not create a new one?</string>
+    <string name="message_empty_countdown_widget">No countdown available</string>
 
     <string name="settings_cat_preference">Preference</string>
     <string name="settings_item_date_format_title">Choose date format</string>
@@ -61,5 +62,10 @@
     <string name="settings_item_version_title">Version</string>
 
     <string name="error_too_many_days">Seriously, you need to count that many days?</string>
+
+    <string name="widget_name_single">Days-- Single Widget</string>
+    <string name="widget_name_list">Days-- List Widget</string>
+
+    <string name="widget_loading_message">Loading...</string>
 
 </resources>
