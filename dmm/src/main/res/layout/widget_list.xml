@@ -14,7 +14,7 @@
         android:dividerHeight="4dp"
         android:divider="@android:color/transparent"
         android:scrollbars="none"
-        android:listSelector="@null"
+        android:listSelector="@android:color/transparent"
         android:overScrollMode="never" />
 
     <TextView

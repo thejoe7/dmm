@@ -4,13 +4,9 @@
     android:id="@+id/rl_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:background="@drawable/card_bg"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp" >
+    android:paddingBottom="10dp"
+    android:background="@drawable/list_widget_cell_bg" >
 
     <LinearLayout
         android:id="@+id/ll_content"
@@ -19,7 +15,7 @@
         android:orientation="vertical"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="17dp"
-        android:layout_marginRight="22dp" >
+        android:layout_marginRight="8dp" >
 
         <TextView android:id="@+id/tv_card_title"
             android:layout_height="wrap_content"
@@ -30,12 +26,12 @@
             android:textColor="@color/ics_red"
             android:textSize="24sp" />
 
-        <View
+        <ImageView
             android:layout_height="1dp"
             android:layout_width="match_parent"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/stroke" />
+            android:src="@color/stroke" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -48,7 +44,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="@string/card_countdown"
-                android:textStyle="bold"
+                android:textColor="@android:color/tertiary_text_light"
                 android:textSize="40sp" />
 
             <LinearLayout
@@ -63,12 +59,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/card_days_left"
+                    android:textColor="@android:color/tertiary_text_light"
                     android:textSize="16sp" />
 
                 <TextView android:id="@+id/tv_card_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/build_date"
+                    android:textColor="@android:color/tertiary_text_light"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -86,12 +84,12 @@
 
     </LinearLayout>
 
-    <View android:id="@+id/iv_card_stripe"
+    <ImageView android:id="@+id/iv_card_stripe"
         android:layout_width="9dp"
         android:layout_height="0dp"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/ll_content"
         android:layout_alignBottom="@id/ll_content"
-        android:background="@color/ics_red" />
+        android:src="@color/ics_red" />
 
 </RelativeLayout>

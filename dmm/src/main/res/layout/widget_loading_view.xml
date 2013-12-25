@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="@drawable/card_bg"
+        android:background="@drawable/list_widget_cell_bg"
         android:textSize="18sp"
         android:text="@string/widget_loading_message" />
 

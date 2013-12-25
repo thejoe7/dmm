@@ -16,7 +16,6 @@ import android.widget.RemoteViews;
 import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.services.ListWidgetService;
-import joewu.dmm.services.StartService;
 import joewu.dmm.utility.PreferencesUtils;
 
 /**
@@ -29,13 +28,10 @@ public class ListWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (intent.getExtras() != null && ("android.appwidget.action.APPWIDGET_UPDATE".equals(intent.getAction())
-                        || StartService.LIST_WIDGET_UPDATE_TOKEN.equals(intent.getAction()))) {
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName thisWidget = new ComponentName(context.getPackageName(), ListWidget.class.getName());
-            int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-            onUpdate(context, appWidgetManager, appWidgetIds);
-        }
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName thisWidget = new ComponentName(context.getPackageName(), ListWidget.class.getName());
+        int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -77,6 +73,10 @@ public class ListWidget extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_list);
         views.setRemoteAdapter(R.id.lv_countdowns, serviceIntent);
         views.setEmptyView(R.id.lv_countdowns, R.id.tv_empty_message);
+
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent openAppIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setPendingIntentTemplate(R.id.lv_countdowns, openAppIntent);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

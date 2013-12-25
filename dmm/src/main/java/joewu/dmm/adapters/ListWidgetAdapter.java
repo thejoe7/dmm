@@ -1,12 +1,10 @@
 package joewu.dmm.adapters;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -15,6 +13,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import joewu.dmm.R;
@@ -45,6 +45,7 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
         } else {
             this.objects = countdowns;
         }
+        sortObjects();
     }
 
     @Override
@@ -76,34 +77,30 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
     public RemoteViews getViewAt(int position) {
         DaysCountdown dc = objects.get(position);
 
-//        final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_list_cell);
-//        remoteViews.setInt(R.id.iv_card_stripe, "setBackgroundResource", dc.color);
-//        remoteViews.setTextViewText(R.id.tv_card_title, dc.title);
-//        remoteViews.setTextColor(R.id.tv_card_title, dc.color);
-//        DateTime today = DateTime.now();
-//        int daysDiff = dc.getDaysDiff(today);
-//        if (daysDiff >= 0) {
-//            remoteViews.setTextViewText(R.id.tv_card_countdown, String.valueOf(daysDiff));
-//            remoteViews.setTextViewText(R.id.tv_card_days_left, context.getString(R.string.card_days_left));
-//        } else {
-//            remoteViews.setTextViewText(R.id.tv_card_countdown, String.valueOf(-daysDiff));
-//            remoteViews.setTextViewText(R.id.tv_card_days_left, context.getString(R.string.card_days_past));
-//        }
-//        remoteViews.setTextViewText(R.id.tv_card_date, format.print(dc.getNextDate()));
-//        if (dc.description == null || dc.description.isEmpty()) {
-//            remoteViews.setTextViewText(R.id.tv_card_description, "");
-//            remoteViews.setViewVisibility(R.id.tv_card_description, View.GONE);
-//        } else {
-//            remoteViews.setTextViewText(R.id.tv_card_description, dc.description);
-//            remoteViews.setViewVisibility(R.id.tv_card_description, View.VISIBLE);
-//        }
-//
-//        Intent intent = new Intent(context, MainActivity.class);
-//        PendingIntent openAppIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        remoteViews.setOnClickPendingIntent(R.id.rl_container, openAppIntent);
+        final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_list_cell);
+        remoteViews.setImageViewResource(R.id.iv_card_stripe, dc.color);
+        remoteViews.setTextViewText(R.id.tv_card_title, dc.title);
+        remoteViews.setTextColor(R.id.tv_card_title, context.getResources().getColor(dc.color));
+        DateTime today = DateTime.now();
+        int daysDiff = dc.getDaysDiff(today);
+        if (daysDiff >= 0) {
+            remoteViews.setTextViewText(R.id.tv_card_countdown, String.valueOf(daysDiff));
+            remoteViews.setTextViewText(R.id.tv_card_days_left, context.getString(R.string.card_days_left));
+        } else {
+            remoteViews.setTextViewText(R.id.tv_card_countdown, String.valueOf(-daysDiff));
+            remoteViews.setTextViewText(R.id.tv_card_days_left, context.getString(R.string.card_days_past));
+        }
+        remoteViews.setTextViewText(R.id.tv_card_date, format.print(dc.getNextDate()));
+        if (dc.description == null || dc.description.isEmpty()) {
+            remoteViews.setTextViewText(R.id.tv_card_description, "");
+            remoteViews.setViewVisibility(R.id.tv_card_description, View.GONE);
+        } else {
+            remoteViews.setTextViewText(R.id.tv_card_description, dc.description);
+            remoteViews.setViewVisibility(R.id.tv_card_description, View.VISIBLE);
+        }
 
-        final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_loading_view);
-        remoteViews.setTextViewText(R.id.tv_loading_text, dc.title);
+        Intent intent = new Intent(context, MainActivity.class);
+        remoteViews.setOnClickFillInIntent(R.id.rl_container, intent);
 
         return remoteViews;
     }
@@ -115,12 +112,20 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
 
     @Override
     public void onDataSetChanged() {
-        Log.e("JoeTag", "onDataSetChanged");
-        // Do nothing.
+        sortObjects();
     }
 
     @Override
     public boolean hasStableIds() {
         return true;
+    }
+
+    protected void sortObjects() {
+        Collections.sort(this.objects, new Comparator<DaysCountdown>() {
+            @Override
+            public int compare(DaysCountdown c1, DaysCountdown c2) {
+                return c1.getNextDate().compareTo(c2.getNextDate());
+            }
+        });
     }
 }

@@ -1,6 +1,8 @@
 package joewu.dmm.activities;
 
 import android.app.ActionBar;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,6 +20,7 @@ import org.joda.time.format.DateTimeFormatter;
 import joewu.dmm.services.StartService;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
+import joewu.dmm.widgets.ListWidget;
 
 /**
  * Created by joe7wu on 2013-05-24.
@@ -96,7 +99,7 @@ public class SettingsActivity extends PreferenceActivity {
 			    dateFormatPref.setSummary(format.print(date));
 		    }
             if (key.equals(PreferencesUtils.DATE_FORMAT) || key.equals(PreferencesUtils.HIDE_PAST_EVENTS)) {
-                StartService.WidgetUpdateHelper.setListWidgetUpdateAlarm(getActivity());
+                getActivity().sendBroadcast(new Intent(StartService.LIST_WIDGET_UPDATE_TOKEN));
             }
 	    }
 
