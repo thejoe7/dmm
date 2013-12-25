@@ -18,7 +18,7 @@ import org.joda.time.format.DateTimeFormatter;
 import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.services.StartService;
+import joewu.dmm.services.WidgetUpdateService;
 import joewu.dmm.utility.HoloColor;
 import joewu.dmm.utility.PreferencesUtils;
 
@@ -39,7 +39,7 @@ public class SingleWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (StartService.SINGLE_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
+        if (WidgetUpdateService.SINGLE_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             ComponentName thisWidget = new ComponentName(context.getPackageName(), SingleWidget.class.getName());
             int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);

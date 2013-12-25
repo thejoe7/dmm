@@ -21,6 +21,7 @@ import java.util.List;
 
 import joewu.dmm.adapters.DaysItemAdapter;
 import joewu.dmm.fragments.ContentDialogFragment;
+import joewu.dmm.services.WidgetUpdateService;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
 import joewu.dmm.objects.DaysCountdown;
@@ -147,6 +148,7 @@ public class MainActivity extends Activity {
                 adapter.add(countdown);
                 PreferencesUtils.saveDaysCountdown(sharedPref, countdown);
                 scrollCardListTo(countdown);
+                WidgetUpdateService.WidgetUpdateHelper.updateListWidget(MainActivity.this);
             }
         });
         dialogFragment.show(getFragmentManager(), "countdownDialog");

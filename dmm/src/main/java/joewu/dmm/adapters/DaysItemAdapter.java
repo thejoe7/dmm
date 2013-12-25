@@ -24,6 +24,7 @@ import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.fragments.ContentDialogFragment;
 import joewu.dmm.objects.DaysCountdown;
+import joewu.dmm.services.WidgetUpdateService;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.widgets.SingleWidget;
 
@@ -137,7 +138,9 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
                 for (int appWidgetId : PreferencesUtils.getWidgetsForDaysCountdown(sharedPref, countdown.getUuid())) {
                     SingleWidget.updateAppWidget(context, appWidgetManager, appWidgetId);
                 }
-                ((MainActivity) getContext()).scrollCardListTo(countdown);
+                final MainActivity mainActivity = (MainActivity) getContext();
+                mainActivity.scrollCardListTo(countdown);
+                WidgetUpdateService.WidgetUpdateHelper.updateListWidget(mainActivity);
             }
         });
         dialogFragment.show(fragmentManager, "countdownDialog");
@@ -148,6 +151,7 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         PreferencesUtils.removeAllWidgetsForDaysCountdown(sharedPref, countdown.getUuid());
         PreferencesUtils.removeDaysCountdownById(sharedPref, countdown.getUuid());
+        WidgetUpdateService.WidgetUpdateHelper.updateListWidget((MainActivity) getContext());
     }
 
     @Override

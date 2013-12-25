@@ -48,7 +48,7 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
-                <action android:name="SINGLE_WIDGET_UPDATED_BY_ALARM" />
+                <action android:name="SINGLE_WIDGET_UPDATE_TOKEN" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
@@ -59,7 +59,7 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
-                <action android:name="LIST_WIDGET_UPDATE_BY_ALARM" />
+                <action android:name="LIST_WIDGET_UPDATE_TOKEN" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
@@ -77,7 +77,7 @@
         <service android:name=".services.ListWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <service android:name=".services.StartService"
+        <service android:name=".services.WidgetUpdateService"
             android:enabled="true"
             android:exported="true" />
     </application>

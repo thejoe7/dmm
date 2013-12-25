@@ -1,5 +1,6 @@
 package joewu.dmm.services;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -15,9 +16,9 @@ import joewu.dmm.widgets.SingleWidget;
 /**
  * Created by joewu on 16/06/13.
  */
-public class StartService extends Service {
-    public static String SINGLE_WIDGET_UPDATE_TOKEN = "SINGLE_WIDGET_UPDATED_BY_ALARM";
-    public static String LIST_WIDGET_UPDATE_TOKEN = "LIST_WIDGET_UPDATE_BY_ALARM";
+public class WidgetUpdateService extends Service {
+    public static String SINGLE_WIDGET_UPDATE_TOKEN = "SINGLE_WIDGET_UPDATE_TOKEN";
+    public static String LIST_WIDGET_UPDATE_TOKEN = "LIST_WIDGET_UPDATE_TOKEN";
 
     @Override
     public int onStartCommand(Intent intent, int flag, int startId) {
@@ -58,6 +59,10 @@ public class StartService extends Service {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400, pendingIntent);
 
             ListWidget.saveAlarmManager(alarmManager, pendingIntent);
+        }
+
+        public static void updateListWidget(Activity activity) {
+            activity.sendBroadcast(new Intent(WidgetUpdateService.LIST_WIDGET_UPDATE_TOKEN));
         }
     }
 }

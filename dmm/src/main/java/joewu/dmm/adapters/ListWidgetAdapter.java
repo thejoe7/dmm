@@ -34,18 +34,6 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
     public ListWidgetAdapter(Context context, Intent intent) {
         this.context = context;
         this.appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        this.format = PreferencesUtils.getDateFormat(sharedPref, context.getString(R.string.default_date_format));
-        List<DaysCountdown> countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
-        if (PreferencesUtils.hidePastEvents(sharedPref)) {
-            this.objects = new ArrayList<DaysCountdown>();
-            for (DaysCountdown dc : countdowns) {
-                if (!dc.isPast()) this.objects.add(dc);
-            }
-        } else {
-            this.objects = countdowns;
-        }
-        sortObjects();
     }
 
     @Override
@@ -112,12 +100,23 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
 
     @Override
     public void onDataSetChanged() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        this.format = PreferencesUtils.getDateFormat(sharedPref, context.getString(R.string.default_date_format));
+        List<DaysCountdown> countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
+        if (PreferencesUtils.hidePastEvents(sharedPref)) {
+            this.objects = new ArrayList<DaysCountdown>();
+            for (DaysCountdown dc : countdowns) {
+                if (!dc.isPast()) this.objects.add(dc);
+            }
+        } else {
+            this.objects = countdowns;
+        }
         sortObjects();
     }
 
     @Override
     public boolean hasStableIds() {
-        return true;
+        return false;
     }
 
     protected void sortObjects() {

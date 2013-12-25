@@ -1,8 +1,6 @@
 package joewu.dmm.activities;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,11 +9,10 @@ import android.preference.PreferenceManager;
 
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.Calendar;
 import java.util.List;
 
 import joewu.dmm.fragments.SingleWidgetDialogFragment;
-import joewu.dmm.services.StartService;
+import joewu.dmm.services.WidgetUpdateService;
 import joewu.dmm.widgets.SingleWidget;
 import joewu.dmm.utility.PreferencesUtils;
 import joewu.dmm.R;
@@ -73,7 +70,7 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
             SingleWidget.updateAppWidget(this, appWidgetManager, appWidgetId);
 
-            StartService.WidgetUpdateHelper.setSingleWidgetUpdateAlarm(this);
+            WidgetUpdateService.WidgetUpdateHelper.setSingleWidgetUpdateAlarm(this);
 
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
