@@ -6,7 +6,7 @@
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
     android:paddingTop="6dp"
-    android:paddingBottom="8dp" >
+    android:paddingBottom="6dp" >
 
     <ListView android:id="@+id/lv_countdowns"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="@drawable/card_bg"
+        android:background="@drawable/list_widget_cell_bg"
         android:textSize="18sp"
         android:text="@string/message_empty_countdown_widget" />
 
