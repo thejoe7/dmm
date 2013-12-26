@@ -39,12 +39,10 @@ public class SingleWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (WidgetUpdateService.SINGLE_WIDGET_UPDATE_TOKEN.equals(intent.getAction()) && intent.getExtras() != null) {
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName thisWidget = new ComponentName(context.getPackageName(), SingleWidget.class.getName());
-            int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-            onUpdate(context, appWidgetManager, appWidgetIds);
-        }
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName thisWidget = new ComponentName(context.getPackageName(), SingleWidget.class.getName());
+        int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override

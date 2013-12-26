@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="dateFormatValues">
-        <item>MM/dd/yyyy</item>
-        <item>dd/MM/yyyy</item>
         <item>yyyy/MM/dd</item>
         <item>yy年M月d日</item>
         <item>yy年MM月dd日</item>
         <item>yyyy年M月d日</item>
         <item>yyyy年MM月dd日</item>
+        <item>yy年M月d日 EE</item>
+        <item>yy年MM月dd日 EE</item>
+        <item>yyyy年M月d日 EEEE</item>
+        <item>yyyy年MM月dd日 EEEE</item>
     </string-array>
 </resources>
