@@ -18,7 +18,6 @@ import org.joda.time.format.DateTimeFormatter;
 import joewu.dmm.R;
 import joewu.dmm.activities.MainActivity;
 import joewu.dmm.objects.DaysCountdown;
-import joewu.dmm.services.WidgetUpdateService;
 import joewu.dmm.utility.HoloColor;
 import joewu.dmm.utility.PreferencesUtils;
 
