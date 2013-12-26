@@ -9,6 +9,8 @@ import android.preference.PreferenceManager;
 
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import joewu.dmm.fragments.SingleWidgetDialogFragment;
@@ -26,8 +28,6 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private List<DaysCountdown> countdowns;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +35,13 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
         // load countdown items and date format setting
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         DateTimeFormatter format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
-        this.countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
-
+        countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
+        Collections.sort(countdowns, new Comparator<DaysCountdown>() {
+            @Override
+            public int compare(DaysCountdown c1, DaysCountdown c2) {
+                return c1.getNextDate().compareTo(c2.getNextDate());
+            }
+        });
 
         Intent launchIntent = getIntent();
         Bundle extras = launchIntent.getExtras();
