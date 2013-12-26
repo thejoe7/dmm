@@ -4,7 +4,7 @@
     <string name="default_date_format">yyyy年M月d日</string>
 
     <string name="christmas_day">圣诞节</string>
-    <string name="change_log">1. 更新日期选择界面.</string>
+    <string name="change_log">1. 调整了用户界面.\n2. 现在支持重复事件.\n3. 添加了列表桌面小部件.\n4. 更多日期格式选择.</string>
 
     <string name="action_create">新建</string>
     <string name="action_settings">设置</string>
