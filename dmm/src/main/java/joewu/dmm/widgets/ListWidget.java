@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import joewu.dmm.R;
@@ -34,7 +33,6 @@ public class ListWidget extends AppWidgetProvider {
         ComponentName thisWidget = new ComponentName(context.getPackageName(), ListWidget.class.getName());
         int [] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
         onUpdate(context, appWidgetManager, appWidgetIds);
-        Log.e("JoeTag", intent.getAction());
         if (WidgetUpdateService.LIST_WIDGET_UPDATE_TOKEN.equals(intent.getAction())) {
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.lv_countdowns);
         }

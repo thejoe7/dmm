@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import joewu.dmm.services.WidgetUpdateService;
@@ -51,25 +53,36 @@ public class SettingsActivity extends PreferenceActivity {
 
 	    // private Preference hidePastEventsPref;
         // private Preference noChangelogPref;
-	    private Preference dateFormatPref;
+	    private ListPreference dateFormatPref;
 	    private Preference devPref;
         private Preference verPref;
 
-	    private static final DateTime date = new DateTime(2014, 1, 31, 0, 0);
+	    private static final DateTime today = new DateTime(DateTime.now().getYear(), DateTime.now().getMonthOfYear(), DateTime.now().getDayOfMonth(), 0, 0);
+        private String[] dateFormatValues;
+        private String[] dateFormatEntries;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
+            dateFormatValues = getResources().getStringArray(R.array.dateFormatValues);
+            dateFormatEntries = new String[dateFormatValues.length];
+            for (int i = 0; i < dateFormatValues.length; i++) {
+                dateFormatEntries[i] = DateTimeFormat.forPattern(dateFormatValues[i]).print(today);
+            }
+
             addPreferencesFromResource(R.layout.activity_settings);
 
 	        // foldPastEventsPref = hidePreference(HIDE_PAST_EVENTS);
-	        dateFormatPref = findPreference("KEY_DATE_FORMAT");
+	        dateFormatPref = (ListPreference) findPreference("KEY_DATE_FORMAT");
             devPref = findPreference("KEY_DEVELOPER");
             verPref = findPreference("KEY_VERSION");
 
             DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
-	        dateFormatPref.setSummary(format.print(date));
+	        dateFormatPref.setSummary(format.print(today));
+            dateFormatPref.setDefaultValue(dateFormatValues[4]);
+            dateFormatPref.setEntryValues(dateFormatValues);
+            dateFormatPref.setEntries(dateFormatEntries);
 
             devPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -93,7 +106,7 @@ public class SettingsActivity extends PreferenceActivity {
 	    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		    if (key.equals(PreferencesUtils.DATE_FORMAT)) {
                 DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
-			    dateFormatPref.setSummary(format.print(date));
+			    dateFormatPref.setSummary(format.print(today));
 		    }
             if (key.equals(PreferencesUtils.DATE_FORMAT) || key.equals(PreferencesUtils.HIDE_PAST_EVENTS)) {
                 WidgetUpdateService.WidgetUpdateHelper.updateListWidget(getActivity());

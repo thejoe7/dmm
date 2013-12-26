@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="dateFormat">
-        <item>01/31/2014</item>
-        <item>31/01/2014</item>
-        <item>2014/01/31</item>
-        <item>14年1月31日</item>
-        <item>14年01月31日</item>
-        <item>2014年1月31日</item>
-        <item>2014年01月31日</item>
-    </string-array>
     <string-array name="dateFormatValues">
         <item>MM/dd/yyyy</item>
         <item>dd/MM/yyyy</item>
