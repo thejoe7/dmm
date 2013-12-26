@@ -66,6 +66,7 @@ public class PreferencesUtils {
     }
 
     public static ArrayList<DaysCountdown> loadDaysCountdowns(SharedPreferences sharedPref) {
+        boolean isLegacyPresent = false;
         ArrayList<DaysCountdown> countdowns = new ArrayList<DaysCountdown>();
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -88,6 +89,7 @@ public class PreferencesUtils {
         // legacy hack for CountdownItem
         Set<String> oldIds = sharedPref.getStringSet(PREF_COUNTDOWN_IDS, null);
         if (oldIds != null) {
+            isLegacyPresent = true;
             editor.remove(PREF_COUNTDOWN_IDS);
             for (String id : oldIds) {
                 String serialCountdown = sharedPref.getString(PREF_COUNTDOWN_ITEM_PREFIX + id, null);
@@ -109,6 +111,7 @@ public class PreferencesUtils {
         // legacy hack for Countdown
         int size = sharedPref.getInt(PREF_COUNTDOWN_SIZE, -1);
         if (size >= 0) {
+            isLegacyPresent = true;
             editor.remove(PREF_COUNTDOWN_SIZE);
             for (int i = 0; i < size; i++) {
                 String serialData = sharedPref.getString(PREF_COUNTDOWN_PREFIX + i, null);
@@ -126,6 +129,11 @@ public class PreferencesUtils {
             editor.putStringSet(PREF_ITEM_IDS, ids);
             editor.commit();
         }
+
+        if (isLegacyPresent) {
+            saveDaysCountdowns(sharedPref, countdowns);
+        }
+
         return countdowns;
     }
 
