@@ -8,15 +8,15 @@
     <string name="action_settings" >Einstellungen</string>
     <string name="action_rate" >Days-- bewerten</string>
 
-	<string name="action_edit">Bearbeiten</string>
-	<string name="action_delete">Löschen</string>
+    <string name="action_edit">Bearbeiten</string>
+    <string name="action_delete">Löschen</string>
 
-	<string name="dialog_create">Erstellen</string>
-	<string name="dialog_set">Einstellen</string>
-	<string name="dialog_done">OK</string>
-	<string name="dialog_cancel">Abbrechen</string>
-	<string name="dialog_title">Titel</string>
-	<string name="dialog_description">Beschreibung</string>
+    <string name="dialog_create">Erstellen</string>
+    <string name="dialog_set">Einstellen</string>
+    <string name="dialog_done">OK</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_title">Titel</string>
+    <string name="dialog_description">Beschreibung</string>
     <string name="dialog_alias_hint">Ein Alias zur Anzeige hinzufügen?</string>
 
     <string name="card_days_left">Tage bis zum</string>
@@ -38,7 +38,7 @@
     <string name="settings_item_date_format_title">Datumsformat einstellen</string>
     <string name="settings_item_date_format_summary">Datumsformat, wie sie in den Countdowns dargestellt wird, auswählen</string>
     <string name="settings_item_hide_past_events_title">Vergangene Erreignisse ausblenden</string>
-    <string name="settings_item_hide_past_events_summary">Auswählen, damit alle Vergangenen Erreignisse in der Liste ausgeblendet werden</string>
+    <string name="settings_item_hide_past_events_summary">Auswählen, damit alle vergangenen Erreignisse in der Liste ausgeblendet werden</string>
     <string name="settings_item_no_changelog_title">Changelog als Countdown</string>
     <string name="settings_item_no_changelog_summary">Keine automatischen Changelog Countdowns für neue Funktionen bei einem Update erstellen</string>
 
@@ -47,7 +47,7 @@
     <string name="settings_item_thanks_title">Speziellen Dank an</string>
     <string name="settings_item_version_title">Version</string>
 
-    <string name="error_too_many_days">Ernsthaft, müssen Sie so viele Tage zäglen?</string>
+    <string name="error_too_many_days">Ernsthaft, müssen Sie so viele Tage zählen?</string>
 
     <string name="widget_name_single">Days-- Einzelner Widget</string>
     <string name="widget_name_list">Days-- Listen Widget</string>
