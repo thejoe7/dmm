@@ -8,7 +8,7 @@
     <string name="change_log">1. Revamped user interface.\n2. Now supported repeated countdowns.\n3. Added a list widget.\n4. More date format options.</string>
     <string name="build_year">2013</string>
     <string name="build_month">12</string>
-    <string name="build_date">25</string>
+    <string name="build_date">30</string>
 
     <string name="action_create">Create</string>
     <string name="action_settings" >Settings</string>
