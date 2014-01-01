@@ -102,15 +102,7 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
     public void onDataSetChanged() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         this.format = PreferencesUtils.getDateFormat(sharedPref, context.getString(R.string.default_date_format));
-        List<DaysCountdown> countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
-        if (PreferencesUtils.hidePastEvents(sharedPref)) {
-            this.objects = new ArrayList<DaysCountdown>();
-            for (DaysCountdown dc : countdowns) {
-                if (!dc.isPast()) this.objects.add(dc);
-            }
-        } else {
-            this.objects = countdowns;
-        }
+        this.objects = PreferencesUtils.loadDaysCountdowns(sharedPref, true);
         sortObjects();
     }
 
@@ -120,10 +112,15 @@ public class ListWidgetAdapter implements RemoteViewsService.RemoteViewsFactory 
     }
 
     protected void sortObjects() {
+        final boolean pastEventsAtTail = PreferencesUtils.pastEventsAtTail(PreferenceManager.getDefaultSharedPreferences(context));
         Collections.sort(this.objects, new Comparator<DaysCountdown>() {
             @Override
             public int compare(DaysCountdown c1, DaysCountdown c2) {
-                return c1.getNextDate().compareTo(c2.getNextDate());
+                if (pastEventsAtTail && (c1.isPast() || c2.isPast())) {
+                    return -c1.getNextDate().compareTo(c2.getNextDate());
+                } else {
+                    return c1.getNextDate().compareTo(c2.getNextDate());
+                }
             }
         });
     }

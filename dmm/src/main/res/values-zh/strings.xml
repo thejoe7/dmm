@@ -42,6 +42,8 @@
     <string name="settings_item_date_format_summary">选择卡片中的日期以何种格式显示</string>
     <string name="settings_item_hide_past_events_title">隐藏过去事件</string>
     <string name="settings_item_hide_past_events_summary">不再显示所有已经过去的事件</string>
+    <string name="settings_item_past_events_at_tail_title">过去事件置于列表末尾</string>
+    <string name="settings_item_past_events_at_tail_summary">将所有已经过去的倒计日显示在最末尾</string>
     <string name="settings_item_no_changelog_title">隐藏应用更新信息卡片</string>
     <string name="settings_item_no_changelog_summary">在将来的更新中不再自动生成显示更新记录的倒数计日卡片</string>
 

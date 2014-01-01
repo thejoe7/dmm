@@ -51,8 +51,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-	    // private Preference hidePastEventsPref;
-        // private Preference noChangelogPref;
+        private Preference pastEventsAtTailPref;
 	    private ListPreference dateFormatPref;
 	    private Preference devPref;
         private Preference verPref;
@@ -73,7 +72,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             addPreferencesFromResource(R.layout.activity_settings);
 
-	        // foldPastEventsPref = hidePreference(HIDE_PAST_EVENTS);
+            pastEventsAtTailPref = findPreference("KEY_PAST_EVENTS_AT_TAIL");
 	        dateFormatPref = (ListPreference) findPreference("KEY_DATE_FORMAT");
             devPref = findPreference("KEY_DEVELOPER");
             verPref = findPreference("KEY_VERSION");
@@ -107,8 +106,11 @@ public class SettingsActivity extends PreferenceActivity {
 		    if (key.equals(PreferencesUtils.DATE_FORMAT)) {
                 DateTimeFormatter format = PreferencesUtils.getDateFormat(getPreferenceManager().getSharedPreferences(), getResources().getString(R.string.default_date_format));
 			    dateFormatPref.setSummary(format.print(today));
-		    }
-            if (key.equals(PreferencesUtils.DATE_FORMAT) || key.equals(PreferencesUtils.HIDE_PAST_EVENTS)) {
+		    } else if (key.equals(PreferencesUtils.HIDE_PAST_EVENTS)) {
+                boolean hidePastEvent = PreferencesUtils.hidePastEvents(getPreferenceManager().getSharedPreferences());
+                pastEventsAtTailPref.setEnabled(!hidePastEvent);
+            }
+            if (key.equals(PreferencesUtils.DATE_FORMAT) || key.equals(PreferencesUtils.HIDE_PAST_EVENTS) || key.equals(PreferencesUtils.PAST_EVENTS_AT_TAIL)) {
                 WidgetUpdateService.WidgetUpdateHelper.updateListWidget(getActivity());
             }
 	    }

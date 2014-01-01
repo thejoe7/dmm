@@ -156,10 +156,15 @@ public class DaysItemAdapter extends BaseAdapter<DaysCountdown> {
 
     @Override
     protected void sortObjects() {
+        final boolean pastEventsAtTail = PreferencesUtils.pastEventsAtTail(PreferenceManager.getDefaultSharedPreferences(getContext()));
         Collections.sort(this.objects, new Comparator<DaysCountdown>() {
             @Override
             public int compare(DaysCountdown c1, DaysCountdown c2) {
-                return c1.getNextDate().compareTo(c2.getNextDate());
+                if (pastEventsAtTail && (c1.isPast() || c2.isPast())) {
+                    return -c1.getNextDate().compareTo(c2.getNextDate());
+                } else {
+                    return c1.getNextDate().compareTo(c2.getNextDate());
+                }
             }
         });
     }

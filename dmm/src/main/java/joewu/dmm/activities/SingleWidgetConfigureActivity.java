@@ -35,11 +35,16 @@ public class SingleWidgetConfigureActivity extends Activity implements SingleWid
         // load countdown items and date format setting
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         DateTimeFormatter format = PreferencesUtils.getDateFormat(sharedPref, getString(R.string.default_date_format));
-        countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref);
-        Collections.sort(countdowns, new Comparator<DaysCountdown>() {
+        countdowns = PreferencesUtils.loadDaysCountdowns(sharedPref, false);
+        final boolean pastEventsAtTail = PreferencesUtils.pastEventsAtTail(sharedPref);
+        Collections.sort(this.countdowns, new Comparator<DaysCountdown>() {
             @Override
             public int compare(DaysCountdown c1, DaysCountdown c2) {
-                return c1.getNextDate().compareTo(c2.getNextDate());
+                if (pastEventsAtTail && (c1.isPast() || c2.isPast())) {
+                    return -c1.getNextDate().compareTo(c2.getNextDate());
+                } else {
+                    return c1.getNextDate().compareTo(c2.getNextDate());
+                }
             }
         });
 

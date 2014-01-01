@@ -82,17 +82,9 @@ public class MainActivity extends Activity {
             adapter.add(getChangeLogCountdown());
             newlyUpdate = false;
         }
-        List<DaysCountdown> filtered = new ArrayList<DaysCountdown>();
-        List<DaysCountdown> objects = PreferencesUtils.loadDaysCountdowns(sharedPref);
+        List<DaysCountdown> objects = PreferencesUtils.loadDaysCountdowns(sharedPref, true);
         if (objects != null) {
-            if (hidePastEvents) {
-                for (DaysCountdown dc : objects) {
-                    if (!dc.isPast()) filtered.add(dc);
-                }
-            } else {
-                filtered = objects;
-            }
-            adapter.addObjects(filtered);
+            adapter.addObjects(objects);
         }
 	}
 

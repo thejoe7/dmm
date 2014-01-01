@@ -23,6 +23,7 @@ public class PreferencesUtils {
     public static final String APP_FIRST_LAUNCH = "KEY_FIRST_LAUNCH";
     public static final String APP_VERSION_CODE = "KEY_VERSION_CODE";
     public static final String HIDE_PAST_EVENTS = "KEY_HIDE_PAST_EVENTS";
+    public static final String PAST_EVENTS_AT_TAIL = "KEY_PAST_EVENTS_AT_TAIL";
     public static final String DATE_FORMAT = "KEY_DATE_FORMAT";
     public static final String NO_CHANGELOG = "KEY_NO_CHANGELOG";
 
@@ -65,7 +66,7 @@ public class PreferencesUtils {
         editor.commit();
     }
 
-    public static ArrayList<DaysCountdown> loadDaysCountdowns(SharedPreferences sharedPref) {
+    public static ArrayList<DaysCountdown> loadDaysCountdowns(SharedPreferences sharedPref, boolean respectPref) {
         boolean isLegacyPresent = false;
         ArrayList<DaysCountdown> countdowns = new ArrayList<DaysCountdown>();
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -134,7 +135,15 @@ public class PreferencesUtils {
             saveDaysCountdowns(sharedPref, countdowns);
         }
 
-        return countdowns;
+        if (respectPref && hidePastEvents(sharedPref)) {
+            ArrayList<DaysCountdown> filtered = new ArrayList<DaysCountdown>();
+            for (DaysCountdown dc : countdowns) {
+                if (!dc.isPast()) filtered.add(dc);
+            }
+            return filtered;
+        } else {
+            return countdowns;
+        }
     }
 
     public static String getWidgetUuid(SharedPreferences sharedPref, int appWidgetId) {
@@ -220,6 +229,10 @@ public class PreferencesUtils {
 
     public static boolean hidePastEvents(SharedPreferences sharedPref) {
         return sharedPref.getBoolean(HIDE_PAST_EVENTS, false);
+    }
+
+    public static boolean pastEventsAtTail(SharedPreferences sharedPref) {
+        return sharedPref.getBoolean(PAST_EVENTS_AT_TAIL, false);
     }
 
     public static boolean noChangelog(SharedPreferences sharedPref) {
