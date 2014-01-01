@@ -52,7 +52,7 @@
     <string name="settings_item_hide_past_events_title">Hide past events</string>
     <string name="settings_item_hide_past_events_summary">Check to not display all past events in the countdown list</string>
     <string name="settings_item_past_events_at_tail_title">Put past events at the bottom</string>
-    <string name="settings_item_past_events_at_tail_summary">Display past events at the tail of the list, after all future countdowns.</string>
+    <string name="settings_item_past_events_at_tail_summary">Display past events at the tail of the list, after all future countdowns</string>
     <string name="settings_item_no_changelog_title">No Change Logs</string>
     <string name="settings_item_no_changelog_summary">Do not automatically create change log countdowns for new features in future updates</string>
 

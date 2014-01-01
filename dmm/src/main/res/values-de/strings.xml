@@ -39,6 +39,8 @@
     <string name="settings_item_date_format_summary">Datumsformat, wie sie in den Countdowns dargestellt wird, auswählen</string>
     <string name="settings_item_hide_past_events_title">Vergangene Erreignisse ausblenden</string>
     <string name="settings_item_hide_past_events_summary">Auswählen, damit alle vergangenen Erreignisse in der Liste ausgeblendet werden</string>
+    <string name="settings_item_past_events_at_tail_title">Vergangene Erreignisse unten einreihen</string>
+    <string name="settings_item_past_events_at_tail_summary">Vergangene Erreignisse nach den zukünftigen am unteren Ende der Liste anzeigen</string>
     <string name="settings_item_no_changelog_title">Changelog als Countdown</string>
     <string name="settings_item_no_changelog_summary">Keine automatischen Changelog Countdowns für neue Funktionen bei einem Update erstellen</string>
 
