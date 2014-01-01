@@ -29,7 +29,7 @@
     <string name="card_title">Card Title</string>
     <string name="card_countdown">0</string>
     <string name="card_days_left">days left until</string>
-    <string name="card_days_past">days past since</string>
+    <string name="card_days_past">days passed since</string>
     <string name="card_description">Empty description</string>
     <string name="card_overflow">Overflow</string>
 
