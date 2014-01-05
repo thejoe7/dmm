@@ -85,7 +85,7 @@ public class DaysCountdown {
                     nextDate = nextDate.plusYears(1);
                 }
             } else {
-                nextDate = date.plusDays(repeat);
+                nextDate = date;
                 while (!today.isBefore(nextDate)) {
                     nextDate = nextDate.plusDays(repeat);
                 }
