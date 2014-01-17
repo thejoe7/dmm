@@ -74,19 +74,19 @@ public class DaysCountdown {
                 int maxDays = new DateTime(today.getYear(), today.getMonthOfYear(), 1, 0, 0).dayOfMonth().getMaximumValue();
                 int days = Math.min(date.getDayOfMonth(), maxDays);
                 nextDate = new DateTime(today.getYear(), today.getMonthOfYear(), days, 0, 0);
-                if (!today.isBefore(nextDate)) {
+                if (today.isAfter(nextDate)) {
                     nextDate = nextDate.plusMonths(1);
                 }
             } else if (repeat == RepeatMode.Year) {
                 int maxDays = new DateTime(today.getYear(), date.getMonthOfYear(), 1, 0, 0).dayOfMonth().getMaximumValue();
                 int days = Math.min(date.getDayOfMonth(), maxDays);
                 nextDate = new DateTime(today.getYear(), date.getMonthOfYear(), days, 0, 0);
-                if (!today.isBefore(nextDate)) {
+                if (today.isAfter(nextDate)) {
                     nextDate = nextDate.plusYears(1);
                 }
             } else {
                 nextDate = date;
-                while (!today.isBefore(nextDate)) {
+                while (today.isAfter(nextDate)) {
                     nextDate = nextDate.plusDays(repeat);
                 }
             }
